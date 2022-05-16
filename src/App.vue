@@ -43,7 +43,7 @@ export default {
             Authorization: "Bearer " + tokenRes,
           };
           localStorage.auth = 1;
-          // this.$router.push('/')
+          this.$router.push('/')
         } else {
           if (error.response.status == 500) {
             localStorage.clear();

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
@@ -18,10 +17,10 @@ const routes = [
         component: () => import('@/views/Upea.vue')
       },
       {
-        path: '/carrera/:id_car',
+        path: '/carrera/:id_car/',
         name: 'carrera',
         props: true,
-        component: () => import('@/views/Carrera.vue')
+        component: () => import('@/views/Carrera.vue'),
       }
     ]
   },

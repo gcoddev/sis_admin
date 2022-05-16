@@ -48,7 +48,6 @@ export default {
   name: "appWrapper",
   data() {
     return {
-      load: true
     };
   },
   components: {
@@ -59,12 +58,6 @@ export default {
   },
   computed: {
     ...mapState(["userAdminData", "Institucion"]),
-    cargando() {
-      setTimeout(() => {
-        console.log("termina");
-        load = false;
-      }, 2000);
-    },
   },
   methods: {
     async getAdminData() {

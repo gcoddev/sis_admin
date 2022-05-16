@@ -1,15 +1,15 @@
 <template>
   <div class="leftside-menu">
     <!-- LOGO -->
-    <a
-      @click="changeSide()"
-      style="cursor: pointer"
-      class="logo text-center"
-    >
+    <a @click="changeSide()" style="cursor: pointer" class="logo text-center">
       <span class="logo-lg">
         <div class="d-flex justify-content-center align-items-center">
-          <img src="@/assets/images/upea_logo.png" alt="Logo upea" height="50" />
-          <h1 style="user-select:none;">UPEA</h1>
+          <img
+            src="@/assets/images/upea_logo.png"
+            alt="Logo upea"
+            height="50"
+          />
+          <h1 style="user-select: none">UPEA</h1>
         </div>
       </span>
       <span class="logo-sm">
@@ -68,7 +68,17 @@
             <ul class="side-nav-second-level">
               <li v-for="(carrera, id_car) of area.carreras" :key="id_car">
                 <router-link
-                  :to="{ name: 'carrera', params: { id_car: carrera.car_id } }"
+                  :to="{
+                    path: '/carrera/' + carrera.car_id,
+                    name: 'carrera',
+                    params: {
+                      id_car: carrera.car_id,
+                      carrera: carrera.carrera,
+                      sede: carrera.sede,
+                      direccion: carrera.direccion,
+                    },
+                  }"
+                  @click="clickCarrera()"
                   >{{ carrera.carrera }}</router-link
                 >
               </li>
@@ -125,6 +135,9 @@ export default {
           localStorage.themeSide;
       }
     },
+    clickCarrera() {
+      this.$store.state.getter = true
+    }
   },
   computed: {
     ...mapState(["Area"]),

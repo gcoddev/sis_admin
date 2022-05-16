@@ -4,11 +4,11 @@ export default createStore({
   state: {
     alert: false,
     alert_msg: '',
-    alert_color:'',
+    alert_color: '',
     userAdminData: {},
     Institucion: {},
     Area: {},
-    Carrera: {}
+    getter: false
   },
   getters: {
   },
