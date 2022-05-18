@@ -43,13 +43,12 @@ export default {
             Authorization: "Bearer " + tokenRes,
           };
           localStorage.auth = 1;
-          this.$router.push('/')
+          this.$router.push("/");
         } else {
           if (error.response.status == 500) {
             localStorage.clear();
             localStorage.auth = 2;
             this.$router.push("/login");
-            // location.reload();
           }
         }
       } catch (error) {
@@ -57,17 +56,18 @@ export default {
           localStorage.clear();
           localStorage.auth = 2;
           this.$router.push("/login");
-          // location.reload();
         }
       }
     },
   },
   created() {
-    if (localStorage.themeBody) {
+    if (localStorage.theme) {
       document.getElementsByTagName("body")[0].dataset.layoutColor =
-        localStorage.themeBody;
+        localStorage.theme;
+      document.getElementsByTagName("body")[0].dataset.leftbarTheme =
+        localStorage.theme;
     } else {
-      localStorage.themeBody = "light";
+      localStorage.theme = "light";
     }
 
     if (localStorage.token) {
@@ -75,8 +75,11 @@ export default {
       this.verificarToken(localStorage.token);
     } else {
       console.log("no token");
-      // localStorage.clear();
-      localStorage.auth = 0;
+      if (localStorage.auth) {
+        this.$router.push("/login");
+      } else {
+        localStorage.auth = 0;
+      }
     }
   },
   // updated() {

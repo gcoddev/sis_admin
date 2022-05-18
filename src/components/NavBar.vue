@@ -356,9 +356,10 @@
         >
           <span class="account-user-avatar">
             <img
-              src="@/assets/images/users/avatar-1.jpg"
+              :src="[userAdminData.imagen == null ? '@/assets/images/users/avatar-1.jpg' : 'https://serviciopagina.upea.bo/UsuarioAdmin/'+userAdminData.imagen]"
               alt="user-image"
               class="rounded-circle"
+              width="50px"
             />
           </span>
           <span>
@@ -379,10 +380,10 @@
           </div>
 
           <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <router-link to="/profile" class="dropdown-item notify-item">
             <i class="mdi mdi-account-circle me-1"></i>
             <span>Mi cuenta</span>
-          </a>
+          </router-link>
 
           <!-- item-->
           <a href="javascript:void(0);" class="dropdown-item notify-item">
@@ -438,20 +439,21 @@ export default {
   },
   methods: {
     changeTheme() {
-      if (localStorage.themeBody == 'light') {
-        localStorage.themeBody = 'dark'
-        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.themeBody
+      if (localStorage.theme == 'light') {
+        localStorage.theme = 'dark'
+        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.theme
+        document.getElementsByTagName('body')[0].dataset.leftbarTheme = localStorage.theme
       } else {
-        localStorage.themeBody = 'light'
-        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.themeBody
+        localStorage.theme = 'light'
+        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.theme
+        document.getElementsByTagName('body')[0].dataset.leftbarTheme = localStorage.theme
       }
     },
     cerrarSesion() {
-      let themeSide = localStorage.themeSide
-      let themeBody = localStorage.themeBody
+      let theme = localStorage.theme
       localStorage.clear()
-      localStorage.themeSide = themeSide
-      localStorage.themeBody= themeBody
+      localStorage.theme = theme
+      localStorage.auth = '3'
       location.reload()
     }
   },

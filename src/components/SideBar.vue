@@ -1,7 +1,7 @@
 <template>
   <div class="leftside-menu">
     <!-- LOGO -->
-    <a @click="changeSide()" style="cursor: pointer" class="logo text-center">
+    <router-link to="/" style="cursor: pointer" class="logo text-center">
       <span class="logo-lg">
         <div class="d-flex justify-content-center align-items-center">
           <img
@@ -15,7 +15,7 @@
       <span class="logo-sm">
         <img src="@/assets/images/upea_logo.png" alt="" height="50" />
       </span>
-    </a>
+    </router-link>
 
     <!-- LOGO -->
     <!-- <a
@@ -41,7 +41,7 @@
         <li class="side-nav-item">
           <router-link to="/" class="side-nav-link">
             <i class="uil-calender"></i>
-            <span> Inicio </span>
+            <span> INICIO </span>
           </router-link>
         </li>
         <li class="side-nav-item">
@@ -115,29 +115,11 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  created() {
-    if (localStorage.themeSide) {
-      document.getElementsByTagName("body")[0].dataset.leftbarTheme =
-        localStorage.themeSide;
-    } else {
-      localStorage.themeSide = "dark";
-    }
-  },
+  created() {},
   methods: {
-    changeSide() {
-      if (localStorage.themeSide == "dark") {
-        localStorage.themeSide = "light";
-        document.getElementsByTagName("body")[0].dataset.leftbarTheme =
-          localStorage.themeSide;
-      } else {
-        localStorage.themeSide = "dark";
-        document.getElementsByTagName("body")[0].dataset.leftbarTheme =
-          localStorage.themeSide;
-      }
-    },
     clickCarrera() {
-      this.$store.state.getter = true
-    }
+      this.$store.state.getter = true;
+    },
   },
   computed: {
     ...mapState(["Area"]),
