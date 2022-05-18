@@ -8,7 +8,8 @@ export default createStore({
     userAdminData: {},
     Institucion: {},
     Area: {},
-    getter: false
+    getter: false,
+    idCCA: null
   },
   getters: {
   },

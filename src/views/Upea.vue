@@ -293,7 +293,7 @@ export default {
     ...mapState(["Institucion"]),
   },
   created() {
-    console.log(this.Institucion.portada);
+    // console.log(this.Institucion.portada);
     setTimeout(() => {
       document.getElementById("loading_upea").style.visibility = "hidden";
     }, 2000);

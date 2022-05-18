@@ -126,7 +126,11 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a style="cursor: pointer">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_conv_' + id_conv"
+                        >
                           <img
                             :src="
                               'https://serviciopagina.upea.bo/Convocatorias/' +
@@ -150,6 +154,87 @@
                     <div class="card-footer text-muted pt-3">
                       <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
                       <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    </div>
+
+                    <div
+                      class="modal fade"
+                      :id="'modal_conv_' + id_conv"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      :aria-labelledby="'modal_conv_label_' + id_conv"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5
+                              class="modal-title"
+                              :id="'modal_conv_label_' + id_conv"
+                            >
+                              {{ con.con_titulo }}
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-hidden="true"
+                            ></button>
+                          </div>
+                          <!-- end modal header -->
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-12 col-md-5">
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top"
+                                />
+                              </div>
+                              <div class="col-12 col-md-7">
+                                <pre
+                                  class="card-text contenedor"
+                                  v-html="con.con_descripcion"
+                                  style="overflow-y: scroll"
+                                ></pre>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button type="button" class="btn btn-danger ms-2">
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-warning ms-2"
+                                data-bs-dismiss="modal"
+                                @click="editarCCA(con.idconvocatorias)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -188,7 +273,11 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a style="cursor: pointer">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_com_' + id_com"
+                        >
                           <img
                             :src="
                               'https://serviciopagina.upea.bo/Convocatorias/' +
@@ -213,6 +302,85 @@
                       <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
                       <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
                     </div>
+
+                    <div
+                      class="modal fade"
+                      :id="'modal_com_' + id_com"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      :aria-labelledby="'modal_com_label_' + id_com"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5
+                              class="modal-title"
+                              :id="'modal_com_label_' + id_com"
+                            >
+                              {{ con.con_titulo }}
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-hidden="true"
+                            ></button>
+                          </div>
+                          <!-- end modal header -->
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-12 col-md-5">
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top"
+                                />
+                              </div>
+                              <div class="col-12 col-md-7">
+                                <pre
+                                  class="card-text contenedor"
+                                  v-html="con.con_descripcion"
+                                  style="overflow-y: scroll"
+                                ></pre>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button type="button" class="btn btn-danger ms-2">
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-warning ms-2"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -225,6 +393,7 @@
                   class="tipoC col-12 col-md-6 col-xl-4 col-xxl-3"
                   v-for="(con, id_av) of convocatoriasAll"
                   :key="id_av"
+                  :id="'av_' + id_av"
                 >
                   <div
                     class="card ribbon-box"
@@ -249,7 +418,11 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a style="cursor: pointer">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_av_' + id_av"
+                        >
                           <img
                             :src="
                               'https://serviciopagina.upea.bo/Convocatorias/' +
@@ -273,6 +446,85 @@
                     <div class="card-footer text-muted pt-3">
                       <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
                       <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    </div>
+
+                    <div
+                      class="modal fade"
+                      :id="'modal_av_' + id_av"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      :aria-labelledby="'modal_av_label_' + id_av"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5
+                              class="modal-title"
+                              :id="'modal_av_label_' + id_av"
+                            >
+                              {{ con.con_titulo }}
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-hidden="true"
+                            ></button>
+                          </div>
+                          <!-- end modal header -->
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-12 col-md-5">
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top"
+                                />
+                              </div>
+                              <div class="col-12 col-md-7">
+                                <pre
+                                  class="card-text contenedor"
+                                  v-html="con.con_descripcion"
+                                  style="overflow-y: scroll"
+                                ></pre>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button type="button" class="btn btn-danger ms-2">
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-warning ms-2"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -367,7 +619,7 @@ export default {
         this.Carrera = res.data.Descripcion;
         document.getElementById("cont_carr_error").style.display = "none";
         document.getElementById("cont_carr").style.display = "block";
-        console.log(this.Carrera);
+        // console.log(this.Carrera);
       } catch (error) {
         if (error.response.status == 500) {
           document.getElementById("cont_carr").style.display = "none";
@@ -381,11 +633,15 @@ export default {
       try {
         let res = await this.axios.get("/api/convocatoriasAll/" + id);
         this.convocatoriasAll = res.data;
-        console.log(this.convocatoriasAll);
+        // console.log(this.convocatoriasAll);
       } catch (error) {
         console.log(error);
       }
     },
+    editarCCA(id) {
+      this.$store.state.idCCA = id
+      this.$router.push('/edit/'+id)
+    }
   },
   created() {
     if (this.getter) {
