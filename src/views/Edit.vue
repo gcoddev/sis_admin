@@ -77,8 +77,8 @@
                 <input
                   type="checkbox"
                   id="estado"
-                  checked
-                  data-switch="primary"
+                  data-switch="success"
+                  v-model="estado"
                 />
                 <label
                   for="estado"
@@ -90,7 +90,9 @@
           </div>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-success float-end">Actualizar</button>
+          <button type="button" class="btn btn-success float-end">
+            Actualizar
+          </button>
         </div>
       </div>
     </div>
@@ -106,6 +108,7 @@ export default {
       CCA: {},
       fi_a: null,
       ff_a: null,
+      estado: true
     };
   },
   computed: {
@@ -113,6 +116,9 @@ export default {
     fecha(fecha) {
       return fecha.substr(0, 10);
     },
+    comp() {
+      return checked
+    }
   },
   methods: {
     async getCCA() {
@@ -123,6 +129,7 @@ export default {
         this.fi_a = fi.substr(0, 10);
         let ff = res.data.Descripcion.con_fecha_fin;
         this.ff_a = ff.substr(0, 10);
+        console.log(this.CCA);
       } catch (error) {
         console.log(error);
       }
@@ -130,6 +137,6 @@ export default {
   },
   created() {
     this.getCCA();
-  },
+  }
 };
 </script>

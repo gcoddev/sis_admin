@@ -180,7 +180,7 @@
                             con.con_foto_portada
                           "
                           alt="img"
-                          class="card-img-top"
+                          class="card-img-top h-100"
                         />
                       </a>
 
@@ -234,7 +234,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top"
+                                class="card-img-top h-100"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -386,7 +386,7 @@
                             con.con_foto_portada
                           "
                           alt="img"
-                          class="card-img-top"
+                          class="card-img-top h-100"
                         />
                       </a>
 
@@ -440,7 +440,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top"
+                                class="card-img-top h-100"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -592,7 +592,7 @@
                             con.con_foto_portada
                           "
                           alt="img"
-                          class="card-img-top"
+                          class="card-img-top h-100"
                         />
                       </a>
 
@@ -646,7 +646,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top"
+                                class="card-img-top h-100"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -901,7 +901,7 @@ export default {
   },
   created() {
     this.msg = false;
-    this.msg_msg = '';
+    this.msg_msg = "";
     this.msg_color = "";
     if (this.getter) {
       this.getCarrera(this.getID);
