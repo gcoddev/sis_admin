@@ -28,9 +28,15 @@ const routes = [
         component: () => import('@/views/Carrera.vue'),
       },
       {
-        path: '/edit/:idCCA',
+        path: '/edit/:idCCA/',
         name: 'edit',
         component: () => import('@/views/Edit.vue')
+      },
+      {
+        path: '/new/:id_car/',
+        name: 'new',
+        props: true,
+        component: () => import('@/views/NewCCA.vue')
       }
     ]
   },

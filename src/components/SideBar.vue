@@ -74,8 +74,6 @@
                     params: {
                       id_car: carrera.car_id,
                       carrera: carrera.carrera,
-                      sede: carrera.sede,
-                      direccion: carrera.direccion,
                     },
                   }"
                   @click="clickCarrera()"

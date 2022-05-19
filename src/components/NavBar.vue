@@ -356,7 +356,7 @@
         >
           <span class="account-user-avatar">
             <img
-              :src="[userAdminData.imagen == null ? '@/assets/images/users/avatar-1.jpg' : 'https://serviciopagina.upea.bo/UsuarioAdmin/'+userAdminData.imagen]"
+              :src="[userAdminData.imagen == '' ? '@/assets/images/users/avatar-1.jpg' : 'https://serviciopagina.upea.bo/UsuarioAdmin/'+userAdminData.imagen]"
               alt="user-image"
               class="rounded-circle"
               width="50px"

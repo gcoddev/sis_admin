@@ -119,7 +119,6 @@ export default {
       try {
         let res = await this.axios.get("/api/convocatorias/" + this.idCCA);
         this.CCA = res.data.Descripcion;
-        console.log(res.data.Descripcion);
         let fi = res.data.Descripcion.con_fecha_inicio;
         this.fi_a = fi.substr(0, 10);
         let ff = res.data.Descripcion.con_fecha_fin;
