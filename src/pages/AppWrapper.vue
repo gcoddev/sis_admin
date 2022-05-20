@@ -74,6 +74,12 @@ export default {
         } catch (error) {
           if (error.response.status == 401) {
             this.getAdminData();
+          } else {
+            if (error.response.status == 500) {
+              localStorage.clear()
+              localStorage.auth = '4'
+              location.reload()
+            }
           }
         }
       } else {

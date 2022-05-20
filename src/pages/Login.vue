@@ -126,8 +126,8 @@ export default {
   name: "login",
   data() {
     return {
-      username: "Juan Pablo Valencia",
-      password: "JuanPa#1998",
+      username: "",
+      password: "",
     };
   },
   methods: {
@@ -154,7 +154,7 @@ export default {
           localStorage.token = res.data.token;
           localStorage.credentialP = res.data.credentialP;
           localStorage.msg = res.data.message;
-          this.$router.push('/')
+          this.$router.push("/");
           location.reload();
         } else {
           this.$store.state.alert = true;
@@ -188,13 +188,20 @@ export default {
             this.$store.state.alert = true;
             this.$store.state.alert_msg = "Inicio de sesion expirado";
             this.$store.state.alert_color = "warning";
-            localStorage.auth = '0';
+            localStorage.auth = "0";
           } else {
             if (localStorage.auth == "3") {
               this.$store.state.alert = true;
               this.$store.state.alert_msg = "Sesion cerrada con exito";
               this.$store.state.alert_color = "success";
-              localStorage.auth = '0';
+              localStorage.auth = "0";
+            } else {
+              if (localStorage.auth == "4") {
+                this.$store.state.alert = true;
+                this.$store.state.alert_msg = "Error al iniciar sesion";
+                this.$store.state.alert_color = "danger";
+                localStorage.auth = "0";
+              }
             }
           }
         }
@@ -202,7 +209,7 @@ export default {
       }
     } else {
       localStorage.clear();
-      localStorage.auth = '0';
+      localStorage.auth = "0";
     }
   },
 };
