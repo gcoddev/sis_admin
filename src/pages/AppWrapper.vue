@@ -76,7 +76,9 @@ export default {
             this.getAdminData();
           } else {
             if (error.response.status == 500) {
+              let theme = localStorage.theme
               localStorage.clear()
+              localStorage.theme = theme
               localStorage.auth = '4'
               location.reload()
             }

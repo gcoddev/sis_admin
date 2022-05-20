@@ -46,14 +46,18 @@ export default {
           this.$router.push("/");
         } else {
           if (error.response.status == 500) {
+            let theme = localStorage.theme
             localStorage.clear();
+            localStorage.theme = theme
             localStorage.auth = 2;
             this.$router.push("/login");
           }
         }
       } catch (error) {
         if (error.response.status == 500) {
+          let theme = localStorage.theme
           localStorage.clear();
+          localStorage.theme = theme
           localStorage.auth = 2;
           this.$router.push("/login");
         }
@@ -81,21 +85,6 @@ export default {
         localStorage.auth = 0;
       }
     }
-  },
-  // updated() {
-  //   if (localStorage.auth == 1) {
-  //     console.log("/");
-  //     this.$router.push("/");
-  //   } else {
-  //     console.log("auth no 1");
-  //     if (localStorage.auth == 2) {
-  //       console.log("auth 2");
-  //       this.$store.state.alert = true;
-  //       this.$store.state.alert_msg = "Inicio de sesion expirado";
-  //     }
-  //     console.log("/login");
-  //     this.$router.push("/login");
-  //   }
-  // },
+  }
 };
 </script>

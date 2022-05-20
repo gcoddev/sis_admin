@@ -35,6 +35,7 @@
                     por.portada_imagen
                   "
                   :alt="por.portada_imagen"
+                  id="img_carrusel"
                 />
                 <div class="carousel-caption d-none d-md-block">
                   <h3 class="text-white">{{ por.portada_titulo }}</h3>
@@ -283,6 +284,9 @@
   position: absolute;
   left: 35%;
   top: 40%;
+}
+#img_carrusel {
+  object-fit: cover;
 }
 </style>
 

@@ -392,7 +392,7 @@
           </a>
 
           <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
+          <a href="https://sie.upea.bo/" target="_blank" class="dropdown-item notify-item">
             <i class="mdi mdi-lifebuoy me-1"></i>
             <span>Soporte</span>
           </a>

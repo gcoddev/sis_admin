@@ -26,12 +26,14 @@
                     PÁGINA NO ENCONTRADA
                   </h4>
                   <p class="text-muted mt-3">
-                    Parece que te has equivocado de camino. No te preocupes... nos pasa a los mejores. Aquí hay un pequeño consejo que podría ayudarlo a volver a la normalidad.
+                    Parece que te has equivocado de camino. No te preocupes...
+                    nos pasa a los mejores. Aquí hay un pequeño consejo que
+                    podría ayudarlo a volver a la normalidad.
                   </p>
 
-                  <router-link to="/" class="btn btn-info mt-3"
-                    ><i class="mdi mdi-reply"></i> Volver a Inicio</router-link
-                  >
+                  <button class="btn btn-info mt-3" @click="back()">
+                    <i class="mdi mdi-reply"></i> Volver a Inicio
+                  </button>
                 </div>
               </div>
               <!-- end card-body-->
@@ -63,5 +65,10 @@ export default {
       return year;
     },
   },
+  methods: {
+    back() {
+      location.reload()
+    }
+  }
 };
 </script>
