@@ -5,7 +5,6 @@
     @keyup.enter="iniciarSesion()"
   >
     <div class="auth-fluid">
-      <!--Auth fluid left content -->
       <div class="auth-fluid-form-box">
         <div class="align-items-center d-flex h-100">
           <div class="card-body">
@@ -20,25 +19,6 @@
                 <h1 style="user-select: none">UPEA</h1>
               </div>
             </div>
-
-            <!-- Toast error -->
-            <div v-if="alert">
-              <div
-                class="alert alert-dismissible fade show"
-                :class="'alert-' + alert_color"
-                role="alert"
-              >
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="Close"
-                  @click="changeError()"
-                ></button>
-                <strong>{{ alert_msg }}</strong>
-              </div>
-            </div>
-            <!-- Toast end -->
 
             <!-- title-->
             <h4 class="mt-5">Iniciar sesion</h4>
@@ -77,12 +57,11 @@
                 />
               </div>
               <div class="d-grid mb-0 text-center">
-                <button class="btn btn-primary" @click="iniciarSesion()">
+                <button class="btn btn-primary" @click="verificar()">
                   <i class="mdi mdi-login"></i> Iniciar sesion
                 </button>
               </div>
             </div>
-            <!-- end form-->
 
             <!-- Footer-->
             <!-- <footer class="footer footer-alt">
@@ -94,29 +73,20 @@
               </p>
             </footer> -->
           </div>
-          <!-- end .card-body -->
         </div>
-        <!-- end .align-items-center.d-flex.h-100-->
       </div>
-      <!-- end auth-fluid-form-box-->
 
-      <!-- Auth fluid right content -->
       <div class="auth-fluid-right text-center">
         <div class="auth-user-testimonial">
-          <h2 class="mb-3">UNIVERSISDAD PUBLICA DE EL ALTO</h2>
+          <h2 class="mb-3">UNIVERSIDAD PUBLICA DE EL ALTO</h2>
           <p class="lead">
             <i class="mdi mdi-format-quote-open"></i> Sistema de Administracion
             de Publicaciones <i class="mdi mdi-format-quote-close"></i>
           </p>
           <p>- Development by Gary - SIE 2022</p>
         </div>
-        <!-- end auth-user-testimonial-->
       </div>
-      <!-- end Auth fluid right content -->
     </div>
-    <!-- end auth-fluid-->
-
-    <!-- bundle -->
   </div>
 </template>
 
@@ -131,17 +101,17 @@ export default {
     };
   },
   methods: {
-    changeError() {
-      this.$store.state.alert = false;
-      this.$store.state.alert_msg = "";
-      this.$store.state.alert_color = "";
-      localStorage.auth = 0;
-    },
     verificar() {
       if (this.username != "") {
         if (this.password != "") {
           this.iniciarSesion();
+        } else {
+          console.log("password vacio");
+          this.alertDisplay("Contraseña vacia", "warning", 1000);
         }
+      } else {
+        this.alertDisplay("Nombre de usuario vacio", "warning", 1000);
+        this.password = "";
       }
     },
     async iniciarSesion() {
@@ -154,52 +124,46 @@ export default {
           localStorage.token = res.data.token;
           localStorage.credentialP = res.data.credentialP;
           localStorage.msg = res.data.message;
+          localStorage.username = this.username;
           this.$router.push("/");
           location.reload();
         } else {
-          this.$store.state.alert = true;
-          this.$store.state.alert_msg = "Error de inicio de sesion";
-          this.$store.state.alert_color = "warning";
+          this.alertDisplay("Error de inicio de sesion", "warning", 1000);
         }
       } catch (error) {
         if (error.response.status == 400 || error.response.status == 401) {
-          this.$store.state.alert = true;
-          this.$store.state.alert_msg = error.response.data.message;
-          this.$store.state.alert_color = "danger";
-          console.log("error 400");
+          this.alertDisplay(error.response.data.message, "error", 1000);
+          this.password = "";
         }
       }
     },
+    alertDisplay(msg, icon, time) {
+      this.$swal({
+        title: msg,
+        icon: icon,
+        showConfirmButton: false,
+        timer: time,
+      });
+    },
   },
-  computed: {
-    ...mapState(["alert", "alert_msg", "alert_color"]),
-  },
+  computed: {},
   created() {
     if (localStorage.auth) {
       if (localStorage.auth == "0") {
-        this.$store.state.alert = false;
-        this.$store.state.alert_msg = null;
-        this.$store.state.alert_color = null;
       } else {
         if (localStorage.auth == "1") {
           this.$router.push("/");
         } else {
           if (localStorage.auth == "2") {
-            this.$store.state.alert = true;
-            this.$store.state.alert_msg = "Inicio de sesion expirado";
-            this.$store.state.alert_color = "warning";
+            this.alertDisplay("Inicio de sesion expirado", "warning", 1500);
             localStorage.auth = "0";
           } else {
             if (localStorage.auth == "3") {
-              this.$store.state.alert = true;
-              this.$store.state.alert_msg = "Sesion cerrada con exito";
-              this.$store.state.alert_color = "success";
+              this.alertDisplay("Sesion cerrada con exito", "success", 1500);
               localStorage.auth = "0";
             } else {
               if (localStorage.auth == "4") {
-                this.$store.state.alert = true;
-                this.$store.state.alert_msg = "Error al iniciar sesion";
-                this.$store.state.alert_color = "danger";
+                this.alertDisplay("Error al iniciar sesion", "error"), 1250;
                 localStorage.auth = "0";
               }
             }
@@ -210,6 +174,10 @@ export default {
     } else {
       localStorage.clear();
       localStorage.auth = "0";
+    }
+
+    if (localStorage.username) {
+      this.username = localStorage.username;
     }
   },
 };

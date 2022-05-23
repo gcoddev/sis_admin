@@ -356,14 +356,21 @@
         >
           <span class="account-user-avatar">
             <img
-              :src="[userAdminData.imagen == '' ? '@/assets/images/users/avatar-1.jpg' : 'https://serviciopagina.upea.bo/UsuarioAdmin/'+userAdminData.imagen]"
+              :src="[
+                userAdminData.imagen == ''
+                  ? '@/assets/images/users/avatar-1.jpg'
+                  : 'https://serviciopagina.upea.bo/UsuarioAdmin/' +
+                    userAdminData.imagen,
+              ]"
               alt="user-image"
               class="rounded-circle"
               width="50px"
             />
           </span>
           <span>
-            <span class="account-user-name">{{ userAdminData.nombre }} {{ userAdminData.apellido }}</span>
+            <span class="account-user-name"
+              >{{ userAdminData.nombre }} {{ userAdminData.apellido }}</span
+            >
             <span class="account-position">{{ userAdminData.roles }}</span>
           </span>
         </a>
@@ -392,13 +399,21 @@
           </a>
 
           <!-- item-->
-          <a href="https://sie.upea.bo/" target="_blank" class="dropdown-item notify-item">
+          <a
+            href="https://sie.upea.bo/"
+            target="_blank"
+            class="dropdown-item notify-item"
+          >
             <i class="mdi mdi-lifebuoy me-1"></i>
             <span>Soporte</span>
           </a>
 
           <!-- item-->
-          <a href="javascript:void(0);" @click="cerrarSesion()" class="dropdown-item notify-item">
+          <a
+            href="javascript:void(0);"
+            @click="cerrarSesion()"
+            class="dropdown-item notify-item"
+          >
             <i class="mdi mdi-logout me-1"></i>
             <span>Cerrar sesion</span>
           </a>
@@ -429,36 +444,42 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   name: "navbar",
   data() {
     return {
-      msg: localStorage.msg
-    }
+      msg: localStorage.msg,
+    };
   },
   methods: {
     changeTheme() {
-      if (localStorage.theme == 'light') {
-        localStorage.theme = 'dark'
-        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.theme
-        document.getElementsByTagName('body')[0].dataset.leftbarTheme = localStorage.theme
+      if (localStorage.theme == "light") {
+        localStorage.theme = "dark";
+        document.getElementsByTagName("body")[0].dataset.layoutColor =
+          localStorage.theme;
+        document.getElementsByTagName("body")[0].dataset.leftbarTheme =
+          localStorage.theme;
       } else {
-        localStorage.theme = 'light'
-        document.getElementsByTagName('body')[0].dataset.layoutColor = localStorage.theme
-        document.getElementsByTagName('body')[0].dataset.leftbarTheme = localStorage.theme
+        localStorage.theme = "light";
+        document.getElementsByTagName("body")[0].dataset.layoutColor =
+          localStorage.theme;
+        document.getElementsByTagName("body")[0].dataset.leftbarTheme =
+          localStorage.theme;
       }
     },
     cerrarSesion() {
-      let theme = localStorage.theme
-      localStorage.clear()
-      localStorage.theme = theme
-      localStorage.auth = '3'
-      location.reload()
-    }
+      let theme = localStorage.theme;
+      let un = localStorage.username;
+      localStorage.clear();
+      localStorage.theme = theme;
+      localStorage.username = un;
+      localStorage.auth = "3";
+      location.reload();
+    },
   },
   computed: {
-    ...mapState(['userAdminData'])
-  }
+    ...mapState(["userAdminData"]),
+  },
 };
 </script>

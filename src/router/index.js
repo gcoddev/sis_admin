@@ -22,22 +22,41 @@ const routes = [
         component: () => import('@/views/Profile.vue')
       },
       {
-        path: '/carrera/:id_car/',
-        name: 'carrera',
+        path: '/cca/:id_car/',
+        name: 'cca',
         props: true,
-        component: () => import('@/views/Carrera.vue'),
+        component: () => import('@/views/Carrera/Convocatorias/CCA.vue'),
       },
       {
-        path: '/edit/:idCCA/',
-        name: 'edit',
-        component: () => import('@/views/Edit.vue')
+        path: '/cs/:id_car/',
+        name: 'cs',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/CS.vue'),
       },
       {
-        path: '/new/:id_car/',
-        name: 'new',
+        path: '/edit_cca/:idCCA/',
+        name: 'edit_cca',
         props: true,
-        component: () => import('@/views/NewCCA.vue')
-      }
+        component: () => import('@/views/Carrera/Convocatorias/EditCCA.vue')
+      },
+      {
+        path: '/edit_cs/:idCCA/',
+        name: 'edit_cs',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/EditCS.vue')
+      },
+      {
+        path: '/new_cca/:id_car/',
+        name: 'new_cca',
+        props: true,
+        component: () => import('@/views/Carrera/Convocatorias/NewCCA.vue')
+      },
+      {
+        path: '/new_cs/:id_car/',
+        name: 'new_cs',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/NewCS.vue')
+      },
     ]
   },
   {

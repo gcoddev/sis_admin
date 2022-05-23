@@ -83,8 +83,8 @@
           <div class="col-12 col-md-2">
             <router-link
               :to="{
-                path: '/new/' + getID,
-                name: 'new',
+                path: '/new_cca/' + getID,
+                name: 'new_cca',
                 params: {
                   id_car: getID,
                   carrera: getCarr,
@@ -271,15 +271,21 @@
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <button
-                              type="button"
-                              class="btn btn-warning ms-2"
+                            <router-link
                               data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
+                              class="btn btn-warning ms-2"
+                              :to="{
+                                path: '/edit_cca/' + con.idconvocatorias,
+                                name: 'edit_cca',
+                                params: {
+                                  idCCA: con.idconvocatorias,
+                                  id_car: getID,
+                                  carrera: getCarr,
+                                },
+                              }"
+                              ><i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar</router-link
                             >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -477,15 +483,21 @@
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <button
-                              type="button"
-                              class="btn btn-warning ms-2"
+                            <router-link
                               data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
+                              class="btn btn-warning ms-2"
+                              :to="{
+                                path: '/edit_cca/' + con.idconvocatorias,
+                                name: 'edit_cca',
+                                params: {
+                                  idCCA: con.idconvocatorias,
+                                  id_car: getID,
+                                  carrera: getCarr,
+                                },
+                              }"
+                              ><i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar</router-link
                             >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -683,15 +695,21 @@
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <button
-                              type="button"
-                              class="btn btn-warning ms-2"
+                            <router-link
                               data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
+                              class="btn btn-warning ms-2"
+                              :to="{
+                                path: '/edit_cca/' + con.idconvocatorias,
+                                name: 'edit_cca',
+                                params: {
+                                  idCCA: con.idconvocatorias,
+                                  id_car: getID,
+                                  carrera: getCarr,
+                                },
+                              }"
+                              ><i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar</router-link
                             >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -873,9 +891,8 @@ export default {
         console.log(error);
       }
     },
-    editarCCA(id) {
-      this.$store.state.idCCA = id;
-      this.$router.push("/edit/" + id);
+    editCCA(idCCA) {
+      this.$router.push('/edit_cca/'+idCCA)
     },
     async deleteCCA(id, img) {
       try {
@@ -885,7 +902,7 @@ export default {
         this.msg = true;
         this.msg_msg = res.data.mensaje;
         this.msg_color = "success";
-        this.$router.push("/carrera/" + this.getID);
+        this.$router.push("/cca/" + this.getID);
         this.$store.state.getter = true;
         // console.log("id: " + id);
         // console.log("img: " + img);

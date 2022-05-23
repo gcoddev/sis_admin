@@ -6,10 +6,12 @@ export default createStore({
     alert_msg: '',
     alert_color: '',
     userAdminData: {},
+    Carrera: {},
     Institucion: {},
     Area: {},
     getter: false,
-    idCCA: null
+    idCCA: null,
+    idCS: null
   },
   getters: {
   },

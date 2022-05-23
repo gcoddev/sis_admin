@@ -6,7 +6,12 @@
           <div class="card-body col-12 col-md-4">
             <img
               class="card-img"
-              :src="[userAdminData.imagen == null ? '@/assets/images/users/avatar-1.jpg' : 'https://serviciopagina.upea.bo/UsuarioAdmin/'+userAdminData.imagen]"
+              :src="[
+                userAdminData.imagen == null
+                  ? '@/assets/images/users/avatar-1.jpg'
+                  : 'https://serviciopagina.upea.bo/UsuarioAdmin/' +
+                    userAdminData.imagen,
+              ]"
               alt=""
             />
           </div>

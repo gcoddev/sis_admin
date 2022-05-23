@@ -89,10 +89,21 @@
             </div>
           </div>
         </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-success float-end">
-            Actualizar
-          </button>
+        <div class="card-footer d-flex flex-row-reverse">
+          <button type="button" class="btn btn-success ms-2">Actualizar</button>
+          <router-link
+            :to="{
+              path: '/cca/' + getID,
+              name: 'cca',
+              params: {
+                id_car: getID,
+                carrera: getCarr,
+              },
+            }"
+            class="btn btn-secondary"
+            @click="clickCarrera()"
+            >Volver</router-link
+          >
         </div>
       </div>
     </div>
@@ -100,7 +111,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 export default {
   name: "edit",
   data() {
@@ -108,17 +119,19 @@ export default {
       CCA: {},
       fi_a: null,
       ff_a: null,
-      estado: true
+      estado: true,
     };
   },
   computed: {
-    ...mapState(["idCCA"]),
-    fecha(fecha) {
-      return fecha.substr(0, 10);
+    idCCA() {
+      return this.$route.params.idCCA;
     },
-    comp() {
-      return checked
-    }
+    getID() {
+      return this.$route.params.id_car;
+    },
+    getCarr() {
+      return this.$route.params.carrera;
+    },
   },
   methods: {
     async getCCA() {
@@ -134,9 +147,12 @@ export default {
         console.log(error);
       }
     },
+    clickCarrera() {
+      this.$store.state.getter = true;
+    },
   },
   created() {
     this.getCCA();
-  }
+  },
 };
 </script>

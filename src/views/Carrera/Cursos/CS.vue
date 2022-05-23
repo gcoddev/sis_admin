@@ -39,42 +39,28 @@
             </li>
             <li class="nav-item">
               <a
-                href="#convocatorias"
+                href="#cursos"
                 data-bs-toggle="tab"
                 aria-expanded="false"
                 class="nav-link"
               >
                 <span class="d-none d-md-block"
-                  >CONVOCATORIAS &nbsp;<span class="badge bg-info">{{
-                    filterConv.length
+                  >CURSOS &nbsp;<span class="badge bg-info">{{
+                    filterCur.length
                   }}</span></span
                 >
               </a>
             </li>
             <li class="nav-item">
               <a
-                href="#comunicados"
+                href="#seminarios"
                 data-bs-toggle="tab"
                 aria-expanded="false"
                 class="nav-link"
               >
                 <span class="d-none d-md-block"
-                  >COMUNICADOS &nbsp;<span class="badge bg-info">{{
-                    filterCom.length
-                  }}</span></span
-                >
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="#avisos"
-                data-bs-toggle="tab"
-                aria-expanded="false"
-                class="nav-link"
-              >
-                <span class="d-none d-md-block"
-                  >AVISOS &nbsp;<span class="badge bg-info">{{
-                    filterAv.length
+                  >SEMINARIOS &nbsp;<span class="badge bg-info">{{
+                    filterSem.length
                   }}</span></span
                 >
               </a>
@@ -83,8 +69,8 @@
           <div class="col-12 col-md-2">
             <router-link
               :to="{
-                path: '/new/' + getID,
-                name: 'new',
+                path: '/new_cs/' + getID,
+                name: 'new_cs',
                 params: {
                   id_car: getID,
                   carrera: getCarr,
@@ -135,11 +121,11 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" id="convocatorias">
+          <div class="tab-pane" id="cursos">
             <div class="container-fluid">
               <div class="row">
-                <div v-if="filterConv.length == 0">
-                  <h1 class="text-center">Sin convocatorias</h1>
+                <div v-if="filterCur.length == 0">
+                  <h1 class="text-center">Sin cursos</h1>
                 </div>
                 <div
                   v-else
@@ -149,35 +135,35 @@
                     tipoC
                     col-12 col-md-6 col-xl-4 col-xxl-3
                   "
-                  v-for="(con, id_conv) of filterConv"
-                  :key="id_conv"
+                  v-for="(cur, id_cur) of filterCur"
+                  :key="id_cur"
                 >
                   <div class="card-body">
                     <div
                       class="ribbon float-start"
                       :class="[
-                        con.con_estado == '1'
+                        cur.det_estado == '1'
                           ? 'ribbon-success'
                           : 'ribbon-danger',
                       ]"
                     >
                       <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
+                      ><span v-if="cur.det_estado == '1'"> Activo</span
+                      ><span v-if="cur.det_estado != '1'"> Inactivo</span>
                     </div>
                     <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
+                      {{ cur.tipo_curso_otro.tipo_conv_curso_nombre }}
                     </h5>
                     <div class="ribbon-content">
                       <a
                         style="cursor: pointer"
                         data-bs-toggle="modal"
-                        :data-bs-target="'#modal_conv_' + id_conv"
+                        :data-bs-target="'#modal_cur_' + id_cur"
                       >
                         <img
                           :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
+                            'https://serviciopagina.upea.bo/Cursos/' +
+                            cur.det_img_portada
                           "
                           alt="img"
                           class="card-img-top h-100"
@@ -185,27 +171,27 @@
                       </a>
 
                       <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
+                        {{ cur.det_titulo }}
                       </div>
                       <pre
                         class="card-text contenedor"
-                        v-html="con.con_descripcion"
+                        v-html="cur.det_descripcion"
                         style="max-height: 200px; overflow-y: scroll"
                       ></pre>
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                    <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
                   </div>
 
                   <div
                     class="modal fade"
-                    :id="'modal_conv_' + id_conv"
+                    :id="'modal_cur_' + id_cur"
                     data-bs-backdrop="static"
                     data-bs-keyboard="false"
                     tabindex="-1"
-                    :aria-labelledby="'modal_conv_label_' + id_conv"
+                    :aria-labelledby="'modal_cur_label_' + id_cur"
                     aria-hidden="true"
                   >
                     <div class="modal-dialog modal-xl">
@@ -213,9 +199,9 @@
                         <div class="modal-header">
                           <h5
                             class="modal-title"
-                            :id="'modal_conv_label_' + id_conv"
+                            :id="'modal_cur_label_' + id_cur"
                           >
-                            {{ con.con_titulo }}
+                            {{ cur.det_titulo }}
                           </h5>
                           <button
                             type="button"
@@ -230,8 +216,8 @@
                             <div class="col-12 col-md-5">
                               <img
                                 :src="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
+                                  'https://serviciopagina.upea.bo/Cursos/' +
+                                  cur.det_img_portada
                                 "
                                 alt="img"
                                 class="card-img-top h-100"
@@ -240,7 +226,7 @@
                             <div class="col-12 col-md-7">
                               <pre
                                 class="card-text contenedor"
-                                v-html="con.con_descripcion"
+                                v-html="cur.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
                             </div>
@@ -250,8 +236,8 @@
                           class="modal-footer d-flex justify-content-between"
                         >
                           <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                            <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
                           </div>
                           <div>
                             <button
@@ -265,7 +251,7 @@
                               type="button"
                               class="btn btn-danger ms-2"
                               data-bs-toggle="modal"
-                              :data-bs-target="'#conv_confirm_' + id_conv"
+                              :data-bs-target="'#cur_confirm_' + id_cur"
                               data-bs-dismiss="modal"
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
@@ -275,7 +261,9 @@
                               type="button"
                               class="btn btn-warning ms-2"
                               data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
+                              @click="
+                                editarCS(cur.iddetalle_cursos_academicos)
+                              "
                             >
                               <i class="mdi mdi-clipboard-edit-outline"></i
                               >&nbsp; Editar
@@ -286,17 +274,17 @@
                     </div>
                   </div>
                   <div
-                    :id="'conv_confirm_' + id_conv"
+                    :id="'cur_confirm_' + id_cur"
                     class="modal fade"
                     tabindex="-1"
                     role="dialog"
-                    :aria-labelledby="'#conv_d_' + id_conv"
+                    :aria-labelledby="'#cur_d_' + id_cur"
                     aria-hidden="true"
                   >
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title" :id="'conv_d_' + id_conv">
+                          <h4 class="modal-title" :id="'cur_d_' + id_cur">
                             Confirmacion
                           </h4>
                           <button
@@ -308,7 +296,7 @@
                         </div>
                         <div class="modal-body">
                           <h5 class="mt-0">
-                            Estas seguro de eliminar la convocatoria?
+                            Estas seguro de eliminar el curso?
                           </h5>
                           <p>Al eliminarlo, no hay vuelta atras</p>
                         </div>
@@ -325,9 +313,9 @@
                             class="btn btn-danger"
                             data-bs-dismiss="modal"
                             @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
+                              deleteCS(
+                                cur.iddetalle_cursos_academicos,
+                                cur.det_img_portada
                               )
                             "
                           >
@@ -341,11 +329,11 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" id="comunicados">
+          <div class="tab-pane" id="seminarios">
             <div class="container-fluid">
               <div class="row">
-                <div v-if="filterCom.length == 0">
-                  <h1 class="text-center">Sin comunicados</h1>
+                <div v-if="filterSem.length == 0">
+                  <h1 class="text-center">Sin seminarios</h1>
                 </div>
                 <div
                   v-else
@@ -355,35 +343,35 @@
                     tipoC
                     col-12 col-md-6 col-xl-4 col-xxl-3
                   "
-                  v-for="(con, id_com) of filterCom"
-                  :key="id_com"
+                  v-for="(sem, id_sem) of filterSem"
+                  :key="id_sem"
                 >
                   <div class="card-body">
                     <div
                       class="ribbon float-start"
                       :class="[
-                        con.con_estado == '1'
+                        sem.det_estado == '1'
                           ? 'ribbon-success'
                           : 'ribbon-danger',
                       ]"
                     >
                       <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
+                      ><span v-if="sem.det_estado == '1'"> Activo</span
+                      ><span v-if="sem.det_estado != '1'"> Inactivo</span>
                     </div>
                     <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
+                      {{ sem.tipo_curso_otro.tipo_conv_curso_nombre }}
                     </h5>
                     <div class="ribbon-content">
                       <a
                         style="cursor: pointer"
                         data-bs-toggle="modal"
-                        :data-bs-target="'#modal_com_' + id_com"
+                        :data-bs-target="'#modal_sem_' + id_sem"
                       >
                         <img
                           :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
+                            'https://serviciopagina.upea.bo/Cursos/' +
+                            sem.det_img_portada
                           "
                           alt="img"
                           class="card-img-top h-100"
@@ -391,27 +379,27 @@
                       </a>
 
                       <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
+                        {{ sem.det_titulo }}
                       </div>
                       <pre
                         class="card-text contenedor"
-                        v-html="con.con_descripcion"
+                        v-html="sem.det_descripcion"
                         style="max-height: 200px; overflow-y: scroll"
                       ></pre>
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                    <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
                   </div>
 
                   <div
                     class="modal fade"
-                    :id="'modal_com_' + id_com"
+                    :id="'modal_sem_' + id_sem"
                     data-bs-backdrop="static"
                     data-bs-keyboard="false"
                     tabindex="-1"
-                    :aria-labelledby="'modal_com_label_' + id_com"
+                    :aria-labelledby="'modal_sem_label_' + id_sem"
                     aria-hidden="true"
                   >
                     <div class="modal-dialog modal-xl">
@@ -419,9 +407,9 @@
                         <div class="modal-header">
                           <h5
                             class="modal-title"
-                            :id="'modal_com_label_' + id_com"
+                            :id="'modal_sem_label_' + id_sem"
                           >
-                            {{ con.con_titulo }}
+                            {{ sem.det_titulo }}
                           </h5>
                           <button
                             type="button"
@@ -436,8 +424,8 @@
                             <div class="col-12 col-md-5">
                               <img
                                 :src="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
+                                  'https://serviciopagina.upea.bo/Cursos/' +
+                                  sem.det_img_portada
                                 "
                                 alt="img"
                                 class="card-img-top h-100"
@@ -446,7 +434,7 @@
                             <div class="col-12 col-md-7">
                               <pre
                                 class="card-text contenedor"
-                                v-html="con.con_descripcion"
+                                v-html="sem.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
                             </div>
@@ -456,8 +444,8 @@
                           class="modal-footer d-flex justify-content-between"
                         >
                           <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                            <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
                           </div>
                           <div>
                             <button
@@ -471,7 +459,7 @@
                               type="button"
                               class="btn btn-danger ms-2"
                               data-bs-toggle="modal"
-                              :data-bs-target="'#com_confirm_' + id_com"
+                              :data-bs-target="'#sem_confirm_' + id_sem"
                               data-bs-dismiss="modal"
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
@@ -481,7 +469,7 @@
                               type="button"
                               class="btn btn-warning ms-2"
                               data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
+                              @click="editarCS(sem.iddetalle_cursos_academicos)"
                             >
                               <i class="mdi mdi-clipboard-edit-outline"></i
                               >&nbsp; Editar
@@ -492,17 +480,17 @@
                     </div>
                   </div>
                   <div
-                    :id="'com_confirm_' + id_com"
+                    :id="'sem_confirm_' + id_sem"
                     class="modal fade"
                     tabindex="-1"
                     role="dialog"
-                    :aria-labelledby="'#com_d_' + id_com"
+                    :aria-labelledby="'#sem_d_' + id_sem"
                     aria-hidden="true"
                   >
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title" :id="'com_d_' + id_com">
+                          <h4 class="modal-title" :id="'sem_d_' + id_sem">
                             Confirmacion
                           </h4>
                           <button
@@ -514,7 +502,7 @@
                         </div>
                         <div class="modal-body">
                           <h5 class="mt-0">
-                            Estas seguro de eliminar el comunicado?
+                            Estas seguro de eliminar el seminario?
                           </h5>
                           <p>Al eliminarlo, no hay vuelta atras</p>
                         </div>
@@ -531,215 +519,9 @@
                             class="btn btn-danger"
                             data-bs-dismiss="modal"
                             @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="avisos">
-            <div class="container-fluid">
-              <div class="row">
-                <div v-if="filterAv.length == 0">
-                  <h1 class="text-center">Sin avisos</h1>
-                </div>
-                <div
-                  v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
-                  v-for="(con, id_av) of filterAv"
-                  :key="id_av"
-                >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        con.con_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_av_' + id_av"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
-                      </div>
-                      <pre
-                        class="card-text contenedor"
-                        v-html="con.con_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></pre>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
-                  </div>
-
-                  <div
-                    class="modal fade"
-                    :id="'modal_av_' + id_av"
-                    data-bs-backdrop="static"
-                    data-bs-keyboard="false"
-                    tabindex="-1"
-                    :aria-labelledby="'modal_av_label_' + id_av"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-xl">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5
-                            class="modal-title"
-                            :id="'modal_av_label_' + id_av"
-                          >
-                            {{ con.con_titulo }}
-                          </h5>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-hidden="true"
-                          ></button>
-                        </div>
-                        <!-- end modal header -->
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-12 col-md-5">
-                              <img
-                                :src="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
-                                "
-                                alt="img"
-                                class="card-img-top h-100"
-                              />
-                            </div>
-                            <div class="col-12 col-md-7">
-                              <pre
-                                class="card-text contenedor"
-                                v-html="con.con_descripcion"
-                                style="overflow-y: scroll"
-                              ></pre>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
-                          </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#av_confirm_' + id_av"
-                              data-bs-dismiss="modal"
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-warning ms-2"
-                              data-bs-dismiss="modal"
-                              @click="editarCCA(con.idconvocatorias)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'av_confirm_' + id_av"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#av_d_' + id_av"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'av_d_' + id_av">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar el aviso?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
+                              deleteCS(
+                                sem.iddetalle_cursos_academicos,
+                                sem.det_img_portada
                               )
                             "
                           >
@@ -814,9 +596,8 @@ export default {
   data() {
     return {
       Carrera: {},
-      filterConv: [],
-      filterCom: [],
-      filterAv: [],
+      filterCur: [],
+      filterSem: [],
       msg: false,
       msg_msg: "",
       msg_color: "",
@@ -847,25 +628,20 @@ export default {
         }
       }
     },
-    async getConvocatoriasAll(id) {
-      console.log("getConvocatoriasAll");
+    async getCursosAll(id) {
+      console.log("getCursosAll");
       try {
-        let res = await this.axios.get("/api/convocatoriasAll/" + id);
-        this.filterConv = [];
-        this.filterCom = [];
-        this.filterAv = [];
+        let res = await this.axios.get("/api/cursosAll/" + id);
+        this.filterCur = [];
+        this.filterSem = [];
         res.data.forEach((con) => {
-          if (con.tipo_conv_comun.tipo_conv_comun_titulo == "CONVOCATORIAS") {
-            this.filterConv.push(con);
+          if (con.tipo_curso_otro.tipo_conv_curso_nombre == "CURSOS") {
+            this.filterCur.push(con);
           } else {
-            if (con.tipo_conv_comun.tipo_conv_comun_titulo == "COMUNICADOS") {
-              this.filterCom.push(con);
+            if (con.tipo_curso_otro.tipo_conv_curso_nombre == "SEMINARIOS") {
+              this.filterSem.push(con);
             } else {
-              if (con.tipo_conv_comun.tipo_conv_comun_titulo == "AVISOS") {
-                this.filterAv.push(con);
-              } else {
-                //
-              }
+              //
             }
           }
         });
@@ -873,19 +649,19 @@ export default {
         console.log(error);
       }
     },
-    editarCCA(id) {
-      this.$store.state.idCCA = id;
-      this.$router.push("/edit/" + id);
+    editarCS(id) {
+      this.$store.state.idCS = id;
+      this.$router.push("/edit_cs/" + id);
     },
-    async deleteCCA(id, img) {
+    async deleteCS(id, img) {
       try {
         let res = await this.axios.delete(
-          "/api/convocatorias/" + id + "/" + img
+          "/api/cursos/" + id + "/" + img
         );
         this.msg = true;
         this.msg_msg = res.data.mensaje;
         this.msg_color = "success";
-        this.$router.push("/carrera/" + this.getID);
+        this.$router.push("/cs/" + this.getID);
         this.$store.state.getter = true;
         // console.log("id: " + id);
         // console.log("img: " + img);
@@ -913,7 +689,7 @@ export default {
     this.msg_color = "";
     if (this.getter) {
       this.getCarrera(this.getID);
-      this.getConvocatoriasAll(this.getID);
+      this.getCursosAll(this.getID);
       setTimeout(() => {
         document.getElementById("loading_carrera").style.display = "none";
       }, 3000);
@@ -922,7 +698,7 @@ export default {
   updated() {
     if (this.getter) {
       this.getCarrera(this.getID);
-      this.getConvocatoriasAll(this.getID);
+      this.getCursosAll(this.getID);
       this.$store.state.getter = false;
       document.getElementById("loading_carrera").style.display = "block";
       setTimeout(() => {

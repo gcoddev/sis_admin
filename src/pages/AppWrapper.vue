@@ -38,7 +38,6 @@
 </style>
 
 <script>
-// import Header from "@/components/Header.vue";
 import SideBar from "@/components/SideBar.vue";
 import Footer from "@/components/Footer.vue";
 import NavBar from "@/components/NavBar.vue";
@@ -47,8 +46,7 @@ import { mapState } from "vuex";
 export default {
   name: "appWrapper",
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     // Header,
@@ -68,19 +66,31 @@ export default {
             "/api/DatosUsuarioAdmin/" + localStorage.credentialP
           );
           this.$store.state.userAdminData = res.data;
-
-          this.getInstitucion();
-          this.getArea();
+          if (
+            res.data.roles == "DIRECTOR" ||
+            res.data.roles == "CENTRO_ESTUDIANTES"
+          ) {
+            this.getCarrera(res.data.insttitucion_id);
+          } else {
+            if (res.data.roles == "SECRETARIA") {
+              this.getInstitucion();
+            } else {
+              this.getInstitucion();
+              this.getArea();
+            }
+          }
         } catch (error) {
           if (error.response.status == 401) {
             this.getAdminData();
           } else {
             if (error.response.status == 500) {
-              let theme = localStorage.theme
-              localStorage.clear()
-              localStorage.theme = theme
-              localStorage.auth = '4'
-              location.reload()
+              let theme = localStorage.theme;
+              let un = localStorage.userAdminData;
+              localStorage.clear();
+              localStorage.theme = theme;
+              localStorage.username = un;
+              localStorage.auth = "4";
+              location.reload();
             }
           }
         }
@@ -91,15 +101,14 @@ export default {
     async getInstitucion() {
       console.log("getInstitucion");
       try {
-        let res = await this.axios.get(
-          this.userAdminData.rutas[0].tab_link_funcion
-        );
+        let res = await this.axios.get("/api/InstitucionUPEA/");
         this.$store.state.Institucion = res.data[0];
         // if (Object.keys(this.Institucion).length === 0) {
         //   console.log("vacio");
         // }
       } catch (error) {
-        this.getInstitucion();
+        // this.getInstitucion();
+        console.log(error);
       }
     },
     async getArea() {
@@ -108,8 +117,17 @@ export default {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
       } catch (error) {
-        // console.log(error);
-        this.getArea();
+        console.log(error);
+        // this.getArea();
+      }
+    },
+    async getCarrera(id) {
+      try {
+        let res = await this.axios.get("/api/upeacarrera/" + id);
+        console.log(res.data.Descripcion);
+        this.$store.state.Carrera = res.data.Descripcion;
+      } catch (error) {
+        console.log(error);
       }
     },
   },
