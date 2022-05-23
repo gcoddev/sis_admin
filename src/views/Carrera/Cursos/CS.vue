@@ -7,22 +7,7 @@
       <h1>Error al retornar datos de la carrera</h1>
     </div>
     <div class="container" id="cont_carr">
-      <h1 class="text-uppercase">Carrera {{ getCarr }}</h1>
-      <div
-        class="alert alert-dismissible fade show"
-        role="alert"
-        v-if="msg"
-        :class="'alert-' + msg_color"
-      >
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-          @click="changeMsg()"
-        ></button>
-        <strong>{{ msg_msg }}</strong>
-      </div>
+      <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
           <!-- nav -->
@@ -67,18 +52,9 @@
             </li>
           </ul>
           <div class="col-12 col-md-2">
-            <router-link
-              :to="{
-                path: '/new_cs/' + getID,
-                name: 'new_cs',
-                params: {
-                  id_car: getID,
-                  carrera: getCarr,
-                },
-              }"
-              class="btn btn-primary float-end"
-              >Crear nuevo</router-link
-            >
+            <button class="btn btn-primary float-end" @click="newCS()">
+              Crear nuevo
+            </button>
           </div>
         </div>
         <div class="tab-content">
@@ -181,7 +157,7 @@
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                    <p><b>Inicio:</b> {{ cur.det_fecha_inicio }}</p>
                     <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
                   </div>
 
@@ -236,7 +212,7 @@
                           class="modal-footer d-flex justify-content-between"
                         >
                           <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                            <p><b>Inicio:</b> {{ cur.det_fecha_inicio }}</p>
                             <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
                           </div>
                           <div>
@@ -250,77 +226,27 @@
                             <button
                               type="button"
                               class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#cur_confirm_' + id_cur"
                               data-bs-dismiss="modal"
+                              @click="
+                                deleteMsg(
+                                  'curso',
+                                  cur.iddetalle_cursos_academicos,
+                                  cur.det_img_portada
+                                )
+                              "
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
                             <button
-                              type="button"
-                              class="btn btn-warning ms-2"
                               data-bs-dismiss="modal"
-                              @click="
-                                editarCS(cur.iddetalle_cursos_academicos)
-                              "
+                              class="btn btn-warning ms-2"
+                              @click="editCS(cur.iddetalle_cursos_academicos)"
                             >
                               <i class="mdi mdi-clipboard-edit-outline"></i
                               >&nbsp; Editar
                             </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'cur_confirm_' + id_cur"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#cur_d_' + id_cur"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'cur_d_' + id_cur">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar el curso?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCS(
-                                cur.iddetalle_cursos_academicos,
-                                cur.det_img_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -389,7 +315,7 @@
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                    <p><b>Inicio:</b> {{ sem.det_fecha_inicio }}</p>
                     <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
                   </div>
 
@@ -444,7 +370,7 @@
                           class="modal-footer d-flex justify-content-between"
                         >
                           <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                            <p><b>Inicio:</b> {{ sem.det_fecha_inicio }}</p>
                             <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
                           </div>
                           <div>
@@ -458,75 +384,27 @@
                             <button
                               type="button"
                               class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#sem_confirm_' + id_sem"
                               data-bs-dismiss="modal"
+                              @click="
+                                deleteMsg(
+                                  'seminario',
+                                  sem.iddetalle_cursos_academicos,
+                                  sem.det_img_portada
+                                )
+                              "
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
                             <button
-                              type="button"
-                              class="btn btn-warning ms-2"
                               data-bs-dismiss="modal"
-                              @click="editarCS(sem.iddetalle_cursos_academicos)"
+                              class="btn btn-warning ms-2"
+                              @click="editCS(sem.iddetalle_cursos_academicos)"
                             >
                               <i class="mdi mdi-clipboard-edit-outline"></i
                               >&nbsp; Editar
                             </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'sem_confirm_' + id_sem"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#sem_d_' + id_sem"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'sem_d_' + id_sem">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar el seminario?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCS(
-                                sem.iddetalle_cursos_academicos,
-                                sem.det_img_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -598,19 +476,11 @@ export default {
       Carrera: {},
       filterCur: [],
       filterSem: [],
-      msg: false,
-      msg_msg: "",
-      msg_color: "",
+      msg: "",
     };
   },
   computed: {
-    getID() {
-      return this.$route.params.id_car;
-    },
-    getCarr() {
-      return this.$route.params.carrera;
-    },
-    ...mapState(["getter"]),
+    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS"]),
   },
   methods: {
     async getCarrera(id) {
@@ -634,45 +504,52 @@ export default {
         let res = await this.axios.get("/api/cursosAll/" + id);
         this.filterCur = [];
         this.filterSem = [];
-        res.data.forEach((con) => {
-          if (con.tipo_curso_otro.tipo_conv_curso_nombre == "CURSOS") {
-            this.filterCur.push(con);
+        res.data.forEach((curs) => {
+          if (curs.tipo_curso_otro.tipo_conv_curso_nombre == "CURSOS") {
+            this.filterCur.push(curs);
           } else {
-            if (con.tipo_curso_otro.tipo_conv_curso_nombre == "SEMINARIOS") {
-              this.filterSem.push(con);
+            if (curs.tipo_curso_otro.tipo_conv_curso_nombre == "SEMINARIOS") {
+              this.filterSem.push(curs);
             } else {
               //
             }
           }
         });
       } catch (error) {
-        console.log(error);
+        console.log("error getCursosAll: " + error);
       }
     },
-    editarCS(id) {
-      this.$store.state.idCS = id;
-      this.$router.push("/edit_cs/" + id);
+    editCS(idCS) {
+      this.$store.state.idCCACS = idCS;
+      this.$router.push("/edit_cs/" + idCS);
     },
     async deleteCS(id, img) {
       try {
-        let res = await this.axios.delete(
-          "/api/cursos/" + id + "/" + img
-        );
-        this.msg = true;
-        this.msg_msg = res.data.mensaje;
-        this.msg_color = "success";
-        this.$router.push("/cs/" + this.getID);
-        this.$store.state.getter = true;
-        // console.log("id: " + id);
-        // console.log("img: " + img);
+        let res = await this.axios.delete("/api/cursos/" + id + "/" + img);
+        this.getCursosAll(this.idCarr);
+        // this.msg = res.data.mensaje;
+        this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log(error);
+        console.log("error deleteCS: " + error);
       }
     },
-    changeMsg() {
-      this.msg = false;
-      this.msg_msg = "";
-      this.msg_color = "";
+    deleteMsg(title, id, img) {
+      this.$swal({
+        title: "Eliminar " + title,
+        text: "Esta seguro de eliminar el " + title,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteCS(id, img);
+        }
+      });
+    },
+    newCS() {
+      this.$router.push("/new_cs/" + this.idCarr);
     },
     alertDisplay(msg, icon, time) {
       this.$swal({
@@ -684,12 +561,10 @@ export default {
     },
   },
   created() {
-    this.msg = false;
-    this.msg_msg = "";
-    this.msg_color = "";
     if (this.getter) {
-      this.getCarrera(this.getID);
-      this.getCursosAll(this.getID);
+      this.getCarrera(this.idCarr);
+      this.getCursosAll(this.idCarr);
+      this.$store.state.getter = false;
       setTimeout(() => {
         document.getElementById("loading_carrera").style.display = "none";
       }, 3000);
@@ -697,8 +572,8 @@ export default {
   },
   updated() {
     if (this.getter) {
-      this.getCarrera(this.getID);
-      this.getCursosAll(this.getID);
+      this.getCarrera(this.idCarr);
+      this.getCursosAll(this.idCarr);
       this.$store.state.getter = false;
       document.getElementById("loading_carrera").style.display = "block";
       setTimeout(() => {

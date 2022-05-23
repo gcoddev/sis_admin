@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-    <!-- <h1>{{ idCCA }}</h1> -->
+    <h1>{{ nombreCarr }}</h1>
     <div class="container">
-      <h2 class="text-center">{{ CCA.tipo_conv_comun_titulo }}</h2>
       <div class="card">
         <div class="card-body">
+        <h2 class="text-center">{{ CCA.tipo_conv_comun_titulo }}</h2>
           <div class="row">
             <img
               :src="
@@ -91,19 +91,9 @@
         </div>
         <div class="card-footer d-flex flex-row-reverse">
           <button type="button" class="btn btn-success ms-2">Actualizar</button>
-          <router-link
-            :to="{
-              path: '/cca/' + getID,
-              name: 'cca',
-              params: {
-                id_car: getID,
-                carrera: getCarr,
-              },
-            }"
-            class="btn btn-secondary"
-            @click="clickCarrera()"
-            >Volver</router-link
-          >
+          <button class="btn btn-secondary" @click="clickCarrera()">
+            Volver
+          </button>
         </div>
       </div>
     </div>
@@ -111,7 +101,7 @@
 </template>
 
 <script>
-// import { mapState } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "edit",
   data() {
@@ -123,32 +113,25 @@ export default {
     };
   },
   computed: {
-    idCCA() {
-      return this.$route.params.idCCA;
-    },
-    getID() {
-      return this.$route.params.id_car;
-    },
-    getCarr() {
-      return this.$route.params.carrera;
-    },
+    ...mapState(["idCCACS", "nombreCarr", "idCarr"]),
   },
   methods: {
     async getCCA() {
       try {
-        let res = await this.axios.get("/api/convocatorias/" + this.idCCA);
+        let res = await this.axios.get("/api/convocatorias/" + this.idCCACS);
         this.CCA = res.data.Descripcion;
         let fi = res.data.Descripcion.con_fecha_inicio;
         this.fi_a = fi.substr(0, 10);
         let ff = res.data.Descripcion.con_fecha_fin;
         this.ff_a = ff.substr(0, 10);
-        console.log(this.CCA);
+        // console.log(this.CCA);
       } catch (error) {
         console.log(error);
       }
     },
     clickCarrera() {
       this.$store.state.getter = true;
+      this.$router.push("/cca/" + this.idCarr);
     },
   },
   created() {

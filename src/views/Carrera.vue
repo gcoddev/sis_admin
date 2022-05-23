@@ -823,13 +823,7 @@ export default {
     };
   },
   computed: {
-    getID() {
-      return this.$route.params.id_car;
-    },
-    getCarr() {
-      return this.$route.params.carrera;
-    },
-    ...mapState(["getter"]),
+    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS"]),
   },
   methods: {
     async getCarrera(id) {
@@ -874,7 +868,7 @@ export default {
       }
     },
     editarCCA(id) {
-      this.$store.state.idCCA = id;
+      this.$store.state.idCCACS = id;
       this.$router.push("/edit/" + id);
     },
     async deleteCCA(id, img) {

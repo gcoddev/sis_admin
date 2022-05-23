@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">{{ getCarr }}</h2>
+      <h2 class="text-center">{{ nombreCarr }}</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -67,19 +67,9 @@
           <button type="button" class="btn btn-success ms-2">
             Crear nuevo
           </button>
-          <router-link
-            :to="{
-              path: '/carrera/' + getID,
-              name: 'carrera',
-              params: {
-                id_car: getID,
-                carrera: getCarr,
-              },
-            }"
-            class="btn btn-secondary"
-            @click="clickCarrera()"
-            >Volver</router-link
-          >
+          <button class="btn btn-secondary" @click="clickCarrera()">
+            Volver
+          </button>
         </div>
       </div>
     </div>
@@ -87,20 +77,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name: "new",
+  name: "new_cca",
   data() {
     return {
       tipoC: {},
     };
   },
   computed: {
-    getID() {
-      return this.$route.params.id_car;
-    },
-    getCarr() {
-      return this.$route.params.carrera;
-    },
+    ...mapState(["idCarr", 'nombreCarr'])
   },
   methods: {
     async getTipoCon() {
@@ -113,6 +99,7 @@ export default {
     },
     clickCarrera() {
       this.$store.state.getter = true;
+      this.$router.push("/cca/" + this.idCarr);
     },
   },
   created() {

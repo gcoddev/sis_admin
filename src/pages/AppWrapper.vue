@@ -70,7 +70,8 @@ export default {
             res.data.roles == "DIRECTOR" ||
             res.data.roles == "CENTRO_ESTUDIANTES"
           ) {
-            this.getCarrera(res.data.insttitucion_id);
+            this.$store.state.idCarr = res.data.insttitucion_id
+            this.getCarreraU(res.data.insttitucion_id);
           } else {
             if (res.data.roles == "SECRETARIA") {
               this.getInstitucion();
@@ -121,11 +122,14 @@ export default {
         // this.getArea();
       }
     },
-    async getCarrera(id) {
+    async getCarreraU(id) {
+      console.log('getCarreraU');
+      console.log('getCarrera');
       try {
-        let res = await this.axios.get("/api/upeacarrera/" + id);
-        console.log(res.data.Descripcion);
-        this.$store.state.Carrera = res.data.Descripcion;
+        let res = await this.axios.get("/api/UpeaCarrera/" + id);
+        // console.log(res.data.Descripcion);
+        this.$store.state.CarreraU = res.data.Descripcion;
+        this.$store.state.nombreCarr = res.data.Descripcion.carrera
       } catch (error) {
         console.log(error);
       }

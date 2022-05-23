@@ -7,22 +7,7 @@
       <h1>Error al retornar datos de la carrera</h1>
     </div>
     <div class="container" id="cont_carr">
-      <h1 class="text-uppercase">Carrera {{ getCarr }}</h1>
-      <div
-        class="alert alert-dismissible fade show"
-        role="alert"
-        v-if="msg"
-        :class="'alert-' + msg_color"
-      >
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-          @click="changeMsg()"
-        ></button>
-        <strong>{{ msg_msg }}</strong>
-      </div>
+      <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
           <!-- nav -->
@@ -81,18 +66,9 @@
             </li>
           </ul>
           <div class="col-12 col-md-2">
-            <router-link
-              :to="{
-                path: '/new_cca/' + getID,
-                name: 'new_cca',
-                params: {
-                  id_car: getID,
-                  carrera: getCarr,
-                },
-              }"
-              class="btn btn-primary float-end"
-              >Crear nuevo</router-link
-            >
+            <button class="btn btn-primary float-end" @click="newCCA()">
+              Crear nuevo
+            </button>
           </div>
         </div>
         <div class="tab-content">
@@ -264,81 +240,27 @@
                             <button
                               type="button"
                               class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#conv_confirm_' + id_conv"
                               data-bs-dismiss="modal"
+                              @click="
+                                deleteMsg(
+                                  'aviso',
+                                  con.idconvocatorias,
+                                  con.con_foto_portada
+                                )
+                              "
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <router-link
+                            <button
                               data-bs-dismiss="modal"
                               class="btn btn-warning ms-2"
-                              :to="{
-                                path: '/edit_cca/' + con.idconvocatorias,
-                                name: 'edit_cca',
-                                params: {
-                                  idCCA: con.idconvocatorias,
-                                  id_car: getID,
-                                  carrera: getCarr,
-                                },
-                              }"
-                              ><i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar</router-link
+                              @click="editCCA(con.idconvocatorias)"
                             >
+                              <i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar
+                            </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'conv_confirm_' + id_conv"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#conv_d_' + id_conv"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'conv_d_' + id_conv">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar la convocatoria?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -476,81 +398,27 @@
                             <button
                               type="button"
                               class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#com_confirm_' + id_com"
                               data-bs-dismiss="modal"
+                              @click="
+                                deleteMsg(
+                                  'aviso',
+                                  con.idconvocatorias,
+                                  con.con_foto_portada
+                                )
+                              "
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <router-link
+                            <button
                               data-bs-dismiss="modal"
                               class="btn btn-warning ms-2"
-                              :to="{
-                                path: '/edit_cca/' + con.idconvocatorias,
-                                name: 'edit_cca',
-                                params: {
-                                  idCCA: con.idconvocatorias,
-                                  id_car: getID,
-                                  carrera: getCarr,
-                                },
-                              }"
-                              ><i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar</router-link
+                              @click="editCCA(con.idconvocatorias)"
                             >
+                              <i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar
+                            </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'com_confirm_' + id_com"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#com_d_' + id_com"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'com_d_' + id_com">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar el comunicado?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -688,81 +556,27 @@
                             <button
                               type="button"
                               class="btn btn-danger ms-2"
-                              data-bs-toggle="modal"
-                              :data-bs-target="'#av_confirm_' + id_av"
                               data-bs-dismiss="modal"
+                              @click="
+                                deleteMsg(
+                                  'aviso',
+                                  con.idconvocatorias,
+                                  con.con_foto_portada
+                                )
+                              "
                             >
                               <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                               Eliminar
                             </button>
-                            <router-link
+                            <button
                               data-bs-dismiss="modal"
                               class="btn btn-warning ms-2"
-                              :to="{
-                                path: '/edit_cca/' + con.idconvocatorias,
-                                name: 'edit_cca',
-                                params: {
-                                  idCCA: con.idconvocatorias,
-                                  id_car: getID,
-                                  carrera: getCarr,
-                                },
-                              }"
-                              ><i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar</router-link
+                              @click="editCCA(con.idconvocatorias)"
                             >
+                              <i class="mdi mdi-clipboard-edit-outline"></i
+                              >&nbsp; Editar
+                            </button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    :id="'av_confirm_' + id_av"
-                    class="modal fade"
-                    tabindex="-1"
-                    role="dialog"
-                    :aria-labelledby="'#av_d_' + id_av"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" :id="'av_d_' + id_av">
-                            Confirmacion
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <h5 class="mt-0">
-                            Estas seguro de eliminar el aviso?
-                          </h5>
-                          <p>Al eliminarlo, no hay vuelta atras</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Cancelar
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-bs-dismiss="modal"
-                            @click="
-                              deleteCCA(
-                                con.idconvocatorias,
-                                con.con_foto_portada
-                              )
-                            "
-                          >
-                            Confirmar
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -835,19 +649,10 @@ export default {
       filterConv: [],
       filterCom: [],
       filterAv: [],
-      msg: false,
-      msg_msg: "",
-      msg_color: "",
     };
   },
   computed: {
-    getID() {
-      return this.$route.params.id_car;
-    },
-    getCarr() {
-      return this.$route.params.carrera;
-    },
-    ...mapState(["getter"]),
+    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS"]),
   },
   methods: {
     async getCarrera(id) {
@@ -888,32 +693,41 @@ export default {
           }
         });
       } catch (error) {
-        console.log(error);
+        console.log("error getConvocatoriasAll: " + error);
       }
     },
     editCCA(idCCA) {
-      this.$router.push('/edit_cca/'+idCCA)
+      this.$store.state.idCCACS = idCCA;
+      this.$router.push("/edit_cca/" + idCCA);
     },
     async deleteCCA(id, img) {
       try {
         let res = await this.axios.delete(
           "/api/convocatorias/" + id + "/" + img
         );
-        this.msg = true;
-        this.msg_msg = res.data.mensaje;
-        this.msg_color = "success";
-        this.$router.push("/cca/" + this.getID);
-        this.$store.state.getter = true;
-        // console.log("id: " + id);
-        // console.log("img: " + img);
+        this.getConvocatoriasAll(this.idCarr);
+        this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log(error);
+        console.log("error deleteCCA: " + error);
       }
     },
-    changeMsg() {
-      this.msg = false;
-      this.msg_msg = "";
-      this.msg_color = "";
+    deleteMsg(title, id, img) {
+      this.$swal({
+        title: "Eliminar " + title,
+        text: "Esta seguro de eliminar el " + title,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteCCA(id, img);
+        }
+      });
+    },
+    newCCA() {
+      this.$router.push("/new_cca/" + this.idCarr);
     },
     alertDisplay(msg, icon, time) {
       this.$swal({
@@ -925,12 +739,10 @@ export default {
     },
   },
   created() {
-    this.msg = false;
-    this.msg_msg = "";
-    this.msg_color = "";
     if (this.getter) {
-      this.getCarrera(this.getID);
-      this.getConvocatoriasAll(this.getID);
+      this.getCarrera(this.idCarr);
+      this.getConvocatoriasAll(this.idCarr);
+      this.$store.state.getter = false;
       setTimeout(() => {
         document.getElementById("loading_carrera").style.display = "none";
       }, 3000);
@@ -938,8 +750,8 @@ export default {
   },
   updated() {
     if (this.getter) {
-      this.getCarrera(this.getID);
-      this.getConvocatoriasAll(this.getID);
+      this.getCarrera(this.idCarr);
+      this.getConvocatoriasAll(this.idCarr);
       this.$store.state.getter = false;
       document.getElementById("loading_carrera").style.display = "block";
       setTimeout(() => {

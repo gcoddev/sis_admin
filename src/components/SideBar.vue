@@ -103,7 +103,7 @@
                     aria-expanded="false"
                     aria-controls="sidebarTasks"
                   >
-                    <i class="mdi mdi-school"></i>
+                    <i class="mdi mdi-school-outline"></i>&nbsp;
                     <span> {{ carrera.carrera }} </span>
                     <span class="menu-arrow"></span>
                   </a>
@@ -111,30 +111,20 @@
                     <ul class="side-nav-third-level">
                       <li class="side-nav-item" v-if="showConv">
                         <router-link
-                          :to="{
-                            path: '/cca/' + carrera.car_id,
-                            name: 'cca',
-                            params: {
-                              id_car: carrera.car_id,
-                              carrera: carrera.carrera,
-                            },
-                          }"
-                          @click="clickCarrera()"
+                          :to="'/cca/' + carrera.car_id"
+                          @click="
+                            clickCarreras(carrera.car_id, carrera.carrera)
+                          "
                         >
                           <span> CONVOCATORIAS </span>
                         </router-link>
                       </li>
                       <li class="side-nav-item">
                         <router-link
-                          :to="{
-                            path: '/cs/' + carrera.car_id,
-                            name: 'cs',
-                            params: {
-                              id_car: carrera.car_id,
-                              carrera: carrera.carrera,
-                            },
-                          }"
-                          @click="clickCarrera()"
+                          :to="'/cs/' + carrera.car_id"
+                          @click="
+                            clickCarreras(carrera.car_id, carrera.carrera)
+                          "
                         >
                           <span> CURSOS </span>
                         </router-link>
@@ -157,73 +147,28 @@
               aria-controls="sidebarTasks"
               class="side-nav-link"
             >
-              <i class="mdi mdi-school"></i>
-              <span> {{ Carrera.carrera }} </span>
+              <i class="mdi mdi-school-outline"></i>
+              <span> {{ CarreraU.carrera }} </span>
               <span class="menu-arrow"></span>
             </a>
             <div class="collapse show" id="sub_carrera">
               <ul class="side-nav-second-level">
                 <li class="side-nav-item" v-if="showConv">
-                  <a href="##">
+                  <router-link :to="'/cca/' + CarreraU.carrera_id" @click="clickCarrera()">
                     <span> CONVOCATORIAS </span>
-                  </a>
+                  </router-link>
                 </li>
                 <li class="side-nav-item">
-                  <a href="##">
+                  <router-link :to="'/cs/' + CarreraU.carrera_id" @click="clickCarrera()">
                     <span> CURSOS </span>
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </div>
           </li>
-          <!-- <li class="side-nav-item">
-            <a
-              data-bs-toggle="collapse"
-              href="#sub_"
-              aria-expanded="false"
-              aria-controls="sidebarTasks"
-              class="side-nav-link"
-            >
-              <i class="mdi mdi-school"></i>
-              <span> Area </span>
-              <span class="menu-arrow"></span>
-            </a>
-            <div class="collapse" id="sub_">
-              <ul class="side-nav-second-level">
-                <li class="side-nav-item">
-                  <a
-                    data-bs-toggle="collapse"
-                    href="#sub2_"
-                    aria-expanded="false"
-                    aria-controls="sidebarTasks"
-                  >
-                    <i class="mdi mdi-school-outline"></i>
-                    <span> Carrera </span>
-                    <span class="menu-arrow"></span>
-                  </a>
-                  <div class="collapse" id="sub2_">
-                    <ul class="side-nav-third-level">
-                      <li class="side-nav-item" v-if="showConv">
-                        <a href="##">
-                          <span> CONVOCATORIAS </span>
-                        </a>
-                      </li>
-                      <li class="side-nav-item">
-                        <a href="##">
-                          <span> CURSOS </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li> -->
         </div>
-        <!-- END CARRERA -->
       </ul>
 
-      <!-- Help Box -->
       <div class="help-box text-white text-center">
         <a href="javascript: void(0);" class="float-end close-btn text-white">
           <i class="mdi mdi-close"></i>
@@ -242,12 +187,9 @@
           >Ver</a
         >
       </div>
-      <!-- end Help Box -->
-      <!-- End Sidebar -->
 
       <div class="clearfix"></div>
     </div>
-    <!-- Sidebar -left -->
   </div>
 </template>
 
@@ -258,12 +200,17 @@ export default {
     return {};
   },
   methods: {
+    clickCarreras(car_id, carrera) {
+      this.$store.state.idCarr = car_id;
+      this.$store.state.nombreCarr = carrera;
+      this.$store.state.getter = true;
+    },
     clickCarrera() {
       this.$store.state.getter = true;
     },
   },
   computed: {
-    ...mapState(["Area", "userAdminData", "Carrera"]),
+    ...mapState(["Area", "userAdminData", "CarreraU"]),
     rol() {
       return this.userAdminData.roles;
     },

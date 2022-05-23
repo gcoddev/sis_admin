@@ -357,7 +357,7 @@
           <span class="account-user-avatar">
             <img
               :src="[
-                userAdminData.imagen == ''
+                userAdminData.imagen == null
                   ? '@/assets/images/users/avatar-1.jpg'
                   : 'https://serviciopagina.upea.bo/UsuarioAdmin/' +
                     userAdminData.imagen,

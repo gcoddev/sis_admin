@@ -5,13 +5,22 @@ export default createStore({
     alert: false,
     alert_msg: '',
     alert_color: '',
+    
+    // Datos generales de usuario
     userAdminData: {},
-    Carrera: {},
     Institucion: {},
     Area: {},
+
+    // clickCarrera
+    idCarr: '',
+    nombreCarr: '',
     getter: false,
-    idCCA: null,
-    idCS: null
+
+    // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios
+    idCCACS: '',
+
+    // Al
+    CarreraU: {}
   },
   getters: {
   },

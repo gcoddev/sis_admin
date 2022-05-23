@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 export default {
   name: "login",
   data() {
@@ -128,11 +128,11 @@ export default {
           this.$router.push("/");
           location.reload();
         } else {
-          this.alertDisplay("Error de inicio de sesion", "warning", 1000);
+          this.alertDisplay("Error de inicio de sesion", "warning", 1500);
         }
       } catch (error) {
         if (error.response.status == 400 || error.response.status == 401) {
-          this.alertDisplay(error.response.data.message, "error", 1000);
+          this.alertDisplay(error.response.data.message, "error", 1500);
           this.password = "";
         }
       }
@@ -155,15 +155,15 @@ export default {
           this.$router.push("/");
         } else {
           if (localStorage.auth == "2") {
-            this.alertDisplay("Inicio de sesion expirado", "warning", 1500);
+            this.alertDisplay("Inicio de sesion expirado", "warning", 2500);
             localStorage.auth = "0";
           } else {
             if (localStorage.auth == "3") {
-              this.alertDisplay("Sesion cerrada con exito", "success", 1500);
+              this.alertDisplay("Sesion cerrada con exito", "success", 2500);
               localStorage.auth = "0";
             } else {
               if (localStorage.auth == "4") {
-                this.alertDisplay("Error al iniciar sesion", "error"), 1250;
+                this.alertDisplay("Error al iniciar sesion", "error", 1500);
                 localStorage.auth = "0";
               }
             }
@@ -178,6 +178,8 @@ export default {
 
     if (localStorage.username) {
       this.username = localStorage.username;
+    } else {
+      localStorage.username = ''
     }
   },
 };
