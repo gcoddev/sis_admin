@@ -1,19 +1,9 @@
 # sis_admin2
 
-## Project setup
-```
-npm install
-```
+## SISTEMA DE ADMINISTRACION DE PUBLICACIONES - UPEA
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+url
+- https://serviciopagina.upea.bo/
+- https://sie.upea.bo
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Vue 3 - vue-router - vuex - API-REST - axios - sweetalert2 - bootstrap 5 hyper/Saas
