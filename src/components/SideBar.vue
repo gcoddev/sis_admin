@@ -34,45 +34,44 @@
         <div v-if="showUpea">
           <li class="side-nav-item">
             <a
-              class="side-nav-link"
               data-bs-toggle="collapse"
-              aria-expanded="true"
               href="#upea"
+              aria-expanded="true"
               aria-controls="upea"
+              class="side-nav-link"
             >
               <i class="mdi mdi-home-city"></i>
               <span> UPEA </span>
               <span class="menu-arrow"></span>
             </a>
+            <div class="collapse show" id="upea">
+              <ul class="side-nav-second-level">
+                <li class="side-nav-item">
+                  <router-link :to="{ name: 'upea' }"
+                    ><i class="mdi mdi-home-outline"></i>&nbsp; INICIO
+                  </router-link>
+                </li>
+
+                <li class="side-nav-item">
+                  <router-link :to="{ name: 'publicaciones' }">
+                    <i class="mdi mdi-book-edit"></i>&nbsp; PUBLICACIONES
+                  </router-link>
+                </li>
+
+                <li class="side-nav-item">
+                  <router-link :to="{ name: 'gaceta' }"
+                    ><i class="mdi mdi-periodic-table"></i>&nbsp; GACETA
+                  </router-link>
+                </li>
+
+                <li class="side-nav-item">
+                  <router-link :to="{ name: 'eventos' }"
+                    ><i class="mdi mdi-card-text"></i>&nbsp; EVENTOS
+                  </router-link>
+                </li>
+              </ul>
+            </div>
           </li>
-
-          <div class="collapse show" id="upea">
-            <ul class="side-nav-second-level">
-              <li>
-                <router-link to="/upea"
-                  ><i class="mdi mdi-home-outline"></i>&nbsp; INICIO
-                </router-link>
-              </li>
-
-              <li>
-                <router-link to="/publicaciones">
-                  <i class="mdi mdi-book-edit"></i>&nbsp; PUBLICACIONES
-                </router-link>
-              </li>
-
-              <li>
-                <router-link to="/gaceta"
-                  ><i class="mdi mdi-periodic-table"></i>&nbsp; GACETA
-                </router-link>
-              </li>
-
-              <li>
-                <router-link to="/eventos"
-                  ><i class="mdi mdi-card-text"></i>&nbsp; EVENTOS
-                </router-link>
-              </li>
-            </ul>
-          </div>
         </div>
 
         <!-- CARRERAS -->
@@ -154,12 +153,18 @@
             <div class="collapse show" id="sub_carrera">
               <ul class="side-nav-second-level">
                 <li class="side-nav-item" v-if="showConv">
-                  <router-link :to="'/cca/' + CarreraU.carrera_id" @click="clickCarrera()">
+                  <router-link
+                    :to="'/cca/' + CarreraU.carrera_id"
+                    @click="clickCarrera()"
+                  >
                     <span> CONVOCATORIAS </span>
                   </router-link>
                 </li>
                 <li class="side-nav-item">
-                  <router-link :to="'/cs/' + CarreraU.carrera_id" @click="clickCarrera()">
+                  <router-link
+                    :to="'/cs/' + CarreraU.carrera_id"
+                    @click="clickCarrera()"
+                  >
                     <span> CURSOS </span>
                   </router-link>
                 </li>
@@ -192,6 +197,14 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+ul {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex-wrap: wrap;
+}
+</style>
 
 <script>
 import { mapState } from "vuex";

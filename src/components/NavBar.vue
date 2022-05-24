@@ -411,7 +411,7 @@
           <!-- item-->
           <a
             href="javascript:void(0);"
-            @click="cerrarSesion()"
+            @click="logoutMsg()"
             class="dropdown-item notify-item"
           >
             <i class="mdi mdi-logout me-1"></i>
@@ -476,6 +476,21 @@ export default {
       localStorage.username = un;
       localStorage.auth = "3";
       location.reload();
+    },
+    logoutMsg() {
+      this.$swal({
+        title: "Cerrar sesion",
+        text: "Esta seguro de cerrar la sesion?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si. cerrar sesion",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.cerrarSesion()
+        }
+      });
     },
   },
   computed: {

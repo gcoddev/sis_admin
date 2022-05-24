@@ -12,7 +12,7 @@
                 CCA.con_foto_portada
               "
               alt="Portada"
-              class="col-12 col-md-5"
+              class="col-12 col-md-5 h-100"
             />
             <div class="col-12 col-md-7">
               <div class="form-group mt-2">

@@ -12,9 +12,31 @@ const routes = [
         component: () => import('@/views/Home.vue')
       },
       {
-        path: '/upea',
-        name: 'upea',
-        component: () => import('@/views/Upea.vue')
+        path: '/upeahome/',
+        name: 'upeahome',
+        component: () => import('@/views/UpeaHome.vue'),
+        children: [
+          {
+            path: '/upea',
+            name: 'upea',
+            component: () => import('@/views/Upea/Upea.vue')
+          },
+          {
+            path: '/publicaciones',
+            name: 'publicaciones',
+            component: () => import('@/views/Upea/Publicaciones.vue')
+          },
+          {
+            path: '/gaceta',
+            name: 'gaceta',
+            component: () => import('@/views/Upea/Gaceta.vue')
+          },
+          {
+            path: '/eventos',
+            name: 'eventos',
+            component: () => import('@/views/Upea/Eventos.vue')
+          },
+        ]
       },
       {
         path: '/profile',
