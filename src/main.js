@@ -9,7 +9,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 axios.defaults.baseURL = 'https://serviciopagina.upea.bo/'
 axios.defaults.headers = {
-  'Content-type' : 'application/json'
+  'Accept': 'application/json',
+  'Content-type': 'application/json'
 }
 
 createApp(App).use(store).use(router).use(VueAxios, axios).use(VueSweetalert2).mount('#app')

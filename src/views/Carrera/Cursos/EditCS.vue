@@ -112,12 +112,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCCACS", "nombreCarr", "idCarr"]),
+    ...mapState(["idCSCS", "nombreCarr", "idCarr"]),
   },
   methods: {
     async getCS() {
       try {
-        let res = await this.axios.get("/api/cursos/" + this.idCCACS);
+        let res = await this.axios.get("/api/cursos/" + this.idCSCS);
         this.CS = res.data.Descripcion;
         let fi = res.data.Descripcion.det_fecha_ini;
         this.fi_a = fi.substr(0, 10);
@@ -125,13 +125,74 @@ export default {
         this.ff_a = ff.substr(0, 10);
         // console.log(this.CS);
       } catch (error) {
-        console.log("error getCS");
+        // console.log("error getCS");
         console.log(error);
       }
     },
     clickCarrera() {
       this.$store.state.getter = true;
       this.$router.push("/cs/" + this.idCarr);
+    },
+    validar() {
+      // console.log("validar");
+      if (this.det_titulo != "") {
+        if (this.det_descripcion != "") {
+          if (this.det_fecha_ini != "") {
+            if (this.det_fecha_fin != "") {
+              // console.log("put");
+              if (this.estado == true) {
+                this.det_estado = '1';
+              } else {
+                this.det_estado = '0';
+              }
+              this.updateCS();
+            } else {
+              this.alertDisplay("Fecha fin vacio", "warning", 1500);
+            }
+          } else {
+            this.alertDisplay("Fecha inicio vacio", "warning", 1500);
+          }
+        } else {
+          this.alertDisplay("Descripcion vacio", "warning", 1500);
+        }
+      } else {
+        this.alertDisplay("Titulo vacio", "warning", 1500);
+      }
+    },
+    onFileChange() {
+      let img = document.querySelector("#det_foto_portada");
+      this.det_foto_portada = img.files[0];
+    },
+    async updateCS() {
+      let putCS = {
+        det_titulo: this.det_titulo,
+        det_descripcion: this.det_descripcion,
+        det_estado: this.det_estado,
+        det_fecha_ini: this.det_fecha_ini,
+        det_fecha_fin: this.det_fecha_fin,
+      };
+      try {
+        let res = await this.axios.put(
+          "/api/cursos/" + this.idCSCS,
+          putCS
+        );
+        // console.log(res);
+        this.$store.state.ev = 1;
+        this.$store.state.evTitle = 'Actualizado';
+        this.$store.state.evMsg = res.data.mensaje;
+        this.clickCarrera();
+      } catch (error) {
+        // console.log("error putCS");
+        console.log(error);
+      }
+    },
+    alertDisplay(msg, icon, time) {
+      this.$swal({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true,
+        timer: time,
+      });
     },
   },
   created() {

@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     async getAdminData() {
-      console.log("getAdminData");
+      // console.log("getAdminData");
       if (localStorage.credentialP) {
         try {
           let res = await this.axios.get(
@@ -96,11 +96,11 @@ export default {
           }
         }
       } else {
-        console.log("no credentialP");
+        // console.log("no credentialP");
       }
     },
     async getInstitucion() {
-      console.log("getInstitucion");
+      // console.log("getInstitucion");
       try {
         let res = await this.axios.get("/api/InstitucionUPEA/");
         this.$store.state.Institucion = res.data[0];
@@ -113,7 +113,7 @@ export default {
       }
     },
     async getArea() {
-      console.log("getArea");
+      // console.log("getArea");
       try {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
@@ -123,8 +123,7 @@ export default {
       }
     },
     async getCarreraU(id) {
-      console.log('getCarreraU');
-      console.log('getCarrera');
+      // console.log('getCarreraU');
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         // console.log(res.data.Descripcion);
@@ -138,13 +137,13 @@ export default {
   created() {
     if (localStorage.auth) {
       if (localStorage.auth == 1) {
-        console.log("iniciado sesion");
+        // console.log("iniciado sesion");
         this.getAdminData();
       } else {
         this.$router.push("/login");
       }
     } else {
-      console.log("no local auth");
+      // console.log("no local auth");
     }
   },
 };

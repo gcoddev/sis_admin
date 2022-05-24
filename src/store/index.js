@@ -14,6 +14,9 @@ export default createStore({
 
     // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios
     idCCACS: '',
+    ev: 0,
+    evTitle: '',
+    evMsg: '',
 
     // Al
     CarreraU: {}

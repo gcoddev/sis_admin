@@ -827,7 +827,7 @@ export default {
   },
   methods: {
     async getCarrera(id) {
-      console.log("getCarrera");
+      // console.log("getCarrera");
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.Carrera = res.data.Descripcion;
@@ -837,12 +837,12 @@ export default {
         if (error.response.status == 500) {
           document.getElementById("cont_carr").style.display = "none";
           document.getElementById("cont_carr_error").style.display = "block";
-          console.log("Error al retornar datos de la carrera");
+          // console.log("Error al retornar datos de la carrera");
         }
       }
     },
     async getConvocatoriasAll(id) {
-      console.log("getConvocatoriasAll");
+      // console.log("getConvocatoriasAll");
       try {
         let res = await this.axios.get("/api/convocatoriasAll/" + id);
         this.filterConv = [];

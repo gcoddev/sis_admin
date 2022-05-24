@@ -15,7 +15,7 @@ export default {
           token: tokenRes,
         });
         if (res.status == 200) {
-          console.log("token valido");
+          // console.log("token valido");
           this.axios.defaults.headers = {
             Authorization: "Bearer " + tokenRes,
           };
@@ -56,10 +56,10 @@ export default {
     }
 
     if (localStorage.token) {
-      console.log("yes token");
+      // console.log("yes token");
       this.verificarToken(localStorage.token);
     } else {
-      console.log("no token");
+      // console.log("no token");
       if (localStorage.auth) {
         this.$router.push("/login");
       } else {

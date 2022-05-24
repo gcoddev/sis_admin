@@ -106,7 +106,7 @@ export default {
         if (this.password != "") {
           this.iniciarSesion();
         } else {
-          console.log("password vacio");
+          // console.log("password vacio");
           this.alertDisplay("Contraseña vacia", "warning", 1000);
         }
       } else {

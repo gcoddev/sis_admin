@@ -157,17 +157,18 @@
                           "
                           alt="img"
                           class="card-img-top h-100"
+                          style="max-height: 375px;"
                         />
                       </a>
 
                       <div class="card-title fw-bold mt-2">
                         {{ con.con_titulo }}
                       </div>
-                      <pre
+                      <div
                         class="card-text contenedor"
                         v-html="con.con_descripcion"
                         style="max-height: 200px; overflow-y: scroll"
-                      ></pre>
+                      ></div>
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
@@ -211,14 +212,15 @@
                                 "
                                 alt="img"
                                 class="card-img-top h-100"
+                                style="max-height: 700px;"
                               />
                             </div>
                             <div class="col-12 col-md-7">
-                              <pre
+                              <div
                                 class="card-text contenedor"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></pre>
+                              ></div>
                             </div>
                           </div>
                         </div>
@@ -321,11 +323,11 @@
                       <div class="card-title fw-bold mt-2">
                         {{ con.con_titulo }}
                       </div>
-                      <pre
+                      <div
                         class="card-text contenedor"
                         v-html="con.con_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></pre>
+                        style="max-height: 150px; overflow-y: scroll"
+                      ></div>
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
@@ -372,11 +374,11 @@
                               />
                             </div>
                             <div class="col-12 col-md-7">
-                              <pre
+                              <div
                                 class="card-text contenedor"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></pre>
+                              ></div>
                             </div>
                           </div>
                         </div>
@@ -479,11 +481,11 @@
                       <div class="card-title fw-bold mt-2">
                         {{ con.con_titulo }}
                       </div>
-                      <pre
+                      <div
                         class="card-text contenedor"
                         v-html="con.con_descripcion"
                         style="max-height: 200px; overflow-y: scroll"
-                      ></pre>
+                      ></div>
                     </div>
                   </div>
                   <div class="card-footer text-muted pt-3">
@@ -530,11 +532,11 @@
                               />
                             </div>
                             <div class="col-12 col-md-7">
-                              <pre
+                              <div
                                 class="card-text contenedor"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></pre>
+                              ></div>
                             </div>
                           </div>
                         </div>
@@ -652,11 +654,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS"]),
+    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS", "ev", "evMsg", "evTitle"]),
   },
   methods: {
     async getCarrera(id) {
-      console.log("getCarrera");
+      // console.log("getCarrera");
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.Carrera = res.data.Descripcion;
@@ -666,12 +668,12 @@ export default {
         if (error.response.status == 500) {
           document.getElementById("cont_carr").style.display = "none";
           document.getElementById("cont_carr_error").style.display = "block";
-          console.log("Error al retornar datos de la carrera");
+          // console.log("Error al retornar datos de la carrera");
         }
       }
     },
     async getConvocatoriasAll(id) {
-      console.log("getConvocatoriasAll");
+      // console.log("getConvocatoriasAll");
       try {
         let res = await this.axios.get("/api/convocatoriasAll/" + id);
         this.filterConv = [];
@@ -693,7 +695,7 @@ export default {
           }
         });
       } catch (error) {
-        console.log("error getConvocatoriasAll: " + error);
+        // console.log("error getConvocatoriasAll: " + error);
       }
     },
     editCCA(idCCA) {
@@ -708,7 +710,7 @@ export default {
         this.getConvocatoriasAll(this.idCarr);
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("error deleteCCA: " + error);
+        // console.log("error deleteCCA: " + error);
       }
     },
     deleteMsg(title, id, img) {
@@ -745,6 +747,12 @@ export default {
       this.$store.state.getter = false;
       setTimeout(() => {
         document.getElementById("loading_carrera").style.display = "none";
+        if (this.ev == 1) {
+          this.$swal(this.evTitle, this.evMsg, "success");
+          this.$store.state.ev = 0;
+          this.$store.state.evTitle = '';
+          this.$store.state.evMsg = '';
+        }
       }, 3000);
     }
   },
