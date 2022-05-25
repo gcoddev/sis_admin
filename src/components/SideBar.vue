@@ -108,7 +108,7 @@
                   </a>
                   <div class="collapse" :id="'sub2_' + id_car">
                     <ul class="side-nav-third-level">
-                      <li class="side-nav-item" v-if="showConv">
+                      <li class="side-nav-item">
                         <router-link
                           :to="'/cca/' + carrera.car_id"
                           @click="
@@ -127,6 +127,16 @@
                         >
                           <span> CURSOS </span>
                         </router-link>
+                      </li>
+                      <li class="side-nav-item">
+                        <a href="javascript: void(0);">
+                          <span> SERVICIOS </span>
+                        </a>
+                      </li>
+                      <li class="side-nav-item">
+                        <a href="javascript: void(0);">
+                          <span> OFERTAS ACADEMICAS </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -152,7 +162,7 @@
             </a>
             <div class="collapse show" id="sub_carrera">
               <ul class="side-nav-second-level">
-                <li class="side-nav-item" v-if="showConv">
+                <li class="side-nav-item" v-if="showDir">
                   <router-link
                     :to="'/cca/' + CarreraU.carrera_id"
                     @click="clickCarrera()"
@@ -167,6 +177,16 @@
                   >
                     <span> CURSOS </span>
                   </router-link>
+                </li>
+                <li class="side-nav-item" v-if="showDir">
+                  <a href="javascript: void(0);">
+                    <span> SERVICIOS </span>
+                  </a>
+                </li>
+                <li class="side-nav-item" v-if="showDir">
+                  <a href="javascript: void(0);">
+                    <span> OFERTAS ACADEMICAS </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -199,10 +219,8 @@
 </template>
 
 <style scoped>
-ul {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  flex-wrap: wrap;
+* {
+  user-select: none;
 }
 </style>
 
@@ -248,8 +266,8 @@ export default {
         return false;
       }
     },
-    showConv() {
-      if (this.rol == "ADMINISTRADOR" || this.rol == "DIRECTOR") {
+    showDir() {
+      if (this.rol == "DIRECTOR") {
         return true;
       } else {
         return false;

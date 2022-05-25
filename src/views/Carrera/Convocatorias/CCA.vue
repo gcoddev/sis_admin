@@ -157,7 +157,7 @@
                           "
                           alt="img"
                           class="card-img-top h-100"
-                          style="max-height: 375px;"
+                          style="max-height: 375px"
                         />
                       </a>
 
@@ -212,7 +212,7 @@
                                 "
                                 alt="img"
                                 class="card-img-top h-100"
-                                style="max-height: 700px;"
+                                style="max-height: auto;"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -317,6 +317,7 @@
                           "
                           alt="img"
                           class="card-img-top h-100"
+                          style="max-height: 375px"
                         />
                       </a>
 
@@ -475,6 +476,7 @@
                           "
                           alt="img"
                           class="card-img-top h-100"
+                          style="max-height: 375px"
                         />
                       </a>
 
@@ -654,7 +656,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS", "ev", "evMsg", "evTitle"]),
+    ...mapState([
+      "idCarr",
+      "nombreCarr",
+      "getter",
+      "idCCACS",
+      "ev",
+      "evMsg",
+      "evTitle",
+    ]),
   },
   methods: {
     async getCarrera(id) {
@@ -750,8 +760,8 @@ export default {
         if (this.ev == 1) {
           this.$swal(this.evTitle, this.evMsg, "success");
           this.$store.state.ev = 0;
-          this.$store.state.evTitle = '';
-          this.$store.state.evMsg = '';
+          this.$store.state.evTitle = "";
+          this.$store.state.evMsg = "";
         }
       }, 3000);
     }

@@ -15,7 +15,7 @@ export default {
           token: tokenRes,
         });
         if (res.status == 200) {
-          // console.log("token valido");
+          console.log("token valido");
           this.axios.defaults.headers = {
             Authorization: "Bearer " + tokenRes,
           };
