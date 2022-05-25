@@ -143,7 +143,7 @@
                           "
                           alt="img"
                           class="card-img-top h-100"
-                          style="max-height: 375px;"
+                          style="max-height: 375px"
                         />
                       </a>
 
@@ -157,9 +157,36 @@
                       ></div>
                     </div>
                   </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ cur.det_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
+                  <div class="card-footer text-muted p-3">
+                    <div class="col-12">
+                      <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                    </div>
+                    <div class="col-12">
+                      <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
+                    </div>
+                    <div class="col">
+                      <p><b>Costo:</b> {{ cur.det_costo }} bs.</p>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted p-3">
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <b>Costo exterior:</b><br />
+                        {{ cur.det_costo_ext }} bs.
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Costo profesional:</b><br />
+                        {{ cur.det_costo_profe }} bs.
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Modalidad:</b><br />
+                        {{ cur.det_modalidad }}
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Carga horaria:</b><br />
+                        {{ cur.det_carga_horaria }} hrs.
+                      </div>
+                    </div>
                   </div>
 
                   <div
@@ -198,7 +225,7 @@
                                 "
                                 alt="img"
                                 class="card-img-top h-100"
-                                style="max-height: 700px;"
+                                style="max-height: 700px"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -209,45 +236,91 @@
                               ></div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ cur.det_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
+                          <div class="modal-footer">
+                            <div class="text-muted ms-3 row">
+                              <div class="col-12 col-md-6">
+                                <b>Fecha inicio:</b> {{ cur.det_fecha_ini }}
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Fecha fin:</b> {{ cur.det_fecha_fin }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Hora inicio:</b> {{ cur.det_hora_ini }}
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo:</b> {{ cur.det_costo }} bs.<br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo exterior:</b>
+                                {{ cur.det_costo_ext }} bs.
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo profesional:</b>
+                                {{ cur.det_costo_profe }} bs.<br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Carga horaria:</b>
+                                {{ cur.det_carga_horaria }} hrs.
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Modalidad:</b> {{ cur.det_modalidad }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Lugar:</b> {{ cur.det_lugar_curso }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Estado:</b
+                                ><span v-if="sem.det_estado == '1'">
+                                  Activo </span
+                                ><span v-else> Inactivo </span><br />
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-dismiss="modal"
-                              @click="
-                                deleteMsg(
-                                  'curso',
-                                  cur.iddetalle_cursos_academicos,
-                                  cur.det_img_portada
-                                )
-                              "
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              data-bs-dismiss="modal"
-                              class="btn btn-warning ms-2"
-                              @click="editCS(cur.iddetalle_cursos_academicos)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
+                          <div class="card-footer d-flex justify-content-end">
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary ms-2"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <a
+                                :href="cur.det_grupo_whatssap"
+                                target="_blank"
+                                class="btn btn-success ms-2"
+                              >
+                                <i class="mdi mdi-whatsapp"></i>&nbsp; Grupo
+                                WhatsApp
+                              </a>
+                              <button
+                                type="button"
+                                class="btn btn-danger ms-2"
+                                data-bs-dismiss="modal"
+                                @click="
+                                  deleteMsg(
+                                    'seminario',
+                                    cur.iddetalle_cursos_academicos,
+                                    cur.det_img_portada
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-warning ms-2"
+                                @click="editCS(cur.iddetalle_cursos_academicos)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -316,9 +389,36 @@
                       ></div>
                     </div>
                   </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ sem.det_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
+                  <div class="card-footer text-muted p-3">
+                    <div class="col-12">
+                      <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                    </div>
+                    <div class="col-12">
+                      <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
+                    </div>
+                    <div class="col">
+                      <p><b>Costo:</b> {{ sem.det_costo }} bs.</p>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted p-3">
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <b>Costo exterior:</b><br />
+                        {{ sem.det_costo_ext }} bs.
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Costo profesional:</b><br />
+                        {{ sem.det_costo_profe }} bs.
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Modalidad:</b><br />
+                        {{ sem.det_modalidad }}
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <b>Carga horaria:</b><br />
+                        {{ sem.det_carga_horaria }} hrs.
+                      </div>
+                    </div>
                   </div>
 
                   <div
@@ -367,45 +467,91 @@
                               ></div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ sem.det_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
+                          <div class="modal-footer">
+                            <div class="text-muted ms-3 row">
+                              <div class="col-12 col-md-6">
+                                <b>Fecha inicio:</b> {{ sem.det_fecha_ini }}
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Fecha fin:</b> {{ sem.det_fecha_fin }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Hora inicio:</b> {{ sem.det_hora_ini }}
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo:</b> {{ sem.det_costo }} bs. <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo exterior:</b>
+                                {{ sem.det_costo_ext }} bs.
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Costo profesional:</b>
+                                {{ sem.det_costo_profe }} bs. <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Carga horaria:</b>
+                                {{ sem.det_carga_horaria }} hrs.
+                                <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Modalidad:</b> {{ sem.det_modalidad }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Lugar:</b> {{ sem.det_lugar_curso }} <br />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <b>Estado:</b
+                                ><span v-if="sem.det_estado == '1'">
+                                  Activo </span
+                                ><span v-else> Inactivo </span><br />
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-dismiss="modal"
-                              @click="
-                                deleteMsg(
-                                  'seminario',
-                                  sem.iddetalle_cursos_academicos,
-                                  sem.det_img_portada
-                                )
-                              "
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              data-bs-dismiss="modal"
-                              class="btn btn-warning ms-2"
-                              @click="editCS(sem.iddetalle_cursos_academicos)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
+                          <div class="card-footer d-flex justify-content-end">
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary ms-2"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <a
+                                :href="sem.det_grupo_whatssap"
+                                target="_blank"
+                                class="btn btn-success ms-2"
+                              >
+                                <i class="mdi mdi-whatsapp"></i>&nbsp; Grupo
+                                WhatsApp
+                              </a>
+                              <button
+                                type="button"
+                                class="btn btn-danger ms-2"
+                                data-bs-dismiss="modal"
+                                @click="
+                                  deleteMsg(
+                                    'seminario',
+                                    sem.iddetalle_cursos_academicos,
+                                    sem.det_img_portada
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-warning ms-2"
+                                @click="editCS(sem.iddetalle_cursos_academicos)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -482,7 +628,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCarr", "nombreCarr", "getter", "idCCACS", "ev", "evMsg", "evTitle"]),
+    ...mapState([
+      "idCarr",
+      "nombreCarr",
+      "getter",
+      "idCCACS",
+      "ev",
+      "evMsg",
+      "evTitle",
+    ]),
   },
   methods: {
     async getCarrera(id) {
@@ -572,8 +726,8 @@ export default {
         if (this.ev == 1) {
           this.$swal(this.evTitle, this.evMsg, "success");
           this.$store.state.ev = 0;
-          this.$store.state.evTitle = '';
-          this.$store.state.evMsg = '';
+          this.$store.state.evTitle = "";
+          this.$store.state.evMsg = "";
         }
       }, 3000);
     }

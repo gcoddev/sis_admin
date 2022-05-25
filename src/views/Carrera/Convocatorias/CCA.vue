@@ -211,8 +211,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top h-100"
-                                style="max-height: auto;"
+                                class="card-img-top h-auto"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -223,45 +222,45 @@
                               ></div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
-                          </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-dismiss="modal"
-                              @click="
-                                deleteMsg(
-                                  'aviso',
-                                  con.idconvocatorias,
-                                  con.con_foto_portada
-                                )
-                              "
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              data-bs-dismiss="modal"
-                              class="btn btn-warning ms-2"
-                              @click="editCCA(con.idconvocatorias)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-danger ms-2"
+                                data-bs-dismiss="modal"
+                                @click="
+                                  deleteMsg(
+                                    'aviso',
+                                    con.idconvocatorias,
+                                    con.con_foto_portada
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-warning ms-2"
+                                @click="editCCA(con.idconvocatorias)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -371,7 +370,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top h-100"
+                                class="card-img-top h-auto"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -382,45 +381,45 @@
                               ></div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
-                          </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-dismiss="modal"
-                              @click="
-                                deleteMsg(
-                                  'aviso',
-                                  con.idconvocatorias,
-                                  con.con_foto_portada
-                                )
-                              "
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              data-bs-dismiss="modal"
-                              class="btn btn-warning ms-2"
-                              @click="editCCA(con.idconvocatorias)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-danger ms-2"
+                                data-bs-dismiss="modal"
+                                @click="
+                                  deleteMsg(
+                                    'aviso',
+                                    con.idconvocatorias,
+                                    con.con_foto_portada
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-warning ms-2"
+                                @click="editCCA(con.idconvocatorias)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -530,7 +529,7 @@
                                   con.con_foto_portada
                                 "
                                 alt="img"
-                                class="card-img-top h-100"
+                                class="card-img-top h-auto"
                               />
                             </div>
                             <div class="col-12 col-md-7">
@@ -541,45 +540,45 @@
                               ></div>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          class="modal-footer d-flex justify-content-between"
-                        >
-                          <div class="text-muted ms-3">
-                            <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                            <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
-                          </div>
-                          <div>
-                            <button
-                              type="button"
-                              class="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Cerrar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger ms-2"
-                              data-bs-dismiss="modal"
-                              @click="
-                                deleteMsg(
-                                  'aviso',
-                                  con.idconvocatorias,
-                                  con.con_foto_portada
-                                )
-                              "
-                            >
-                              <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
-                              Eliminar
-                            </button>
-                            <button
-                              data-bs-dismiss="modal"
-                              class="btn btn-warning ms-2"
-                              @click="editCCA(con.idconvocatorias)"
-                            >
-                              <i class="mdi mdi-clipboard-edit-outline"></i
-                              >&nbsp; Editar
-                            </button>
+                          <div
+                            class="modal-footer d-flex justify-content-between"
+                          >
+                            <div class="text-muted ms-3">
+                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Cerrar
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-danger ms-2"
+                                data-bs-dismiss="modal"
+                                @click="
+                                  deleteMsg(
+                                    'aviso',
+                                    con.idconvocatorias,
+                                    con.con_foto_portada
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-delete-sweep-outline"></i
+                                >&nbsp; Eliminar
+                              </button>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-warning ms-2"
+                                @click="editCCA(con.idconvocatorias)"
+                              >
+                                <i class="mdi mdi-clipboard-edit-outline"></i
+                                >&nbsp; Editar
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
