@@ -274,7 +274,7 @@
                               </div>
                               <div class="col-12 col-md-6">
                                 <b>Estado:</b
-                                ><span v-if="sem.det_estado == '1'">
+                                ><span v-if="cur.det_estado == '1'">
                                   Activo </span
                                 ><span v-else> Inactivo </span><br />
                               </div>
@@ -624,7 +624,6 @@ export default {
       Carrera: {},
       filterCur: [],
       filterSem: [],
-      msg: "",
     };
   },
   computed: {

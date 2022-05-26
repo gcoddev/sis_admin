@@ -101,17 +101,6 @@
                 ></label>
               </div>
             </div>
-            <div class="col-12 col-md-4 mt-3">
-              <div class="form group">
-                <label for="lugar" class="form-label">Lugar:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Lugar"
-                  v-model="det_lugar_curso"
-                />
-              </div>
-            </div>
             <div class="col-12 col-md-3 mt-3">
               <div class="form group">
                 <label for="modalidad" class="form-label">Modalidad:</label>
@@ -124,6 +113,18 @@
                   <option value="VIRTUAL">VIRTUAL</option>
                   <option value="PRESENCIAL">PRESENCIAL</option>
                 </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mt-3">
+              <div class="form group">
+                <label for="lugar" class="form-label">Lugar:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Lugar"
+                  v-model="det_lugar_curso"
+                  :disabled="mod"
+                />
               </div>
             </div>
             <div class="col-12 col-md-5 mt-3">
@@ -139,9 +140,11 @@
                     id="whatsapp"
                     v-model="det_grupo_whatssap"
                   />
-                  <span class="input-group-text" id="basic-addon1"
-                    ><i class="mdi mdi-whatsapp"></i
-                  ></span>
+                  <a :href="det_grupo_whatssap" target="_blank">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="mdi mdi-whatsapp"></i
+                    ></span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -279,6 +282,13 @@ export default {
   },
   computed: {
     ...mapState(["idCCACS", "nombreCarr", "idCarr"]),
+    mod() {
+      if (this.det_modalidad == "PRESENCIAL") {
+        return false;
+      } else {
+        return true;
+      }
+    },
   },
   methods: {
     async getCS() {
@@ -293,8 +303,6 @@ export default {
         let ff = this.CS.det_fecha_fin;
         this.det_fecha_fin = ff.substr(0, 10);
         this.det_hora_ini = this.CS.det_hora_ini;
-        this.det_lugar_curso = this.CS.det_lugar_curso;
-        this.det_modalidad = this.CS.det_modalidad;
         this.det_grupo_whatssap = this.CS.det_grupo_whatssap;
         this.det_costo = this.CS.det_costo;
         this.det_costo_ext = this.CS.det_costo_ext;
@@ -302,6 +310,8 @@ export default {
         this.det_cupo_max = this.CS.det_cupo_max;
         this.det_carga_horaria = this.CS.det_carga_horaria;
         this.det_version = this.CS.det_version;
+        this.det_modalidad = this.CS.det_modalidad;
+        this.det_lugar_curso = this.CS.det_lugar_curso;
 
         // console.log(this.CS);
       } catch (error) {
@@ -319,15 +329,15 @@ export default {
           if (this.det_fecha_ini != "") {
             if (this.det_fecha_fin != "") {
               if (this.det_hora_ini != "") {
-                if (this.det_lugar_curso != "") {
-                  if (this.det_modalidad != "") {
-                    if (this.det_grupo_whatssap != "") {
-                      if (this.det_costo != "") {
-                        if (this.det_costo_ext != "") {
-                          if (this.det_costo_profe != "") {
-                            if (this.det_cupo_max != "") {
-                              if (this.det_carga_horaria != "") {
-                                if (this.det_version != "") {
+                if (this.det_grupo_whatssap != "") {
+                  if (this.det_costo != "") {
+                    if (this.det_costo_ext != "") {
+                      if (this.det_costo_profe != "") {
+                        if (this.det_cupo_max != "") {
+                          if (this.det_carga_horaria != "") {
+                            if (this.det_version != "") {
+                              if (this.det_modalidad != "") {
+                                if (this.mod) {
                                   if (this.estado) {
                                     this.det_estado = "1";
                                   } else {
@@ -337,50 +347,66 @@ export default {
                                     this.updateImageCS();
                                   }
                                   this.updateCS();
+                                } else {
+                                  if (this.det_lugar_curso == "") {
+                                    this.alertDisplay(
+                                      "Lugar del curso vacio",
+                                      "warning",
+                                      1500
+                                    );
+                                  } else {
+                                    if (this.estado) {
+                                      this.det_estado = "1";
+                                    } else {
+                                      this.det_estado = "0";
+                                    }
+                                    if (this.dip) {
+                                      this.updateImageCS();
+                                    }
+                                    this.updateCS();
+                                  }
                                 }
                               } else {
                                 this.alertDisplay(
-                                  "Carga horaria vacio",
+                                  "Modalidad vacio",
                                   "warning",
                                   1500
                                 );
                               }
-                            } else {
-                              this.alertDisplay(
-                                "Cupo maximo vacio",
-                                "warning",
-                                1500
-                              );
                             }
                           } else {
                             this.alertDisplay(
-                              "Costo profesional vacio",
+                              "Carga horaria vacio",
                               "warning",
                               1500
                             );
                           }
                         } else {
                           this.alertDisplay(
-                            "Costo exterior vacio",
+                            "Cupo maximo vacio",
                             "warning",
                             1500
                           );
                         }
                       } else {
-                        this.alertDisplay("Costo vacio", "warning", 1500);
+                        this.alertDisplay(
+                          "Costo profesional vacio",
+                          "warning",
+                          1500
+                        );
                       }
                     } else {
                       this.alertDisplay(
-                        "Grupo WhatsApp vacio",
+                        "Costo exterior vacio",
                         "warning",
                         1500
                       );
                     }
                   } else {
-                    this.alertDisplay("Modalidad vacio", "warning", 1500);
+                    this.alertDisplay("Costo vacio", "warning", 1500);
                   }
                 } else {
-                  this.alertDisplay("Lugar del curso vacio", "warning", 1500);
+                  this.alertDisplay("Grupo WhatsApp vacio", "warning", 1500);
                 }
               } else {
                 this.alertDisplay("Hora inicio vacio", "warning", 1500);

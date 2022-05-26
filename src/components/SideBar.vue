@@ -128,16 +128,6 @@
                           <span> CURSOS </span>
                         </router-link>
                       </li>
-                      <li class="side-nav-item">
-                        <a href="javascript: void(0);">
-                          <span> SERVICIOS </span>
-                        </a>
-                      </li>
-                      <li class="side-nav-item">
-                        <a href="javascript: void(0);">
-                          <span> OFERTAS ACADEMICAS </span>
-                        </a>
-                      </li>
                     </ul>
                   </div>
                 </li>
@@ -177,16 +167,6 @@
                   >
                     <span> CURSOS </span>
                   </router-link>
-                </li>
-                <li class="side-nav-item" v-if="showDir">
-                  <a href="javascript: void(0);">
-                    <span> SERVICIOS </span>
-                  </a>
-                </li>
-                <li class="side-nav-item" v-if="showDir">
-                  <a href="javascript: void(0);">
-                    <span> OFERTAS ACADEMICAS </span>
-                  </a>
                 </li>
               </ul>
             </div>
