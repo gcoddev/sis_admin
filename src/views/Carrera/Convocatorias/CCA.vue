@@ -160,16 +160,16 @@
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
                         </div>
-                        <div
+                        <pre
                           class="card-text contenedor"
                           v-html="con.con_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
-                        ></div>
+                        ></pre>
                       </div>
                     </div>
-                    <div class="card-footer text-muted pt-3">
-                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer pt-3">
+                      <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
+                      <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
                   </div>
 
@@ -202,29 +202,37 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col-12 col-md-5">
-                              <img
-                                :src="
+                              <a
+                                :href="
                                   'https://serviciopagina.upea.bo/Convocatorias/' +
                                   con.con_foto_portada
                                 "
-                                alt="img"
-                                class="card-img-top h-auto"
-                              />
+                                target="_blank"
+                                ><img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top h-auto img-modal"
+                              /></a>
                             </div>
                             <div class="col-12 col-md-7">
-                              <div
-                                class="card-text contenedor"
+                              <pre
+                                class="card-text contenedor p-2"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></div>
+                              ></pre>
                             </div>
                           </div>
                           <div
                             class="modal-footer d-flex justify-content-between"
                           >
-                            <div class="text-muted ms-3">
-                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            <div class="ms-3">
+                              <p>
+                                <b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}
+                              </p>
+                              <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                             </div>
                             <div>
                               <button
@@ -316,16 +324,16 @@
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
                         </div>
-                        <div
+                        <pre
                           class="card-text contenedor"
                           v-html="con.con_descripcion"
                           style="max-height: 150px; overflow-y: scroll"
-                        ></div>
+                        ></pre>
                       </div>
                     </div>
-                    <div class="card-footer text-muted pt-3">
-                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer pt-3">
+                      <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
+                      <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
                   </div>
 
@@ -358,29 +366,38 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col-12 col-md-5">
-                              <img
-                                :src="
+                              <a
+                                :href="
                                   'https://serviciopagina.upea.bo/Convocatorias/' +
                                   con.con_foto_portada
                                 "
-                                alt="img"
-                                class="card-img-top h-auto"
-                              />
+                                target="_blank"
+                              >
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top h-auto img-modal"
+                              /></a>
                             </div>
                             <div class="col-12 col-md-7">
-                              <div
-                                class="card-text contenedor"
+                              <pre
+                                class="card-text contenedor p-2"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></div>
+                              ></pre>
                             </div>
                           </div>
                           <div
                             class="modal-footer d-flex justify-content-between"
                           >
-                            <div class="text-muted ms-3">
-                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            <div class="ms-3">
+                              <p>
+                                <b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}
+                              </p>
+                              <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                             </div>
                             <div>
                               <button
@@ -473,16 +490,16 @@
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
                         </div>
-                        <div
+                        <pre
                           class="card-text contenedor"
                           v-html="con.con_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
-                        ></div>
+                        ></pre>
                       </div>
                     </div>
-                    <div class="card-footer text-muted pt-3">
-                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer pt-3">
+                      <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
+                      <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
                   </div>
 
@@ -515,29 +532,38 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col-12 col-md-5">
-                              <img
-                                :src="
+                              <a
+                                :href="
                                   'https://serviciopagina.upea.bo/Convocatorias/' +
                                   con.con_foto_portada
                                 "
-                                alt="img"
-                                class="card-img-top h-auto"
-                              />
+                                target="_blank"
+                              >
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    con.con_foto_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top h-auto img-modal"
+                              /></a>
                             </div>
                             <div class="col-12 col-md-7">
-                              <div
-                                class="card-text contenedor"
+                              <pre
+                                class="card-text contenedor p-2"
                                 v-html="con.con_descripcion"
                                 style="overflow-y: scroll"
-                              ></div>
+                              ></pre>
                             </div>
                           </div>
                           <div
                             class="modal-footer d-flex justify-content-between"
                           >
-                            <div class="text-muted ms-3">
-                              <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                              <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                            <div class="ms-3">
+                              <p>
+                                <b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}
+                              </p>
+                              <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                             </div>
                             <div>
                               <button
@@ -630,16 +656,27 @@
 .contenedor::-webkit-scrollbar-track {
   border-radius: 10px;
 }
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .tipoC {
   float: left;
 }
 .card-cca {
-  opacity: 0.70;
+  opacity: 0.7;
   transition: transform 0.5s;
+  user-select: none;
 }
 .card-cca:hover {
   transform: scale(107%);
   opacity: 1;
+}
+.img-modal {
+  transition: transform 0.5s;
+}
+.img-modal:hover {
+  transform: scale(95%);
 }
 </style>
 
@@ -751,6 +788,26 @@ export default {
     quitarCss(id) {
       document.getElementById(id).style.transform = "scale(100%)";
       document.getElementById(id).style.opacity = "1";
+    },
+    dmy(fecha) {
+      let meses = [
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre",
+      ];
+      let dia = fecha.substr(8, 2);
+      let mes = parseInt(fecha.substr(5, 2));
+      let anio = fecha.substr(0, 4);
+      return dia + " de " + meses[mes - 1] + " de " + anio;
     },
   },
   created() {

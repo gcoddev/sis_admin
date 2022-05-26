@@ -146,25 +146,25 @@
                         <div class="card-title fw-bold mt-2">
                           {{ cur.det_titulo }}
                         </div>
-                        <div
+                        <pre
                           class="card-text contenedor"
                           v-html="cur.det_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
-                        ></div>
+                        ></pre>
                       </div>
                     </div>
-                    <div class="card-footer text-muted p-3">
+                    <div class="card-footer p-3">
                       <div class="col-12">
-                        <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
+                        <p><b>Inicio:</b> {{ dmy(cur.det_fecha_ini) }}</p>
                       </div>
                       <div class="col-12">
-                        <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
+                        <p><b>Fin:</b> {{ dmy(cur.det_fecha_fin) }}</p>
                       </div>
                       <div class="col">
                         <p><b>Costo:</b> {{ cur.det_costo }} bs.</p>
                       </div>
                     </div>
-                    <div class="card-footer text-muted p-3">
+                    <div class="card-footer p-3">
                       <div class="row">
                         <div class="col-12 col-md-6">
                           <b>Costo exterior:</b><br />
@@ -215,32 +215,38 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col-12 col-md-5">
-                              <img
-                                :src="
+                              <a
+                                :href="
                                   'https://serviciopagina.upea.bo/Cursos/' +
                                   cur.det_img_portada
                                 "
-                                alt="img"
-                                class="card-img-top h-100"
-                                style="max-height: 700px"
-                              />
+                                target="_blank"
+                              >
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Cursos/' +
+                                    cur.det_img_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top h-100 img-modal"
+                              /></a>
                             </div>
                             <div class="col-12 col-md-7">
-                              <div
-                                class="card-text contenedor"
+                              <pre
+                                class="card-text contenedor p-2"
                                 v-html="cur.det_descripcion"
                                 style="overflow-y: scroll"
-                              ></div>
+                              ></pre>
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <div class="text-muted ms-3 row">
+                            <div class="ms-3 row">
                               <div class="col-12 col-md-6">
-                                <b>Fecha inicio:</b> {{ cur.det_fecha_ini }}
+                                <b>Fecha inicio:</b> {{ dmy(cur.det_fecha_ini) }}
                                 <br />
                               </div>
                               <div class="col-12 col-md-6">
-                                <b>Fecha fin:</b> {{ cur.det_fecha_fin }} <br />
+                                <b>Fecha fin:</b> {{ dmy(cur.det_fecha_fin) }} <br />
                               </div>
                               <div class="col-12 col-md-6">
                                 <b>Hora inicio:</b> {{ cur.det_hora_ini }}
@@ -375,25 +381,25 @@
                         <div class="card-title fw-bold mt-2">
                           {{ sem.det_titulo }}
                         </div>
-                        <div
+                        <pre
                           class="card-text contenedor"
                           v-html="sem.det_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
-                        ></div>
+                        ></pre>
                       </div>
                     </div>
-                    <div class="card-footer text-muted p-3">
+                    <div class="card-footer p-3">
                       <div class="col-12">
-                        <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
+                        <p><b>Inicio:</b> {{ dmy(sem.det_fecha_ini) }}</p>
                       </div>
                       <div class="col-12">
-                        <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
+                        <p><b>Fin:</b> {{ dmy(sem.det_fecha_fin) }}</p>
                       </div>
                       <div class="col">
                         <p><b>Costo:</b> {{ sem.det_costo }} bs.</p>
                       </div>
                     </div>
-                    <div class="card-footer text-muted p-3">
+                    <div class="card-footer p-3">
                       <div class="row">
                         <div class="col-12 col-md-6">
                           <b>Costo exterior:</b><br />
@@ -444,31 +450,38 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col-12 col-md-5">
-                              <img
-                                :src="
+                              <a
+                                :href="
                                   'https://serviciopagina.upea.bo/Cursos/' +
                                   sem.det_img_portada
                                 "
-                                alt="img"
-                                class="card-img-top h-100"
-                              />
+                                target="_blank"
+                              >
+                                <img
+                                  :src="
+                                    'https://serviciopagina.upea.bo/Cursos/' +
+                                    sem.det_img_portada
+                                  "
+                                  alt="img"
+                                  class="card-img-top h-100 img-modal"
+                              /></a>
                             </div>
                             <div class="col-12 col-md-7">
-                              <div
-                                class="card-text contenedor"
+                              <pre
+                                class="card-text contenedor p-2"
                                 v-html="sem.det_descripcion"
                                 style="overflow-y: scroll"
-                              ></div>
+                              ></pre>
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <div class="text-muted ms-3 row">
+                            <div class="ms-3 row">
                               <div class="col-12 col-md-6">
-                                <b>Fecha inicio:</b> {{ sem.det_fecha_ini }}
+                                <b>Fecha inicio:</b> {{ dmy(sem.det_fecha_ini) }}
                                 <br />
                               </div>
                               <div class="col-12 col-md-6">
-                                <b>Fecha fin:</b> {{ sem.det_fecha_fin }} <br />
+                                <b>Fecha fin:</b> {{ dmy(sem.det_fecha_fin) }} <br />
                               </div>
                               <div class="col-12 col-md-6">
                                 <b>Hora inicio:</b> {{ sem.det_hora_ini }}
@@ -605,6 +618,10 @@
 .contenedor::-webkit-scrollbar-track {
   border-radius: 10px;
 }
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .tipoC {
   float: left;
 }
@@ -615,6 +632,13 @@
 .card-cs:hover {
   transform: scale(107%);
   opacity: 1;
+  user-select: none;
+}
+.img-modal {
+  transition: transform 0.5s;
+}
+.img-modal:hover {
+  transform: scale(95%);
 }
 </style>
 
@@ -715,6 +739,26 @@ export default {
         showConfirmButton: false,
         timer: time,
       });
+    },
+    dmy(fecha) {
+      let meses = [
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre",
+      ];
+      let dia = fecha.substr(8, 2);
+      let mes = parseInt(fecha.substr(5, 2));
+      let anio = fecha.substr(0, 4);
+      return dia + " de " + meses[mes - 1] + " de " + anio;
     },
   },
   created() {
