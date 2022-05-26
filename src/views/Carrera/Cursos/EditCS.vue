@@ -457,6 +457,9 @@ export default {
       } catch (error) {
         // console.log("error putCS");
         // console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
       }
     },
     async updateImageCS() {
@@ -472,6 +475,9 @@ export default {
       } catch (error) {
         // console.log("error updateImageCS");
         // console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
       }
     },
     alertDisplay(msg, icon, time) {

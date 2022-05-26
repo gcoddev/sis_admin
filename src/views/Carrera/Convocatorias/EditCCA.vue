@@ -208,6 +208,9 @@ export default {
       } catch (error) {
         // console.log("error putCCA");
         // console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
       }
     },
     async updateImageCCA() {
@@ -226,6 +229,9 @@ export default {
       } catch (error) {
         // console.log("errror updateImageCCA");
         // console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
       }
     },
     alertDisplay(msg, icon, time) {

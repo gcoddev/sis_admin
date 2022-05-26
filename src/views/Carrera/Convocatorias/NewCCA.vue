@@ -177,12 +177,15 @@ export default {
         );
         // console.log(res);
         this.$store.state.ev = 1;
-        this.$store.state.evTitle = 'Creado';
+        this.$store.state.evTitle = "Creado";
         this.$store.state.evMsg = res.data.mensaje;
-        this.clickCarrera()
+        this.clickCarrera();
       } catch (error) {
         // console.log("error createCCA");
-        console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
+        // console.log(error);
       }
     },
     alertDisplay(msg, icon, time) {

@@ -328,7 +328,7 @@ export default {
                                 if (this.det_img_portada != null) {
                                   if (this.det_modalidad != "") {
                                     if (this.mod) {
-                                      this.createCS()
+                                      this.createCS();
                                     } else {
                                       if (this.det_lugar_curso == "") {
                                         this.alertDisplay(
@@ -337,7 +337,7 @@ export default {
                                           1500
                                         );
                                       } else {
-                                        this.createCS()
+                                        this.createCS();
                                       }
                                     }
                                   } else {
@@ -450,8 +450,11 @@ export default {
         this.$store.state.evMsg = res.data.message;
         this.clickCarrera();
       } catch (error) {
-        console.log("error createCCA");
-        console.log(error);
+        // console.log("error createCCA");
+        // console.log(error);
+        if (error.response.status == 500) {
+          location.reload();
+        }
       }
     },
     alertDisplay(msg, icon, time) {

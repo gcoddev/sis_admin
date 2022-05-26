@@ -105,86 +105,83 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
                   v-for="(cur, id_cur) of filterCur"
                   :key="id_cur"
+                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
                 >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        cur.det_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="cur.det_estado == '1'"> Activo</span
-                      ><span v-if="cur.det_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ cur.tipo_curso_otro.tipo_conv_curso_nombre }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_cur_' + id_cur"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Cursos/' +
-                            cur.det_img_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                          style="max-height: 375px"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ cur.det_titulo }}
-                      </div>
+                  <div class="card card-cs ribbon-box tipoC w-100">
+                    <div class="card-body">
                       <div
-                        class="card-text contenedor"
-                        v-html="cur.det_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted p-3">
-                    <div class="col-12">
-                      <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
-                    </div>
-                    <div class="col-12">
-                      <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
-                    </div>
-                    <div class="col">
-                      <p><b>Costo:</b> {{ cur.det_costo }} bs.</p>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted p-3">
-                    <div class="row">
-                      <div class="col-12 col-md-6">
-                        <b>Costo exterior:</b><br />
-                        {{ cur.det_costo_ext }} bs.
+                        class="ribbon float-start"
+                        :class="[
+                          cur.det_estado == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="cur.det_estado == '1'"> Activo</span
+                        ><span v-if="cur.det_estado != '1'"> Inactivo</span>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Costo profesional:</b><br />
-                        {{ cur.det_costo_profe }} bs.
+                      <h5 class="text-dark float-end mt-0">
+                        {{ cur.tipo_curso_otro.tipo_conv_curso_nombre }}
+                      </h5>
+                      <div class="ribbon-content">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_cur_' + id_cur"
+                        >
+                          <img
+                            :src="
+                              'https://serviciopagina.upea.bo/Cursos/' +
+                              cur.det_img_portada
+                            "
+                            alt="img"
+                            class="card-img-top h-100"
+                            style="max-height: 375px"
+                          />
+                        </a>
+
+                        <div class="card-title fw-bold mt-2">
+                          {{ cur.det_titulo }}
+                        </div>
+                        <div
+                          class="card-text contenedor"
+                          v-html="cur.det_descripcion"
+                          style="max-height: 200px; overflow-y: scroll"
+                        ></div>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Modalidad:</b><br />
-                        {{ cur.det_modalidad }}
+                    </div>
+                    <div class="card-footer text-muted p-3">
+                      <div class="col-12">
+                        <p><b>Inicio:</b> {{ cur.det_fecha_ini }}</p>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Carga horaria:</b><br />
-                        {{ cur.det_carga_horaria }} hrs.
+                      <div class="col-12">
+                        <p><b>Fin:</b> {{ cur.det_fecha_fin }}</p>
+                      </div>
+                      <div class="col">
+                        <p><b>Costo:</b> {{ cur.det_costo }} bs.</p>
+                      </div>
+                    </div>
+                    <div class="card-footer text-muted p-3">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <b>Costo exterior:</b><br />
+                          {{ cur.det_costo_ext }} bs.
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Costo profesional:</b><br />
+                          {{ cur.det_costo_profe }} bs.
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Modalidad:</b><br />
+                          {{ cur.det_modalidad }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Carga horaria:</b><br />
+                          {{ cur.det_carga_horaria }} hrs.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -338,85 +335,82 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
                   v-for="(sem, id_sem) of filterSem"
                   :key="id_sem"
+                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
                 >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        sem.det_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="sem.det_estado == '1'"> Activo</span
-                      ><span v-if="sem.det_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ sem.tipo_curso_otro.tipo_conv_curso_nombre }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_sem_' + id_sem"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Cursos/' +
-                            sem.det_img_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ sem.det_titulo }}
-                      </div>
+                  <div class="card card-cs ribbon-box tipoC w-100">
+                    <div class="card-body">
                       <div
-                        class="card-text contenedor"
-                        v-html="sem.det_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted p-3">
-                    <div class="col-12">
-                      <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
-                    </div>
-                    <div class="col-12">
-                      <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
-                    </div>
-                    <div class="col">
-                      <p><b>Costo:</b> {{ sem.det_costo }} bs.</p>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted p-3">
-                    <div class="row">
-                      <div class="col-12 col-md-6">
-                        <b>Costo exterior:</b><br />
-                        {{ sem.det_costo_ext }} bs.
+                        class="ribbon float-start"
+                        :class="[
+                          sem.det_estado == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="sem.det_estado == '1'"> Activo</span
+                        ><span v-if="sem.det_estado != '1'"> Inactivo</span>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Costo profesional:</b><br />
-                        {{ sem.det_costo_profe }} bs.
+                      <h5 class="text-dark float-end mt-0">
+                        {{ sem.tipo_curso_otro.tipo_conv_curso_nombre }}
+                      </h5>
+                      <div class="ribbon-content">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_sem_' + id_sem"
+                        >
+                          <img
+                            :src="
+                              'https://serviciopagina.upea.bo/Cursos/' +
+                              sem.det_img_portada
+                            "
+                            alt="img"
+                            class="card-img-top h-100"
+                          />
+                        </a>
+
+                        <div class="card-title fw-bold mt-2">
+                          {{ sem.det_titulo }}
+                        </div>
+                        <div
+                          class="card-text contenedor"
+                          v-html="sem.det_descripcion"
+                          style="max-height: 200px; overflow-y: scroll"
+                        ></div>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Modalidad:</b><br />
-                        {{ sem.det_modalidad }}
+                    </div>
+                    <div class="card-footer text-muted p-3">
+                      <div class="col-12">
+                        <p><b>Inicio:</b> {{ sem.det_fecha_ini }}</p>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <b>Carga horaria:</b><br />
-                        {{ sem.det_carga_horaria }} hrs.
+                      <div class="col-12">
+                        <p><b>Fin:</b> {{ sem.det_fecha_fin }}</p>
+                      </div>
+                      <div class="col">
+                        <p><b>Costo:</b> {{ sem.det_costo }} bs.</p>
+                      </div>
+                    </div>
+                    <div class="card-footer text-muted p-3">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <b>Costo exterior:</b><br />
+                          {{ sem.det_costo_ext }} bs.
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Costo profesional:</b><br />
+                          {{ sem.det_costo_profe }} bs.
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Modalidad:</b><br />
+                          {{ sem.det_modalidad }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <b>Carga horaria:</b><br />
+                          {{ sem.det_carga_horaria }} hrs.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -613,6 +607,14 @@
 }
 .tipoC {
   float: left;
+}
+.card-cs {
+  opacity: 0.7;
+  transition: transform 0.5s;
+}
+.card-cs:hover {
+  transform: scale(107%);
+  opacity: 1;
 }
 </style>
 

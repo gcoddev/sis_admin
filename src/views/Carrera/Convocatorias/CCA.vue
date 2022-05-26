@@ -119,61 +119,58 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
                   v-for="(con, id_conv) of filterConv"
                   :key="id_conv"
+                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
                 >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        con.con_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_conv_' + id_conv"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                          style="max-height: 375px"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
-                      </div>
+                  <div class="card card-cca ribbon-box tipoC">
+                    <div class="card-body">
                       <div
-                        class="card-text contenedor"
-                        v-html="con.con_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></div>
+                        class="ribbon float-start"
+                        :class="[
+                          con.con_estado == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="con.con_estado == '1'"> Activo</span
+                        ><span v-if="con.con_estado != '1'"> Inactivo</span>
+                      </div>
+                      <h5 class="text-dark float-end mt-0">
+                        {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
+                      </h5>
+                      <div class="ribbon-content">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_conv_' + id_conv"
+                        >
+                          <img
+                            :src="
+                              'https://serviciopagina.upea.bo/Convocatorias/' +
+                              con.con_foto_portada
+                            "
+                            alt="img"
+                            class="card-img-top h-100"
+                            style="max-height: 375px"
+                          />
+                        </a>
+
+                        <div class="card-title fw-bold mt-2">
+                          {{ con.con_titulo }}
+                        </div>
+                        <div
+                          class="card-text contenedor"
+                          v-html="con.con_descripcion"
+                          style="max-height: 200px; overflow-y: scroll"
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer text-muted pt-3">
+                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    </div>
                   </div>
 
                   <div
@@ -278,61 +275,58 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
                   v-for="(con, id_com) of filterCom"
                   :key="id_com"
+                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
                 >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        con.con_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_com_' + id_com"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                          style="max-height: 375px"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
-                      </div>
+                  <div class="card card-cca ribbon-box tipoC w-100">
+                    <div class="card-body">
                       <div
-                        class="card-text contenedor"
-                        v-html="con.con_descripcion"
-                        style="max-height: 150px; overflow-y: scroll"
-                      ></div>
+                        class="ribbon float-start"
+                        :class="[
+                          con.con_estado == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="con.con_estado == '1'"> Activo</span
+                        ><span v-if="con.con_estado != '1'"> Inactivo</span>
+                      </div>
+                      <h5 class="text-dark float-end mt-0">
+                        {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
+                      </h5>
+                      <div class="ribbon-content">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_com_' + id_com"
+                        >
+                          <img
+                            :src="
+                              'https://serviciopagina.upea.bo/Convocatorias/' +
+                              con.con_foto_portada
+                            "
+                            alt="img"
+                            class="card-img-top h-100"
+                            style="max-height: 375px"
+                          />
+                        </a>
+
+                        <div class="card-title fw-bold mt-2">
+                          {{ con.con_titulo }}
+                        </div>
+                        <div
+                          class="card-text contenedor"
+                          v-html="con.con_descripcion"
+                          style="max-height: 150px; overflow-y: scroll"
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer text-muted pt-3">
+                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    </div>
                   </div>
 
                   <div
@@ -437,61 +431,59 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card
-                    ribbon-box
-                    tipoC
-                    col-12 col-md-6 col-xl-4 col-xxl-3
-                  "
                   v-for="(con, id_av) of filterAv"
                   :key="id_av"
+                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
                 >
-                  <div class="card-body">
-                    <div
-                      class="ribbon float-start"
-                      :class="[
-                        con.con_estado == '1'
-                          ? 'ribbon-success'
-                          : 'ribbon-danger',
-                      ]"
-                    >
-                      <i class="mdi mdi-access-point me-1"></i
-                      ><span v-if="con.con_estado == '1'"> Activo</span
-                      ><span v-if="con.con_estado != '1'"> Inactivo</span>
-                    </div>
-                    <h5 class="text-dark float-end mt-0">
-                      {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
-                    </h5>
-                    <div class="ribbon-content">
-                      <a
-                        style="cursor: pointer"
-                        data-bs-toggle="modal"
-                        :data-bs-target="'#modal_av_' + id_av"
-                      >
-                        <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
-                          alt="img"
-                          class="card-img-top h-100"
-                          style="max-height: 375px"
-                        />
-                      </a>
-
-                      <div class="card-title fw-bold mt-2">
-                        {{ con.con_titulo }}
-                      </div>
+                  <div class="card card-cca ribbon-box tipoC">
+                    <div class="card-body">
                       <div
-                        class="card-text contenedor"
-                        v-html="con.con_descripcion"
-                        style="max-height: 200px; overflow-y: scroll"
-                      ></div>
+                        class="ribbon float-start"
+                        :class="[
+                          con.con_estado == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="con.con_estado == '1'"> Activo</span
+                        ><span v-if="con.con_estado != '1'"> Inactivo</span>
+                      </div>
+                      <h5 class="text-dark float-end mt-0">
+                        {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
+                      </h5>
+                      <div class="ribbon-content">
+                        <a
+                          style="cursor: pointer"
+                          data-bs-toggle="modal"
+                          :data-bs-target="'#modal_av_' + id_av"
+                          @click="quitarCss('modal_av_' + id_av)"
+                        >
+                          <img
+                            :src="
+                              'https://serviciopagina.upea.bo/Convocatorias/' +
+                              con.con_foto_portada
+                            "
+                            alt="img"
+                            class="card-img-top h-100"
+                            style="max-height: 375px"
+                          />
+                        </a>
+
+                        <div class="card-title fw-bold mt-2">
+                          {{ con.con_titulo }}
+                        </div>
+                        <div
+                          class="card-text contenedor"
+                          v-html="con.con_descripcion"
+                          style="max-height: 200px; overflow-y: scroll"
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card-footer text-muted pt-3">
-                    <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
-                    <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    <div class="card-footer text-muted pt-3">
+                      <p><b>Inicio:</b> {{ con.con_fecha_inicio }}</p>
+                      <p><b>Fin:</b> {{ con.con_fecha_fin }}</p>
+                    </div>
                   </div>
 
                   <div
@@ -641,6 +633,14 @@
 .tipoC {
   float: left;
 }
+.card-cca {
+  opacity: 0.70;
+  transition: transform 0.5s;
+}
+.card-cca:hover {
+  transform: scale(107%);
+  opacity: 1;
+}
 </style>
 
 <script>
@@ -747,6 +747,10 @@ export default {
         showConfirmButton: false,
         timer: time,
       });
+    },
+    quitarCss(id) {
+      document.getElementById(id).style.transform = "scale(100%)";
+      document.getElementById(id).style.opacity = "1";
     },
   },
   created() {
