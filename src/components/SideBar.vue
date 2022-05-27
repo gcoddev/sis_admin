@@ -53,19 +53,26 @@
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link :to="{ name: 'publicaciones' }">
+                  <router-link
+                    :to="{ name: 'publicaciones' }"
+                    @click="clickInstitucion()"
+                  >
                     <i class="mdi mdi-book-edit"></i>&nbsp; PUBLICACIONES
                   </router-link>
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link :to="{ name: 'gaceta' }"
+                  <router-link
+                    :to="{ name: 'gaceta' }"
+                    @click="clickInstitucion()"
                     ><i class="mdi mdi-periodic-table"></i>&nbsp; GACETA
                   </router-link>
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link :to="{ name: 'eventos' }"
+                  <router-link
+                    to="/eventoss"
+                    @click="clickInstitucion()"
                     ><i class="mdi mdi-card-text"></i>&nbsp; EVENTOS
                   </router-link>
                 </li>
@@ -208,9 +215,14 @@
 import { mapState } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      countP: [],
+    };
   },
   methods: {
+    clickInstitucion() {
+      this.$store.state.getter = true;
+    },
     clickCarreras(car_id, carrera) {
       this.$store.state.idCarr = car_id;
       this.$store.state.nombreCarr = carrera;

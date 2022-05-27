@@ -275,7 +275,7 @@ export default {
       det_carga_horaria: "",
       det_version: "",
       det_estado: "",
-      estado: true,
+      estado: false,
       det_img_portada: null,
       dip: false,
     };
@@ -312,6 +312,11 @@ export default {
         this.det_version = this.CS.det_version;
         this.det_modalidad = this.CS.det_modalidad;
         this.det_lugar_curso = this.CS.det_lugar_curso;
+        if (this.CS.det_estado == "1") {
+          this.estado = true;
+        } else {
+          this.estado = false;
+        }
 
         // console.log(this.CS);
       } catch (error) {

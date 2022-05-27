@@ -3,10 +3,10 @@
     <div id="loading_carrera">
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
-    <div class="container" id="cont_carr_error">
+    <div class="container-fluid pt-2" id="cont_carr_error">
       <h1>Error al retornar datos de la carrera</h1>
     </div>
-    <div class="container" id="cont_carr">
+    <div class="container-fluid pt-2" id="cont_carr">
       <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
@@ -121,9 +121,13 @@
                   v-else
                   v-for="(con, id_conv) of filterConv"
                   :key="id_conv"
-                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
+                  class="col-12 col-md-4 col-xl-3 col-xxl-2"
                 >
-                  <div class="card card-cca ribbon-box tipoC">
+                  <a
+                    class="card card-cca ribbon-box tipoC w-100"
+                    data-bs-toggle="modal"
+                    :data-bs-target="'#modal_conv_' + id_conv"
+                  >
                     <div class="card-body">
                       <div
                         class="ribbon float-start"
@@ -141,21 +145,14 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a
-                          style="cursor: pointer"
-                          data-bs-toggle="modal"
-                          :data-bs-target="'#modal_conv_' + id_conv"
-                        >
-                          <img
-                            :src="
-                              'https://serviciopagina.upea.bo/Convocatorias/' +
-                              con.con_foto_portada
-                            "
-                            alt="img"
-                            class="card-img-top h-100"
-                            style="max-height: 375px"
-                          />
-                        </a>
+                        <img
+                          :src="
+                            'https://serviciopagina.upea.bo/Convocatorias/' +
+                            con.con_foto_portada
+                          "
+                          alt="img"
+                          class="card-img-top"
+                        />
 
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
@@ -171,7 +168,7 @@
                       <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
                       <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
-                  </div>
+                  </a>
 
                   <div
                     class="modal fade"
@@ -248,7 +245,7 @@
                                 data-bs-dismiss="modal"
                                 @click="
                                   deleteMsg(
-                                    'aviso',
+                                    'la convocatoria',
                                     con.idconvocatorias,
                                     con.con_foto_portada
                                   )
@@ -285,9 +282,13 @@
                   v-else
                   v-for="(con, id_com) of filterCom"
                   :key="id_com"
-                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
+                  class="col-12 col-md-4 col-xl-3 col-xxl-2"
                 >
-                  <div class="card card-cca ribbon-box tipoC w-100">
+                  <a
+                    class="card card-cca ribbon-box tipoC w-100"
+                    data-bs-toggle="modal"
+                    :data-bs-target="'#modal_com_' + id_com"
+                  >
                     <div class="card-body">
                       <div
                         class="ribbon float-start"
@@ -305,21 +306,14 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a
-                          style="cursor: pointer"
-                          data-bs-toggle="modal"
-                          :data-bs-target="'#modal_com_' + id_com"
-                        >
-                          <img
-                            :src="
-                              'https://serviciopagina.upea.bo/Convocatorias/' +
-                              con.con_foto_portada
-                            "
-                            alt="img"
-                            class="card-img-top h-100"
-                            style="max-height: 375px"
-                          />
-                        </a>
+                        <img
+                          :src="
+                            'https://serviciopagina.upea.bo/Convocatorias/' +
+                            con.con_foto_portada
+                          "
+                          alt="img"
+                          class="card-img-top"
+                        />
 
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
@@ -335,7 +329,7 @@
                       <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
                       <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
-                  </div>
+                  </a>
 
                   <div
                     class="modal fade"
@@ -413,7 +407,7 @@
                                 data-bs-dismiss="modal"
                                 @click="
                                   deleteMsg(
-                                    'aviso',
+                                    'el comunicado',
                                     con.idconvocatorias,
                                     con.con_foto_portada
                                   )
@@ -450,9 +444,13 @@
                   v-else
                   v-for="(con, id_av) of filterAv"
                   :key="id_av"
-                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
+                  class="col-12 col-md-4 col-xl-3 col-xxl-2"
                 >
-                  <div class="card card-cca ribbon-box tipoC">
+                  <a
+                    class="card card-cca ribbon-box tipoC w-100"
+                    data-bs-toggle="modal"
+                    :data-bs-target="'#modal_av_' + id_av"
+                  >
                     <div class="card-body">
                       <div
                         class="ribbon float-start"
@@ -470,22 +468,14 @@
                         {{ con.tipo_conv_comun.tipo_conv_comun_titulo }}
                       </h5>
                       <div class="ribbon-content">
-                        <a
-                          style="cursor: pointer"
-                          data-bs-toggle="modal"
-                          :data-bs-target="'#modal_av_' + id_av"
-                          @click="quitarCss('modal_av_' + id_av)"
-                        >
-                          <img
-                            :src="
-                              'https://serviciopagina.upea.bo/Convocatorias/' +
-                              con.con_foto_portada
-                            "
-                            alt="img"
-                            class="card-img-top h-100"
-                            style="max-height: 375px"
-                          />
-                        </a>
+                        <img
+                          :src="
+                            'https://serviciopagina.upea.bo/Convocatorias/' +
+                            con.con_foto_portada
+                          "
+                          alt="img"
+                          class="card-img-top"
+                        />
 
                         <div class="card-title fw-bold mt-2">
                           {{ con.con_titulo }}
@@ -501,7 +491,7 @@
                       <p><b>Inicio:</b> {{ dmy(con.con_fecha_inicio) }}</p>
                       <p><b>Fin:</b> {{ dmy(con.con_fecha_fin) }}</p>
                     </div>
-                  </div>
+                  </a>
 
                   <div
                     class="modal fade"
@@ -579,7 +569,7 @@
                                 data-bs-dismiss="modal"
                                 @click="
                                   deleteMsg(
-                                    'aviso',
+                                    'el aviso',
                                     con.idconvocatorias,
                                     con.con_foto_portada
                                   )
@@ -667,16 +657,22 @@ pre {
   opacity: 0.7;
   transition: transform 0.5s;
   user-select: none;
+  cursor: pointer;
+  color: var(--ct-body-color);
 }
 .card-cca:hover {
   transform: scale(107%);
   opacity: 1;
 }
 .img-modal {
+  transform: scale(100%);
   transition: transform 0.5s;
 }
 .img-modal:hover {
   transform: scale(95%);
+}
+.img-modal:active {
+  transform: scale(90%);
 }
 </style>
 
@@ -704,7 +700,7 @@ export default {
   },
   methods: {
     async getCarrera(id) {
-      // console.log("getCarrera");
+      console.log("getCarrera");
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.Carrera = res.data.Descripcion;
@@ -719,7 +715,7 @@ export default {
       }
     },
     async getConvocatoriasAll(id) {
-      // console.log("getConvocatoriasAll");
+      console.log("getConvocatoriasAll");
       try {
         let res = await this.axios.get("/api/convocatoriasAll/" + id);
         this.filterConv = [];
@@ -740,6 +736,7 @@ export default {
             }
           }
         });
+        this.cargando()
       } catch (error) {
         // console.log("error getConvocatoriasAll: " + error);
       }
@@ -762,7 +759,7 @@ export default {
     deleteMsg(title, id, img) {
       this.$swal({
         title: "Eliminar " + title,
-        text: "Esta seguro de eliminar el " + title,
+        text: "Esta seguro de eliminar " + title,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -785,10 +782,6 @@ export default {
         timer: time,
       });
     },
-    quitarCss(id) {
-      document.getElementById(id).style.transform = "scale(100%)";
-      document.getElementById(id).style.opacity = "1";
-    },
     dmy(fecha) {
       let meses = [
         "enero",
@@ -809,36 +802,31 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
+    cargando() {
+      document.getElementById("loading_carrera").style.display = "none";
+      if (this.ev == 1) {
+        this.$swal(this.evTitle, this.evMsg, "success");
+        this.$store.state.ev = 0;
+        this.$store.state.evTitle = "";
+        this.$store.state.evMsg = "";
+      }
+      console.log('cargado');
+    },
   },
   created() {
     if (this.getter) {
       this.getCarrera(this.idCarr);
       this.getConvocatoriasAll(this.idCarr);
       this.$store.state.getter = false;
-      setTimeout(() => {
-        document.getElementById("loading_carrera").style.display = "none";
-        if (this.ev == 1) {
-          this.$swal(this.evTitle, this.evMsg, "success");
-          this.$store.state.ev = 0;
-          this.$store.state.evTitle = "";
-          this.$store.state.evMsg = "";
-        }
-      }, 3000);
     }
   },
   updated() {
     if (this.getter) {
+      document.getElementById('loading_carrera').style.display = 'block'
       this.getCarrera(this.idCarr);
       this.getConvocatoriasAll(this.idCarr);
       this.$store.state.getter = false;
-      document.getElementById("loading_carrera").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("loading_carrera").style.display = "none";
-      }, 3000);
     }
   },
 };
-setTimeout(() => {
-  document.getElementById("loading_carrera").style.display = "none";
-}, 3000);
 </script>

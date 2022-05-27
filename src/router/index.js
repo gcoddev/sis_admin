@@ -24,7 +24,17 @@ const routes = [
           {
             path: '/publicaciones',
             name: 'publicaciones',
-            component: () => import('@/views/Upea/Publicaciones.vue')
+            component: () => import('@/views/Upea/Publicaciones/Publicaciones.vue')
+          },
+          {
+            path: '/edit_p/:idPGE',
+            name: 'edit_p',
+            component: () => import('@/views/Upea/Publicaciones/EditP.vue')
+          },
+          {
+            path: '/new_p/:idINS',
+            name: 'new_p',
+            component: () => import('@/views/Upea/Publicaciones/NewP.vue')
           },
           {
             path: '/gaceta',

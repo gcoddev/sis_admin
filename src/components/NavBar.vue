@@ -2,7 +2,7 @@
   <!-- Topbar Start -->
   <div class="navbar-custom">
     <ul class="list-unstyled topbar-menu float-end mb-0">
-      <li class="dropdown notification-list d-lg-none">
+      <!-- <li class="dropdown notification-list d-lg-none">
         <a
           class="nav-link dropdown-toggle arrow-none"
           data-bs-toggle="dropdown"
@@ -23,7 +23,7 @@
             />
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- light dark -->
       <li class="notification-list">
@@ -150,12 +150,6 @@
           </router-link>
 
           <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <i class="mdi mdi-account-edit me-1"></i>
-            <span>Configuracion</span>
-          </a>
-
-          <!-- item-->
           <a
             href="https://sie.upea.bo/"
             target="_blank"
@@ -180,7 +174,7 @@
     <button class="button-menu-mobile open-left">
       <i class="mdi mdi-menu"></i>
     </button>
-    <div class="app-search dropdown d-none d-lg-block">
+    <!-- <div class="app-search dropdown d-none d-lg-block">
       <div class="form">
         <div class="input-group">
           <input
@@ -195,7 +189,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <!-- end Topbar -->
 </template>

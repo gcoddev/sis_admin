@@ -97,7 +97,11 @@
                 >
                   <div
                     class="card-body"
-                    v-html="[Institucion.institucion_objetivos == null ? 'null' : Institucion.institucion_objetivos]"
+                    v-html="[
+                      Institucion.institucion_objetivos == null
+                        ? 'null'
+                        : Institucion.institucion_objetivos,
+                    ]"
                   ></div>
                 </div>
               </div>
@@ -256,7 +260,14 @@
                   data-bs-parent="#custom-accordion-one"
                 >
                   <div class="card-body">
-                    <img :src="'https://serviciopagina.upea.bo/InstitucionUpea/'+Institucion.institucion_organigrama" alt="Organigrama" class="w-75 m-auto">
+                    <img
+                      :src="
+                        'https://serviciopagina.upea.bo/InstitucionUpea/' +
+                        Institucion.institucion_organigrama
+                      "
+                      alt="Organigrama"
+                      class="w-75 m-auto"
+                    />
                   </div>
                 </div>
               </div>
@@ -296,14 +307,19 @@ export default {
   computed: {
     ...mapState(["Institucion"]),
   },
+  methods: {
+    cargando() {
+      document.getElementById("loading_upea").style.display = "none";
+    },
+  },
   created() {
     setTimeout(() => {
-      document.getElementById("loading_upea").style.visibility = "hidden";
+      document.getElementById("loading_upea").style.display = "none";
     }, 2000);
   },
 };
 
-setTimeout(() => {
-  document.getElementById("loading_upea").style.visibility = "hidden";
-}, 2000);
+// setTimeout(() => {
+//   document.getElementById("loading_upea").style.visibility = "hidden";
+// }, 2000);
 </script>

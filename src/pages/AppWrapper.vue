@@ -107,6 +107,7 @@ export default {
         // if (Object.keys(this.Institucion).length === 0) {
         //   console.log("vacio");
         // }
+        this.cargando()
       } catch (error) {
         // this.getInstitucion();
         console.log(error);
@@ -117,6 +118,7 @@ export default {
       try {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
+        this.cargando()
       } catch (error) {
         console.log(error);
         // this.getArea();
@@ -129,10 +131,14 @@ export default {
         // console.log(res.data.Descripcion);
         this.$store.state.CarreraU = res.data.Descripcion;
         this.$store.state.nombreCarr = res.data.Descripcion.carrera
+        this.cargando()
       } catch (error) {
         console.log(error);
       }
     },
+    cargando() {
+      document.getElementById('loading_wrapper').style.visibility = 'hidden'
+    }
   },
   created() {
     if (localStorage.auth) {

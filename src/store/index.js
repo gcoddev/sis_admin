@@ -10,16 +10,24 @@ export default createStore({
     // clickCarrera
     idCarr: '',
     nombreCarr: '',
+
+    // getter Carrera / Institucion
     getter: false,
 
     // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios
     idCCACS: '',
+
+    // Mensajes
     ev: 0,
     evTitle: '',
     evMsg: '',
 
     // Al
-    CarreraU: {}
+    CarreraU: {},
+
+    // id de Publicaciones/Gaceta/Eventos
+    idPGE: '',
+    idINS: ''
   },
   getters: {
   },

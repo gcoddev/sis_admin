@@ -3,10 +3,10 @@
     <div id="loading_carrera">
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
-    <div class="container" id="cont_carr_error">
+    <div class="container-fluid pt-2" id="cont_carr_error">
       <h1>Error al retornar datos de la carrera</h1>
     </div>
-    <div class="container" id="cont_carr">
+    <div class="container-fluid pt-2" id="cont_carr">
       <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
@@ -107,9 +107,13 @@
                   v-else
                   v-for="(cur, id_cur) of filterCur"
                   :key="id_cur"
-                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
+                  class="col-12 col-md-4 col-xl-3 col-xxl-2"
                 >
-                  <div class="card card-cs ribbon-box tipoC w-100">
+                  <a
+                    class="card card-cs ribbon-box tipoC w-100"
+                    data-bs-toggle="modal"
+                    :data-bs-target="'#modal_cur_' + id_cur"
+                  >
                     <div class="card-body">
                       <div
                         class="ribbon float-start"
@@ -127,21 +131,14 @@
                         {{ cur.tipo_curso_otro.tipo_conv_curso_nombre }}
                       </h5>
                       <div class="ribbon-content">
-                        <a
-                          style="cursor: pointer"
-                          data-bs-toggle="modal"
-                          :data-bs-target="'#modal_cur_' + id_cur"
-                        >
-                          <img
-                            :src="
-                              'https://serviciopagina.upea.bo/Cursos/' +
-                              cur.det_img_portada
-                            "
-                            alt="img"
-                            class="card-img-top h-100"
-                            style="max-height: 375px"
-                          />
-                        </a>
+                        <img
+                          :src="
+                            'https://serviciopagina.upea.bo/Cursos/' +
+                            cur.det_img_portada
+                          "
+                          alt="img"
+                          class="card-img-top"
+                        />
 
                         <div class="card-title fw-bold mt-2">
                           {{ cur.det_titulo }}
@@ -184,7 +181,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   <div
                     class="modal fade"
@@ -242,11 +239,13 @@
                           <div class="modal-footer">
                             <div class="ms-3 row">
                               <div class="col-12 col-md-6">
-                                <b>Fecha inicio:</b> {{ dmy(cur.det_fecha_ini) }}
+                                <b>Fecha inicio:</b>
+                                {{ dmy(cur.det_fecha_ini) }}
                                 <br />
                               </div>
                               <div class="col-12 col-md-6">
-                                <b>Fecha fin:</b> {{ dmy(cur.det_fecha_fin) }} <br />
+                                <b>Fecha fin:</b> {{ dmy(cur.det_fecha_fin) }}
+                                <br />
                               </div>
                               <div class="col-12 col-md-6">
                                 <b>Hora inicio:</b> {{ cur.det_hora_ini }}
@@ -343,9 +342,13 @@
                   v-else
                   v-for="(sem, id_sem) of filterSem"
                   :key="id_sem"
-                  class="col-12 col-md-6 col-xl-4 col-xxl-3"
+                  class="col-12 col-md-4 col-xl-3 col-xxl-2"
                 >
-                  <div class="card card-cs ribbon-box tipoC w-100">
+                  <a
+                    class="card card-cs ribbon-box tipoC w-100"
+                    data-bs-toggle="modal"
+                    :data-bs-target="'#modal_sem_' + id_sem"
+                  >
                     <div class="card-body">
                       <div
                         class="ribbon float-start"
@@ -363,20 +366,14 @@
                         {{ sem.tipo_curso_otro.tipo_conv_curso_nombre }}
                       </h5>
                       <div class="ribbon-content">
-                        <a
-                          style="cursor: pointer"
-                          data-bs-toggle="modal"
-                          :data-bs-target="'#modal_sem_' + id_sem"
-                        >
-                          <img
-                            :src="
-                              'https://serviciopagina.upea.bo/Cursos/' +
-                              sem.det_img_portada
-                            "
-                            alt="img"
-                            class="card-img-top h-100"
-                          />
-                        </a>
+                        <img
+                          :src="
+                            'https://serviciopagina.upea.bo/Cursos/' +
+                            sem.det_img_portada
+                          "
+                          alt="img"
+                          class="card-img-top"
+                        />
 
                         <div class="card-title fw-bold mt-2">
                           {{ sem.det_titulo }}
@@ -419,7 +416,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   <div
                     class="modal fade"
@@ -477,11 +474,13 @@
                           <div class="modal-footer">
                             <div class="ms-3 row">
                               <div class="col-12 col-md-6">
-                                <b>Fecha inicio:</b> {{ dmy(sem.det_fecha_ini) }}
+                                <b>Fecha inicio:</b>
+                                {{ dmy(sem.det_fecha_ini) }}
                                 <br />
                               </div>
                               <div class="col-12 col-md-6">
-                                <b>Fecha fin:</b> {{ dmy(sem.det_fecha_fin) }} <br />
+                                <b>Fecha fin:</b> {{ dmy(sem.det_fecha_fin) }}
+                                <br />
                               </div>
                               <div class="col-12 col-md-6">
                                 <b>Hora inicio:</b> {{ sem.det_hora_ini }}
@@ -628,6 +627,9 @@ pre {
 .card-cs {
   opacity: 0.7;
   transition: transform 0.5s;
+  user-select: none;
+  cursor: pointer;
+  color: var(--ct-body-color);
 }
 .card-cs:hover {
   transform: scale(107%);
@@ -635,10 +637,14 @@ pre {
   user-select: none;
 }
 .img-modal {
+  transform: scale(100%);
   transition: transform 0.5s;
 }
 .img-modal:hover {
   transform: scale(95%);
+}
+.img-modal:active {
+  transform: scale(90%);
 }
 </style>
 
@@ -696,6 +702,7 @@ export default {
             }
           }
         });
+        this.cargando()
       } catch (error) {
         // console.log("error getCursosAll: " + error);
       }
@@ -760,36 +767,31 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
+    cargando() {
+      document.getElementById("loading_carrera").style.display = "none";
+      if (this.ev == 1) {
+        this.$swal(this.evTitle, this.evMsg, "success");
+        this.$store.state.ev = 0;
+        this.$store.state.evTitle = "";
+        this.$store.state.evMsg = "";
+      }
+      console.log('cargado');
+    },
   },
   created() {
     if (this.getter) {
       this.getCarrera(this.idCarr);
       this.getCursosAll(this.idCarr);
       this.$store.state.getter = false;
-      setTimeout(() => {
-        document.getElementById("loading_carrera").style.display = "none";
-        if (this.ev == 1) {
-          this.$swal(this.evTitle, this.evMsg, "success");
-          this.$store.state.ev = 0;
-          this.$store.state.evTitle = "";
-          this.$store.state.evMsg = "";
-        }
-      }, 3000);
     }
   },
   updated() {
     if (this.getter) {
+      document.getElementById("loading_carrera").style.display = "block";
       this.getCarrera(this.idCarr);
       this.getCursosAll(this.idCarr);
       this.$store.state.getter = false;
-      document.getElementById("loading_carrera").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("loading_carrera").style.display = "none";
-      }, 3000);
     }
   },
 };
-setTimeout(() => {
-  document.getElementById("loading_carrera").style.display = "none";
-}, 3000);
 </script>

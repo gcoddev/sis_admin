@@ -6,12 +6,10 @@
           <div class="card-body col-12 col-md-4">
             <img
               class="card-img"
-              :src="[
-                userAdminData.imagen == null
-                  ? '@/assets/images/users/avatar-1.jpg'
-                  : 'https://serviciopagina.upea.bo/UsuarioAdmin/' +
-                    userAdminData.imagen,
-              ]"
+              :src="
+                'https://serviciopagina.upea.bo/UsuarioAdmin/' +
+                userAdminData.imagen
+              "
               alt=""
             />
           </div>
@@ -34,12 +32,12 @@
           </div>
           <div class="card-footer">
             <button
-              class="btn btn-sm btn-warning float-end"
+              class="btn btn-sm btn-success float-end"
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#editProfile"
             >
-              <i class="mdi mdi-account-edit"></i> Editar datos
+              <i class="mdi mdi-account-plus"></i> Registrar usuario
             </button>
           </div>
         </div>
@@ -57,7 +55,7 @@
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">
