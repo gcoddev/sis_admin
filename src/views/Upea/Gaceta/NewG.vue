@@ -1,93 +1,44 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">Nueva publicacion</h2>
+      <h2 class="text-center">Nueva gaceta</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group mt-2">
-                <label for="publicaciones_titulo" class="form-label"
-                  >Titulo:</label
-                >
+                <label for="gaceta_titulo" class="form-label">Titulo:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="publicaciones_titulo"
+                  id="gaceta_titulo"
                   placeholder="Titulo"
-                  v-model="publicaciones_titulo"
-                  aria-placeholder="Titulo de la publicacion"
+                  v-model="gaceta_titulo"
+                  aria-placeholder="Titulo de la gaceta"
                 />
               </div>
-              <div class="form-group mt-2">
-                <label for="publicaciones_descripcion" class="form-label"
-                  >Descripcion:</label
-                >
-                <textarea
-                  id="publicaciones_descripcion"
-                  class="form-control"
-                  rows="12"
-                  placeholder="Descripcion de la publicacion"
-                  v-model="publicaciones_descripcion"
-                ></textarea>
-              </div>
             </div>
-
             <div class="col-12 col-md-6">
               <div class="form-group mt-2">
-                <label for="publicaciones_imagen" class="form-label"
+                <label class="form-label" for="gaceta_fecha">Fecha:</label>
+                <input
+                  type="date"
+                  id="gaceta_fecha"
+                  class="form-control"
+                  v-model="gaceta_fecha"
+                />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group mt-2">
+                <label for="gaceta_documento" class="form-label"
                   >Imagen portada:</label
                 >
                 <input
                   type="file"
-                  id="publicaciones_imagen"
+                  id="gaceta_documento"
                   class="form-control"
                   @change="onFileChange()"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label class="form-label" for="publicaciones_autor"
-                  >Autor:</label
-                >
-                <input
-                  type="text"
-                  id="publicaciones_autor"
-                  class="form-control"
-                  v-model="publicaciones_autor"
-                  placeholder="Autor de la publicacion"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label class="form-label" for="publicaciones_fecha"
-                  >Fecha:</label
-                >
-                <input
-                  type="date"
-                  id="publicaciones_fecha"
-                  class="form-control"
-                  v-model="publicaciones_fecha"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label for="publicaciones_tipo" class="form-label">Tipo:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="publicaciones_tipo"
-                  placeholder="Tipo de la publicacion"
-                  v-model="publicaciones_tipo"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label for="publicaciones_documento" class="form-label"
-                  >documento:</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="publicaciones_documento"
-                  placeholder="Documento de la publicacion"
-                  v-model="publicaciones_documento"
                 />
               </div>
             </div>
@@ -109,16 +60,12 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "name_p",
+  name: "new_g",
   data() {
     return {
-      publicaciones_titulo: "",
-      publicaciones_descripcion: "",
-      publicaciones_autor: "",
-      publicaciones_fecha: "",
-      publicaciones_tipo: "",
-      publicaciones_documento: "",
-      publicaciones_imagen: null,
+      gaceta_titulo: "",
+      gaceta_fecha: "",
+      gaceta_documento: null,
     };
   },
   computed: {
@@ -126,35 +73,24 @@ export default {
   },
   methods: {
     validar() {
-      if (this.publicaciones_titulo != "") {
-        if (this.publicaciones_descripcion != "") {
-          if (this.publicaciones_autor != "") {
-            if (this.publicaciones_fecha != "") {
-              if (this.publicaciones_tipo != "") {
-                if (this.publicaciones_documento != "") {
-                  if (this.publicaciones_imagen != null) {
-                    this.createPublicacion();
-                  } else {
-                    this.alertDisplay(
-                      "Imagen publicacion vacio",
-                      "warning",
-                      1500
-                    );
-                  }
-                } else {
-                  this.alertDisplay("Documento vacio", "warning", 1500);
-                }
-              } else {
-                this.alertDisplay("Tipo vacio", "warning", 1500);
-              }
+      if (this.gaceta_titulo != "") {
+        if (this.gaceta_fecha != "") {
+          if (this.gaceta_documento != null) {
+            // this.createGaceta();
+            if (this.gaceta_documento.type == "application/pdf") {
+              this.createGaceta();
             } else {
-              this.alertDisplay("Fecha vacio", "warning", 1500);
+              this.alertDisplay(
+                "Tipo de documento no admitido",
+                "warning",
+                1500
+              );
             }
           } else {
-            this.alertDisplay("Autor vacio", "warning", 1500);
+            this.alertDisplay("Documento vacio", "warning", 1500);
           }
         } else {
-          this.alertDisplay("Descripcion vacio", "warning", 1500);
+          this.alertDisplay("Fecha vacio", "warning", 1500);
         }
       } else {
         this.alertDisplay("Titulo vacio", "warning", 1500);
@@ -162,26 +98,22 @@ export default {
     },
     clickInstitucion() {
       this.$store.state.getter = true;
-      this.$router.push("/publicaciones");
+      this.$router.push("/gaceta");
     },
     onFileChange() {
-      let img = document.querySelector("#publicaciones_imagen");
-      this.publicaciones_imagen = img.files[0];
+      let doc = document.querySelector("#gaceta_documento");
+      this.gaceta_documento = doc.files[0];
     },
-    async createPublicacion() {
-      let postPublicacion = {
-        publicaciones_titulo: this.publicaciones_titulo,
-        publicaciones_descripcion: this.publicaciones_descripcion,
-        publicaciones_autor: this.publicaciones_autor,
-        publicaciones_fecha: this.publicaciones_fecha,
-        publicaciones_tipo: this.publicaciones_tipo,
-        publicaciones_documento: this.publicaciones_documento,
-        publicaciones_imagen: this.publicaciones_imagen,
+    async createGaceta() {
+      let postGaceta = {
+        gaceta_titulo: this.gaceta_titulo,
+        gaceta_fecha: this.gaceta_fecha,
+        gaceta_documento: this.gaceta_documento,
       };
       try {
         let res = await this.axios.post(
-          "/api/publicacionesAll/" + this.Institucion.institucion_id,
-          postPublicacion,
+          "/api/gacetaunivAll/" + this.Institucion.institucion_id,
+          postGaceta,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         this.$store.state.ev = 1;

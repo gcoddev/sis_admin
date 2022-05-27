@@ -42,6 +42,16 @@ const routes = [
             component: () => import('@/views/Upea/Gaceta/Gaceta.vue')
           },
           {
+            path: '/edit_g/:idPGE',
+            name: 'edit_g',
+            component: () => import('@/views/Upea/Gaceta/EditG.vue')
+          },
+          {
+            path: '/new_g/:idINS',
+            name: 'new_g',
+            component: () => import('@/views/Upea/Gaceta/NewG.vue')
+          },
+          {
             path: '/eventos',
             name: 'eventos',
             component: () => import('@/views/Upea/Eventos/Eventos.vue')

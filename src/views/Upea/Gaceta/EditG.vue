@@ -4,104 +4,38 @@
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">{{ Pub.publicaciones_titulo }}</h2>
+          <h2 class="text-center">Editar gaceta</h2>
           <div class="row">
-            <img
+            <iframe
               :src="
-                'https://serviciopagina.upea.bo/Publicaciones/' +
-                Pub.publicaciones_imagen
+                'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                Gac.gaceta_documento +
+                '&embedded=true'
               "
-              alt="Portada"
-              class="col-12 col-md-5 h-100"
-            />
-            <div class="col-12 col-md-7">
-              <div class="form-group mt-2">
-                <label for="publicaciones_titulo" class="form-label"
-                  >Titulo:</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="publicaciones_titulo"
-                  placeholder="Titulo de publicacion"
-                  v-model="publicaciones_titulo"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label for="publicaciones_descripcion" class="form-label"
-                  >Descripcion:</label
-                >
-                <textarea
-                  id="publicaciones_descripcion"
-                  class="form-control"
-                  rows="10"
-                  placeholder="Descripcion de la publicacion"
-                  v-model="publicaciones_descripcion"
-                ></textarea>
-              </div>
-              <div class="form-group mt-2">
-                <label for="publicaciones_imagen" class="form-label"
-                  >Imagen portada:</label
-                >
-                <input
-                  type="file"
-                  id="publicaciones_imagen"
-                  class="form-control"
-                  @change="onFileChange()"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
+              class="card-img-top col-12 col-md-6"
+              height="500px"
+            ></iframe>
             <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="publicaciones_autor"
-                  >Autor:</label
-                >
+              <div class="form-group mt-2">
+                <label for="gaceta_titulo" class="form-label">Titulo:</label>
                 <input
                   type="text"
-                  id="publicaciones_autor"
                   class="form-control"
-                  v-model="publicaciones_autor"
-                  placeholder="Nombre del autor"
+                  id="gaceta_titulo"
+                  placeholder="Titulo"
+                  v-model="gaceta_titulo"
+                  aria-placeholder="Titulo de la gaceta"
                 />
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="con_fecha_inicio">Fecha:</label>
+              <div class="form-group mt-2">
+                <label class="form-label" for="gaceta_fecha">Fecha:</label>
                 <input
                   type="date"
-                  id="publicaciones_fecha"
+                  id="gaceta_fecha"
                   class="form-control"
-                  v-model="publicaciones_fecha"
-                  placeholder="Fecha de la publicacion"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="publicaciones_tipo">Tipo:</label>
-                <input
-                  type="text"
-                  id="publicaciones_tipo"
-                  class="form-control"
-                  v-model="publicaciones_tipo"
-                  placeholder="Tipo de publicacion"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="publicaciones_documento"
-                  >Documento:</label
-                >
-                <input
-                  type="text"
-                  id="publicaciones_documento"
-                  class="form-control"
-                  v-model="publicaciones_documento"
-                  placeholder="Documento de publicacion"
+                  v-model="gaceta_fecha"
                 />
               </div>
             </div>
@@ -126,33 +60,25 @@ export default {
   name: "edit_p",
   data() {
     return {
-      Pub: {},
-      publicaciones_titulo: "",
-      publicaciones_descripcion: "",
-      publicaciones_autor: "",
-      publicaciones_fecha: "",
-      publicaciones_tipo: "",
-      publicaciones_documento: "",
-      publicaciones_imagen: null,
-      pub_img: false,
+      Gac: {},
+      gaceta_titulo: "",
+      gaceta_fecha: "",
+      gaceta_documento: null,
+      gdoc: false,
     };
   },
   computed: {
     ...mapState(["idPGE"]),
   },
   methods: {
-    async getPublicacion() {
+    async getGaceta() {
       try {
-        let res = await this.axios.get("/api/publicaciones/" + this.idPGE);
-        this.Pub = res.data.Descripcion;
+        let res = await this.axios.get("/api/gacetauniv/" + this.idPGE);
+        this.Gac = res.data.Descripcion;
         // console.log(this.Pub);
-        this.publicaciones_titulo = this.Pub.publicaciones_titulo;
-        this.publicaciones_descripcion = this.Pub.publicaciones_descripcion;
-        this.publicaciones_autor = this.Pub.publicaciones_autor;
-        let fecha = this.Pub.publicaciones_fecha.substr(0, 10);
-        this.publicaciones_fecha = fecha;
-        this.publicaciones_tipo = this.Pub.publicaciones_tipo;
-        this.publicaciones_documento = this.Pub.publicaciones_documento;
+        this.gaceta_titulo = this.Gac.gaceta_titulo;
+        let fecha = this.Gac.gaceta_fecha.substr(0, 10);
+        this.gaceta_fecha = fecha;
       } catch (error) {
         console.log(error);
       }
@@ -160,33 +86,17 @@ export default {
     onFileChange() {
       let img = document.querySelector("#publicaciones_imagen");
       this.publicaciones_imagen = img.files[0];
-      this.pub_img = true;
+      this.gdoc = true;
     },
     validar() {
-      if (this.publicaciones_titulo != "") {
-        if (this.publicaciones_descripcion != "") {
-          if (this.publicaciones_autor != "") {
-            if (this.publicaciones_fecha != "") {
-              if (this.publicaciones_tipo != "") {
-                if (this.publicaciones_documento != "") {
-                  if (this.pub_img) {
-                    this.updateImagePublicacion();
-                  }
-                  this.updatePublicacion();
-                } else {
-                  this.alertDisplay("Documento vacio", "warning", 1500);
-                }
-              } else {
-                this.alertDisplay("Tipo vacio", "warning", 1500);
-              }
-            } else {
-              this.alertDisplay("Fecha vacio", "warning", 1500);
-            }
-          } else {
-            this.alertDisplay("Autor vacio", "warning", 1500);
+      if (this.gaceta_titulo != "") {
+        if (this.gaceta_fecha != "") {
+          if (this.gdoc) {
+            this.updatePDF();
           }
+          this.updateGaceta();
         } else {
-          this.alertDisplay("Descripcion vacio", "warning", 1500);
+          this.alertDisplay("Fecha vacio", "warning", 1500);
         }
       } else {
         this.alertDisplay("Titulo vacio", "warning", 1500);
@@ -194,44 +104,37 @@ export default {
     },
     clickInstitucion() {
       this.$store.state.getter = true;
-      this.$router.push("/publicaciones");
+      this.$router.push("/gaceta");
     },
-    async updatePublicacion() {
-      console.log("updatePublicacion");
-      let putPublicacion = {
-        publicaciones_titulo: this.publicaciones_titulo,
-        publicaciones_descripcion: this.publicaciones_descripcion,
-        publicaciones_autor: this.publicaciones_autor,
-        publicaciones_fecha: this.publicaciones_fecha,
-        publicaciones_tipo: this.publicaciones_tipo,
-        publicaciones_documento: this.publicaciones_documento,
+    async updateGaceta() {
+      console.log("updateGaceta");
+      let putGaceta = {
+        gaceta_titulo: this.gaceta_titulo,
+        gaceta_fecha: this.gaceta_fecha,
       };
       try {
         let res = await this.axios.put(
-          "/api/publicaciones/" + this.idPGE,
-          putPublicacion
+          "/api/gacetauniv/" + this.idPGE,
+          putGaceta
         );
         this.$store.state.ev = 1;
         this.$store.state.evTitle = "Actualizado";
         this.$store.state.evMsg = res.data.mensaje;
         this.clickInstitucion();
       } catch (error) {
-        console.log("error updatePublicacion");
+        console.log("error updateGaceta");
         console.log(error);
       }
     },
-    async updateImagePublicacion() {
+    async updatePDF() {
       // console.log("updateImagePublicacion");
-      let putImage = {
-        publicaciones_imagen: this.publicaciones_imagen,
+      let putPdf = {
+        gaceta_documento: this.gaceta_documento,
       };
       try {
         let res = await this.axios.put(
-          "/api/publicaciones/" +
-            this.idPGE +
-            "/" +
-            this.Pub.publicaciones_imagen,
-          putImage,
+          "/api/publicaciones/" + this.idPGE + "/" + this.Gac.gaceta_documento,
+          putPdf,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } catch (error) {
@@ -249,7 +152,7 @@ export default {
     },
   },
   created() {
-    this.getPublicacion();
+    this.getGaceta();
   },
 };
 </script>

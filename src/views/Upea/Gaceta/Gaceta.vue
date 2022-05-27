@@ -34,7 +34,7 @@
             <a
               class="card card-gac ribbon-box tipoC w-100"
               data-bs-toggle="modal"
-              :data-bs-target="'#modal_pub_' + id_gac"
+              :data-bs-target="'#modal_gac_' + id_gac"
             >
               <div class="card-body">
                 <div class="ribbon float-start ribbon-info">
@@ -48,10 +48,12 @@
                   <div class="ratio ratio-1x1">
                     <iframe
                       :src="
-                        'https://serviciopagina.upea.bo/Gaceta/' +
-                        gac.gaceta_documento
+                        'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                        gac.gaceta_documento +
+                        '&embedded=true'
                       "
                       frameborder="0"
+                      :disabled="true"
                     ></iframe>
                   </div>
                   <div class="card-title fw-bold mt-2">
@@ -64,19 +66,19 @@
               </div>
             </a>
 
-            <!-- <div
+            <div
               class="modal fade"
-              :id="'modal_pub_' + id_gac"
+              :id="'modal_gac_' + id_gac"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
               tabindex="-1"
-              :aria-labelledby="'modal_pub_label_' + id_gac"
+              :aria-labelledby="'modal_gac_label_' + id_gac"
               aria-hidden="true"
             >
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_pub_label_' + id_gac">
+                    <h5 class="modal-title" :id="'modal_gac_label_' + id_gac">
                       {{ gac.publicaciones_titulo }}
                     </h5>
                     <button
@@ -88,34 +90,21 @@
                   </div>
                   <div class="modal-body">
                     <div class="row">
-                      <div class="col-12 col-md-5">
-                        <a
-                          :href="
-                            'https://serviciopagina.upea.bo/Publicaciones/' +
-                            gac.publicaciones_imagen
+                      <div class="col-12">
+                        <iframe
+                          :src="
+                            'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                            gac.gaceta_documento +
+                            '&embedded=true'
                           "
-                          target="_blank"
-                          ><img
-                            :src="
-                              'https://serviciopagina.upea.bo/Publicaciones/' +
-                              gac.publicaciones_imagen
-                            "
-                            alt="img"
-                            class="card-img-top h-auto img-modal"
-                        /></a>
-                      </div>
-                      <div class="col-12 col-md-7">
-                        <pre
-                          class="card-text contenedor p-2"
-                          style="overflow-y: scroll"
-                          v-html="gac.publicaciones_descripcion"
-                        ></pre>
+                          class="card-img-top"
+                          height="500px"
+                        ></iframe>
                       </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                       <div class="ms-3">
-                        <p><b>Autor:</b> {{ gac.publicaciones_autor }}</p>
-                        <p><b>Fecha:</b> {{ dmy(gac.publicaciones_fecha) }}</p>
+                        <p><b>Fecha:</b> {{ dmy(gac.gaceta_fecha) }}</p>
                       </div>
                       <div>
                         <button
@@ -131,9 +120,9 @@
                           data-bs-dismiss="modal"
                           @click="
                             deleteMsg(
-                              'la publicacion',
-                              gac.publicaciones_id,
-                              gac.publicaciones_imagen
+                              'la gaceta',
+                              gac.gaceta_id,
+                              gac.gaceta_documento
                             )
                           "
                         >
@@ -143,7 +132,7 @@
                         <button
                           data-bs-dismiss="modal"
                           class="btn btn-warning ms-2"
-                          @click="editP(pub.publicaciones_id)"
+                          @click="editG(gac.gaceta_id)"
                         >
                           <i class="mdi mdi-clipboard-edit-outline"></i>&nbsp;
                           Editar
@@ -153,7 +142,7 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -215,7 +204,7 @@ pre {
   color: var(--ct-body-color);
 }
 .card-gac:hover {
-  transform: scale(107%);
+  transform: scale(105%);
   opacity: 1;
 }
 .img-modal {
@@ -274,17 +263,16 @@ export default {
     },
     editG(idG) {
       this.$store.state.idPGE = idG;
-      this.$router.push("/edit_p/" + idG);
+      this.$router.push("/edit_g/" + idG);
     },
-    async deleteG(id, img) {
+    async deleteG(id, doc) {
       try {
-        let res = await this.axios.delete(
-          "/api/publicaciones/" + id + "/" + img
-        );
-        this.getPublicaciones();
+        let res = await this.axios.delete("/api/gacetauniv/" + id + "/" + doc);
+        this.getGaceta();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        // console.log("error deleteCCA: " + error);
+        // console.log("error deleteG");
+        // console.log(error);
       }
     },
     deleteMsg(title, id, img) {
@@ -298,7 +286,7 @@ export default {
         confirmButtonText: "Si, eliminar",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.deleteP(id, img);
+          this.deleteG(id, img);
         }
       });
     },

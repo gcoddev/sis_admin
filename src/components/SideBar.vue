@@ -47,32 +47,25 @@
             <div class="collapse show" id="upea">
               <ul class="side-nav-second-level">
                 <li class="side-nav-item">
-                  <router-link :to="{ name: 'upea' }"
+                  <router-link to="upea"
                     ><i class="mdi mdi-home-outline"></i>&nbsp; INICIO
                   </router-link>
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link
-                    :to="{ name: 'publicaciones' }"
-                    @click="clickInstitucion()"
-                  >
+                  <router-link to="/publicaciones" @click="clickInstitucion()">
                     <i class="mdi mdi-book-edit"></i>&nbsp; PUBLICACIONES
                   </router-link>
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link
-                    :to="{ name: 'gaceta' }"
-                    @click="clickInstitucion()"
+                  <router-link to="/gaceta" @click="clickInstitucion()"
                     ><i class="mdi mdi-periodic-table"></i>&nbsp; GACETA
                   </router-link>
                 </li>
 
                 <li class="side-nav-item">
-                  <router-link
-                    to="/eventoss"
-                    @click="clickInstitucion()"
+                  <router-link to="/eventos" @click="clickInstitucion()"
                     ><i class="mdi mdi-card-text"></i>&nbsp; EVENTOS
                   </router-link>
                 </li>
