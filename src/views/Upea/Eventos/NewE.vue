@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">Nueva publicacion</h2>
+      <h2 class="text-center">Gaceta</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">

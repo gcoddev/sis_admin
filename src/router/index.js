@@ -39,12 +39,12 @@ const routes = [
           {
             path: '/gaceta',
             name: 'gaceta',
-            component: () => import('@/views/Upea/Gaceta.vue')
+            component: () => import('@/views/Upea/Gaceta/Gaceta.vue')
           },
           {
             path: '/eventos',
             name: 'eventos',
-            component: () => import('@/views/Upea/Eventos.vue')
+            component: () => import('@/views/Upea/Eventos/Eventos.vue')
           },
         ]
       },

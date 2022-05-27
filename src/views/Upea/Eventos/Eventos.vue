@@ -14,7 +14,9 @@
             </h1>
           </div>
           <div>
-            <button class="btn btn-primary" @click="newP()">Crear nuevo</button>
+            <button class="btn btn-primary" @click="nuevaP()">
+              Crear nuevo
+            </button>
           </div>
         </div>
       </div>
@@ -306,6 +308,9 @@ export default {
         }
       });
     },
+    newP() {
+      this.$router.push("/new_p/" + this.idCarr);
+    },
     alertDisplay(msg, icon, time) {
       this.$swal({
         title: msg,
@@ -317,7 +322,7 @@ export default {
     cargando() {
       document.getElementById("loading_upea").style.display = "none";
     },
-    newP() {
+    nuevaP() {
       this.$router.push("/new_p/" + this.Institucion.institucion_id);
     },
   },

@@ -8,79 +8,76 @@
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <h1>
-              PUBLICACIONES UPEA &nbsp;<span class="badge bg-info fs-4">{{
-                Publicaciones.length
+              GACETA UPEA &nbsp;<span class="badge bg-info fs-4">{{
+                Gaceta.length
               }}</span>
             </h1>
           </div>
           <div>
-            <button class="btn btn-primary" @click="newP()">Crear nuevo</button>
+            <button class="btn btn-primary" @click="nuevaG()">
+              Crear nuevo
+            </button>
           </div>
         </div>
       </div>
       <div class="container-fluid">
         <div class="row">
-          <div v-if="Publicaciones.length == 0">
-            <h1 class="text-center">Sin publicaciones</h1>
+          <div v-if="Gaceta.length == 0">
+            <h1 class="text-center">Sin gacetas</h1>
           </div>
           <div
             v-else
-            v-for="(pub, id_pub) of Publicaciones"
-            :key="id_pub"
-            class="col-12 col-md-4 col-xl-3 col-xxl-2"
+            v-for="(gac, id_gac) of Gaceta"
+            :key="id_gac"
+            class="col-12 col-md-6 col-xxl-4"
           >
             <a
-              class="card card-pub ribbon-box tipoC w-100"
+              class="card card-gac ribbon-box tipoC w-100"
               data-bs-toggle="modal"
-              :data-bs-target="'#modal_pub_' + id_pub"
+              :data-bs-target="'#modal_pub_' + id_gac"
             >
               <div class="card-body">
                 <div class="ribbon float-start ribbon-info">
                   <i class="mdi mdi-access-point me-1"></i
-                  ><span>{{ pub.publicaciones_documento }}</span>
+                  ><span
+                    v-html="[gac.gaceta_estado == '1' ? 'Activo' : 'Inactivo']"
+                  ></span>
                 </div>
-                <h5 class="text-dark float-end mt-0">
-                  {{ pub.publicaciones_tipo }}
-                </h5>
+                <h5 class="text-dark float-end mt-0">Gaceta</h5>
                 <div class="ribbon-content">
-                  <img
-                    :src="
-                      'https://serviciopagina.upea.bo/Publicaciones/' +
-                      pub.publicaciones_imagen
-                    "
-                    alt="img"
-                    class="card-img-top"
-                  />
-                  <div class="card-title fw-bold mt-2">
-                    {{ pub.publicaciones_titulo }}
+                  <div class="ratio ratio-1x1">
+                    <iframe
+                      :src="
+                        'https://serviciopagina.upea.bo/Gaceta/' +
+                        gac.gaceta_documento
+                      "
+                      frameborder="0"
+                    ></iframe>
                   </div>
-                  <pre
-                    class="card-text contenedor"
-                    style="max-height: 200px; overflow-y: scroll"
-                    v-html="pub.publicaciones_descripcion"
-                  ></pre>
+                  <div class="card-title fw-bold mt-2">
+                    {{ gac.gaceta_titulo }}
+                  </div>
                 </div>
               </div>
               <div class="card-footer pt-3">
-                <p><b>Autor:</b> {{ pub.publicaciones_autor }}</p>
-                <p><b>Fecha:</b> {{ dmy(pub.publicaciones_fecha) }}</p>
+                <p><b>Fecha:</b> {{ dmy(gac.gaceta_fecha) }}</p>
               </div>
             </a>
 
-            <div
+            <!-- <div
               class="modal fade"
-              :id="'modal_pub_' + id_pub"
+              :id="'modal_pub_' + id_gac"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
               tabindex="-1"
-              :aria-labelledby="'modal_pub_label_' + id_pub"
+              :aria-labelledby="'modal_pub_label_' + id_gac"
               aria-hidden="true"
             >
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_pub_label_' + id_pub">
-                      {{ pub.publicaciones_titulo }}
+                    <h5 class="modal-title" :id="'modal_pub_label_' + id_gac">
+                      {{ gac.publicaciones_titulo }}
                     </h5>
                     <button
                       type="button"
@@ -89,20 +86,19 @@
                       aria-hidden="true"
                     ></button>
                   </div>
-                  <!-- end modal header -->
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-12 col-md-5">
                         <a
                           :href="
                             'https://serviciopagina.upea.bo/Publicaciones/' +
-                            pub.publicaciones_imagen
+                            gac.publicaciones_imagen
                           "
                           target="_blank"
                           ><img
                             :src="
                               'https://serviciopagina.upea.bo/Publicaciones/' +
-                              pub.publicaciones_imagen
+                              gac.publicaciones_imagen
                             "
                             alt="img"
                             class="card-img-top h-auto img-modal"
@@ -112,14 +108,14 @@
                         <pre
                           class="card-text contenedor p-2"
                           style="overflow-y: scroll"
-                          v-html="pub.publicaciones_descripcion"
+                          v-html="gac.publicaciones_descripcion"
                         ></pre>
                       </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                       <div class="ms-3">
-                        <p><b>Autor:</b> {{ pub.publicaciones_autor }}</p>
-                        <p><b>Fecha:</b> {{ dmy(pub.publicaciones_fecha) }}</p>
+                        <p><b>Autor:</b> {{ gac.publicaciones_autor }}</p>
+                        <p><b>Fecha:</b> {{ dmy(gac.publicaciones_fecha) }}</p>
                       </div>
                       <div>
                         <button
@@ -136,8 +132,8 @@
                           @click="
                             deleteMsg(
                               'la publicacion',
-                              pub.publicaciones_id,
-                              pub.publicaciones_imagen
+                              gac.publicaciones_id,
+                              gac.publicaciones_imagen
                             )
                           "
                         >
@@ -157,7 +153,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -211,14 +207,14 @@ pre {
 .tipoC {
   float: left;
 }
-.card-pub {
+.card-gac {
   opacity: 0.7;
   transition: transform 0.5s;
   user-select: none;
   cursor: pointer;
   color: var(--ct-body-color);
 }
-.card-pub:hover {
+.card-gac:hover {
   transform: scale(107%);
   opacity: 1;
 }
@@ -236,19 +232,19 @@ export default {
   name: "publicaciones",
   data() {
     return {
-      Publicaciones: [],
+      Gaceta: [],
     };
   },
   computed: {
     ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg"]),
   },
   methods: {
-    async getPublicaciones() {
+    async getGaceta() {
       try {
         let res = await this.axios.get(
-          "/api/publicacionesAll/" + this.Institucion.institucion_id
+          "/api/gacetaunivAll/" + this.Institucion.institucion_id
         );
-        this.Publicaciones = res.data;
+        this.Gaceta = res.data;
         // console.log(this.Publicaciones);
         this.cargando();
       } catch (error) {
@@ -276,11 +272,11 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
-    editP(idP) {
-      this.$store.state.idPGE = idP;
-      this.$router.push("/edit_p/" + idP);
+    editG(idG) {
+      this.$store.state.idPGE = idG;
+      this.$router.push("/edit_p/" + idG);
     },
-    async deleteP(id, img) {
+    async deleteG(id, img) {
       try {
         let res = await this.axios.delete(
           "/api/publicaciones/" + id + "/" + img
@@ -317,13 +313,13 @@ export default {
     cargando() {
       document.getElementById("loading_upea").style.display = "none";
     },
-    newP() {
-      this.$router.push("/new_p/" + this.Institucion.institucion_id);
+    nuevaG() {
+      this.$router.push("/new_g/" + this.Institucion.institucion_id);
     },
   },
   created() {
     if (this.getter) {
-      this.getPublicaciones();
+      this.getGaceta();
       this.$store.state.getter = false;
       if (this.ev == 1) {
         this.$swal(this.evTitle, this.evMsg, "success");
