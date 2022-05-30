@@ -234,6 +234,111 @@
                                 v-html="cur.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
+                              <h5>Facilitadores</h5>
+                              <ul>
+                                <li
+                                  class="
+                                    d-flex
+                                    justify-content-between
+                                    flex-wrap
+                                    mb-2
+                                  "
+                                >
+                                  <div>
+                                    &bull; &nbsp; Nombres &nbsp;<span
+                                      class="badge bg-info"
+                                      >Cargo</span
+                                    >
+                                  </div>
+                                  <div class="text-muted">Descripcion</div>
+                                  <div>
+                                    <div class="btn btn-sm btn-success">
+                                      <i class="mdi mdi-whatsapp"></i>
+                                    </div>
+                                    <div
+                                      class="btn btn-sm ms-1 text-white"
+                                      style="background-color: var(--ct-blue)"
+                                    >
+                                      <i class="mdi mdi-facebook"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-warning ms-1">
+                                      <i class="mdi mdi-account-edit"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-danger ms-1">
+                                      <i class="mdi mdi-delete"></i>
+                                    </div>
+                                  </div>
+                                </li>
+                                <hr />
+                                <li
+                                  class="
+                                    d-flex
+                                    justify-content-between
+                                    flex-wrap
+                                    mb-2
+                                  "
+                                >
+                                  <div>
+                                    &bull; &nbsp; Nombres &nbsp;<span
+                                      class="badge bg-info"
+                                      >Cargo</span
+                                    >
+                                  </div>
+                                  <div class="text-muted">Descripcion</div>
+                                  <div>
+                                    <div class="btn btn-sm btn-success">
+                                      <i class="mdi mdi-whatsapp"></i>
+                                    </div>
+                                    <div
+                                      class="btn btn-sm ms-1 text-white"
+                                      style="background-color: var(--ct-blue)"
+                                    >
+                                      <i class="mdi mdi-facebook"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-warning ms-1">
+                                      <i class="mdi mdi-account-edit"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-danger ms-1">
+                                      <i class="mdi mdi-delete"></i>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li
+                                  class="
+                                    d-flex
+                                    justify-content-between
+                                    flex-wrap
+                                  "
+                                >
+                                  <div>
+                                    &bull; &nbsp; Nombres &nbsp;<span
+                                      class="badge bg-info"
+                                      >Cargo</span
+                                    >
+                                  </div>
+                                  <div class="text-muted">Descripcion</div>
+                                  <div>
+                                    <div class="btn btn-sm btn-success">
+                                      <i class="mdi mdi-whatsapp"></i>
+                                    </div>
+                                    <div
+                                      class="btn btn-sm ms-1 text-white"
+                                      style="background-color: var(--ct-blue)"
+                                    >
+                                      <i class="mdi mdi-facebook"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-warning ms-1">
+                                      <i class="mdi mdi-account-edit"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-danger ms-1">
+                                      <i class="mdi mdi-delete"></i>
+                                    </div>
+                                  </div>
+                                </li>
+                                <!-- <li v-for="(fac, id_fac) of Facilitadores" :key="id_fac" class="w-100">
+                                  Nombre nombre nombre
+                                </li> -->
+                              </ul>
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -282,7 +387,14 @@
                               </div>
                             </div>
                           </div>
-                          <div class="card-footer d-flex justify-content-end">
+                          <div
+                            class="
+                              card-footer
+                              d-flex
+                              justify-content-end
+                              flex-wrap
+                            "
+                          >
                             <div>
                               <button
                                 type="button"
@@ -299,6 +411,18 @@
                                 <i class="mdi mdi-whatsapp"></i>&nbsp; Grupo
                                 WhatsApp
                               </a>
+                              <button
+                                data-bs-dismiss="modal"
+                                class="btn btn-info ms-2 text-dark"
+                                @click="
+                                  newFacilitador(
+                                    cur.iddetalle_cursos_academicos
+                                  )
+                                "
+                              >
+                                <i class="mdi mdi-account-plus"></i>&nbsp;
+                                Agregar facilitador
+                              </button>
                               <button
                                 type="button"
                                 class="btn btn-danger ms-2"
@@ -656,6 +780,7 @@ export default {
       Carrera: {},
       filterCur: [],
       filterSem: [],
+      Facilitadores: null,
     };
   },
   computed: {
@@ -702,14 +827,28 @@ export default {
             }
           }
         });
-        this.cargando()
+        this.getFacilitadores();
       } catch (error) {
         // console.log("error getCursosAll: " + error);
+      }
+    },
+    async getFacilitadores() {
+      try {
+        let res = await this.axios.get("/api/Facilitadores/" + this.idCCACS);
+        this.Facilitadores = res.data;
+        console.log(this.Facilitadores);
+        this.cargando();
+      } catch (error) {
+        console.log(error);
       }
     },
     editCS(idCS) {
       this.$store.state.idCCACS = idCS;
       this.$router.push("/edit_cs/" + idCS);
+    },
+    newFacilitador(idCS) {
+      this.$store.state.idCCACS = idCS;
+      this.$router.push("/facilitador/" + idCS);
     },
     async deleteCS(id, img) {
       try {
@@ -775,7 +914,7 @@ export default {
         this.$store.state.evTitle = "";
         this.$store.state.evMsg = "";
       }
-      console.log('cargado');
+      console.log("cargado");
     },
   },
   created() {

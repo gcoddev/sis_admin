@@ -37,10 +37,10 @@
               <div class="card-body">
                 <div class="ribbon float-start ribbon-info">
                   <i class="mdi mdi-access-point me-1"></i
-                  ><span>{{ pub.publicaciones_documento }}</span>
+                  ><span>{{ pub.publicaciones_tipo }}</span>
                 </div>
                 <h5 class="text-dark float-end mt-0">
-                  {{ pub.publicaciones_tipo }}
+                  {{ pub.publicaciones_documento }}
                 </h5>
                 <div class="ribbon-content">
                   <img

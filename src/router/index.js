@@ -70,22 +70,10 @@ const routes = [
         component: () => import('@/views/Carrera/Convocatorias/CCA.vue'),
       },
       {
-        path: '/cs/:id_car/',
-        name: 'cs',
-        props: true,
-        component: () => import('@/views/Carrera/Cursos/CS.vue'),
-      },
-      {
         path: '/edit_cca/:idCCA/',
         name: 'edit_cca',
         props: true,
         component: () => import('@/views/Carrera/Convocatorias/EditCCA.vue')
-      },
-      {
-        path: '/edit_cs/:idCCA/',
-        name: 'edit_cs',
-        props: true,
-        component: () => import('@/views/Carrera/Cursos/EditCS.vue')
       },
       {
         path: '/new_cca/:id_car/',
@@ -94,11 +82,29 @@ const routes = [
         component: () => import('@/views/Carrera/Convocatorias/NewCCA.vue')
       },
       {
+        path: '/cs/:id_car/',
+        name: 'cs',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/CS.vue'),
+      },
+      {
+        path: '/edit_cs/:idCCA/',
+        name: 'edit_cs',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/EditCS.vue')
+      },
+      {
         path: '/new_cs/:id_car/',
         name: 'new_cs',
         props: true,
         component: () => import('@/views/Carrera/Cursos/NewCS.vue')
       },
+      {
+        path: '/facilitador/:idCS',
+        name: 'facilitador',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/Facilitador.vue')
+      }
     ]
   },
   {

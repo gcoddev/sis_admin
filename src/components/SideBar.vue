@@ -69,6 +69,11 @@
                     ><i class="mdi mdi-card-text"></i>&nbsp; EVENTOS
                   </router-link>
                 </li>
+                <li class="side-nav-item">
+                  <router-link to="/eventos" @click="clickInstitucion()"
+                    ><i class="mdi mdi-video"></i>&nbsp; VIDEOS
+                  </router-link>
+                </li>
               </ul>
             </div>
           </li>
