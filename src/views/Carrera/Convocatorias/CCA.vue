@@ -810,7 +810,6 @@ export default {
         this.$store.state.evTitle = "";
         this.$store.state.evMsg = "";
       }
-      console.log('cargado');
     },
   },
   created() {

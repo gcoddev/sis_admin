@@ -49,7 +49,6 @@ export default {
     return {};
   },
   components: {
-    // Header,
     SideBar,
     Footer,
     NavBar,
@@ -59,7 +58,6 @@ export default {
   },
   methods: {
     async getAdminData() {
-      // console.log("getAdminData");
       if (localStorage.credentialP) {
         try {
           let res = await this.axios.get(
@@ -70,7 +68,7 @@ export default {
             res.data.roles == "DIRECTOR" ||
             res.data.roles == "CENTRO_ESTUDIANTES"
           ) {
-            this.$store.state.idCarr = res.data.insttitucion_id
+            this.$store.state.idCarr = res.data.insttitucion_id;
             this.getCarreraU(res.data.insttitucion_id);
           } else {
             if (res.data.roles == "SECRETARIA") {
@@ -96,60 +94,55 @@ export default {
           }
         }
       } else {
-        // console.log("no credentialP");
+        //
       }
     },
     async getInstitucion() {
-      // console.log("getInstitucion");
       try {
         let res = await this.axios.get("/api/InstitucionUPEA/");
         this.$store.state.Institucion = res.data[0];
-        // if (Object.keys(this.Institucion).length === 0) {
-        //   console.log("vacio");
-        // }
-        this.cargando()
+        this.cargando();
       } catch (error) {
-        // this.getInstitucion();
         console.log(error);
       }
     },
     async getArea() {
-      // console.log("getArea");
       try {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
-        this.cargando()
+        this.cargando();
       } catch (error) {
         console.log(error);
-        // this.getArea();
       }
     },
     async getCarreraU(id) {
-      // console.log('getCarreraU');
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
-        // console.log(res.data.Descripcion);
         this.$store.state.CarreraU = res.data.Descripcion;
-        this.$store.state.nombreCarr = res.data.Descripcion.carrera
-        this.cargando()
+        this.$store.state.nombreCarr = res.data.Descripcion.carrera;
+        this.cargando();
       } catch (error) {
         console.log(error);
       }
     },
     cargando() {
-      document.getElementById('loading_wrapper').style.visibility = 'hidden'
-    }
+      document.getElementById("loading_wrapper").style.visibility = "hidden";
+      this.$swal({
+        title: localStorage.msg,
+        timer: 2500,
+        showConfirmButton: false,
+      });
+    },
   },
   created() {
     if (localStorage.auth) {
       if (localStorage.auth == 1) {
-        // console.log("iniciado sesion");
         this.getAdminData();
       } else {
         this.$router.push("/login");
       }
     } else {
-      // console.log("no local auth");
+      //
     }
   },
 };

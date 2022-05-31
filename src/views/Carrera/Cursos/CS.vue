@@ -268,76 +268,8 @@
                                       <i class="mdi mdi-delete"></i>
                                     </div>
                                   </div>
+                                  <hr />
                                 </li>
-                                <hr />
-                                <li
-                                  class="
-                                    d-flex
-                                    justify-content-between
-                                    flex-wrap
-                                    mb-2
-                                  "
-                                >
-                                  <div>
-                                    &bull; &nbsp; Nombres &nbsp;<span
-                                      class="badge bg-info"
-                                      >Cargo</span
-                                    >
-                                  </div>
-                                  <div class="text-muted">Descripcion</div>
-                                  <div>
-                                    <div class="btn btn-sm btn-success">
-                                      <i class="mdi mdi-whatsapp"></i>
-                                    </div>
-                                    <div
-                                      class="btn btn-sm ms-1 text-white"
-                                      style="background-color: var(--ct-blue)"
-                                    >
-                                      <i class="mdi mdi-facebook"></i>
-                                    </div>
-                                    <div class="btn btn-sm btn-warning ms-1">
-                                      <i class="mdi mdi-account-edit"></i>
-                                    </div>
-                                    <div class="btn btn-sm btn-danger ms-1">
-                                      <i class="mdi mdi-delete"></i>
-                                    </div>
-                                  </div>
-                                </li>
-                                <li
-                                  class="
-                                    d-flex
-                                    justify-content-between
-                                    flex-wrap
-                                  "
-                                >
-                                  <div>
-                                    &bull; &nbsp; Nombres &nbsp;<span
-                                      class="badge bg-info"
-                                      >Cargo</span
-                                    >
-                                  </div>
-                                  <div class="text-muted">Descripcion</div>
-                                  <div>
-                                    <div class="btn btn-sm btn-success">
-                                      <i class="mdi mdi-whatsapp"></i>
-                                    </div>
-                                    <div
-                                      class="btn btn-sm ms-1 text-white"
-                                      style="background-color: var(--ct-blue)"
-                                    >
-                                      <i class="mdi mdi-facebook"></i>
-                                    </div>
-                                    <div class="btn btn-sm btn-warning ms-1">
-                                      <i class="mdi mdi-account-edit"></i>
-                                    </div>
-                                    <div class="btn btn-sm btn-danger ms-1">
-                                      <i class="mdi mdi-delete"></i>
-                                    </div>
-                                  </div>
-                                </li>
-                                <!-- <li v-for="(fac, id_fac) of Facilitadores" :key="id_fac" class="w-100">
-                                  Nombre nombre nombre
-                                </li> -->
                               </ul>
                             </div>
                           </div>

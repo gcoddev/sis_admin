@@ -56,10 +56,8 @@ export default {
     }
 
     if (localStorage.token) {
-      // console.log("yes token");
       this.verificarToken(localStorage.token);
     } else {
-      // console.log("no token");
       if (localStorage.auth) {
         this.$router.push("/login");
       } else {
