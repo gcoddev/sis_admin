@@ -46,15 +46,25 @@
                 <a href="pages-recoverpw-2.html" class="text-muted float-end"
                   ><small>Forgot your password?</small></a
                 >
+
                 <label for="password" class="form-label">Contraseña</label>
-                <input
-                  class="form-control"
-                  type="password"
-                  required=""
-                  id="password"
-                  placeholder="Ingrese su contraseña"
-                  v-model="password"
-                />
+                <div class="input-group input-group-merge">
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Ingrese su contraseña"
+                    v-model="password"
+                  />
+                  <div
+                    class="input-group-text"
+                    data-password="false"
+                    @click="showPassword()"
+                    id="eye"
+                  >
+                    <span class="password-eye"></span>
+                  </div>
+                </div>
               </div>
               <div class="d-grid mb-0 text-center">
                 <button class="btn btn-primary" @click="verificar()">
@@ -101,6 +111,19 @@ export default {
     };
   },
   methods: {
+    showPassword() {
+      let inputPassword = document.querySelector("#password");
+      let eye = document.querySelector("#eye");
+      if (eye.getAttribute("data-password") == "false") {
+        eye.setAttribute("data-password", "true");
+        eye.classList.add("show-password");
+        inputPassword.setAttribute("type", "text");
+      } else {
+        eye.setAttribute("data-password", "false");
+        eye.classList.remove("show-password");
+        inputPassword.setAttribute("type", "password");
+      }
+    },
     verificar() {
       if (this.username != "") {
         if (this.password != "") {
@@ -179,7 +202,7 @@ export default {
     if (localStorage.username) {
       this.username = localStorage.username;
     } else {
-      localStorage.username = ''
+      localStorage.username = "";
     }
   },
 };
