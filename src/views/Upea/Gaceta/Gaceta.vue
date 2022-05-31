@@ -272,7 +272,7 @@ export default {
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
         // console.log("error deleteG");
-        // console.log(error);
+        console.log(error);
       }
     },
     deleteMsg(title, id, img) {

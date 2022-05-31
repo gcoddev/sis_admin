@@ -461,7 +461,7 @@ export default {
         this.clickCarrera();
       } catch (error) {
         // console.log("error putCS");
-        // console.log(error);
+        console.log(error);
         if (error.response.status == 500) {
           location.reload();
         }
@@ -479,7 +479,7 @@ export default {
         );
       } catch (error) {
         // console.log("error updateImageCS");
-        // console.log(error);
+        console.log(error);
         if (error.response.status == 500) {
           location.reload();
         }

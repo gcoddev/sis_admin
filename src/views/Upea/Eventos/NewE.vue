@@ -1,93 +1,84 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">Gaceta</h2>
+      <h2 class="text-center">Evento</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group mt-2">
-                <label for="publicaciones_titulo" class="form-label"
-                  >Titulo:</label
-                >
+                <label for="evento_titulo" class="form-label">Titulo:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="publicaciones_titulo"
+                  id="evento_titulo"
                   placeholder="Titulo"
-                  v-model="publicaciones_titulo"
-                  aria-placeholder="Titulo de la publicacion"
+                  v-model="evento_titulo"
+                  aria-placeholder="Titulo del evento"
                 />
               </div>
               <div class="form-group mt-2">
-                <label for="publicaciones_descripcion" class="form-label"
+                <label for="evento_descripcion" class="form-label"
                   >Descripcion:</label
                 >
                 <textarea
-                  id="publicaciones_descripcion"
+                  id="evento_descripcion"
                   class="form-control"
                   rows="12"
-                  placeholder="Descripcion de la publicacion"
-                  v-model="publicaciones_descripcion"
+                  placeholder="Descripcion del evento"
+                  v-model="evento_descripcion"
                 ></textarea>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="form-group mt-2">
-                <label for="publicaciones_imagen" class="form-label"
+                <label for="evento_imagen" class="form-label"
                   >Imagen portada:</label
                 >
                 <input
                   type="file"
-                  id="publicaciones_imagen"
+                  id="evento_imagen"
                   class="form-control"
                   @change="onFileChange()"
                 />
               </div>
               <div class="form-group mt-2">
-                <label class="form-label" for="publicaciones_autor"
-                  >Autor:</label
-                >
-                <input
-                  type="text"
-                  id="publicaciones_autor"
-                  class="form-control"
-                  v-model="publicaciones_autor"
-                  placeholder="Autor de la publicacion"
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label class="form-label" for="publicaciones_fecha"
-                  >Fecha:</label
-                >
+                <label class="form-label" for="evento_fecha">Fecha:</label>
                 <input
                   type="date"
-                  id="publicaciones_fecha"
+                  id="evento_fecha"
                   class="form-control"
-                  v-model="publicaciones_fecha"
+                  v-model="evento_fecha"
                 />
               </div>
               <div class="form-group mt-2">
-                <label for="publicaciones_tipo" class="form-label">Tipo:</label>
+                <label class="form-label" for="evento_hora">Hora:</label>
                 <input
-                  type="text"
+                  type="time"
+                  id="evento_hora"
                   class="form-control"
-                  id="publicaciones_tipo"
-                  placeholder="Tipo de la publicacion"
-                  v-model="publicaciones_tipo"
+                  v-model="evento_hora"
                 />
               </div>
               <div class="form-group mt-2">
-                <label for="publicaciones_documento" class="form-label"
-                  >documento:</label
-                >
+                <label for="evento_tipo" class="form-label">Tipo:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="publicaciones_documento"
-                  placeholder="Documento de la publicacion"
-                  v-model="publicaciones_documento"
+                  id="evento_tipo"
+                  placeholder="Tipo del evento"
+                  v-model="evento_tipo"
+                />
+              </div>
+              <div class="form-group mt-2">
+                <label for="evento_lugar" class="form-label">Lugar:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="evento_lugar"
+                  placeholder="Lugar del evento"
+                  v-model="evento_lugar"
                 />
               </div>
             </div>
@@ -112,13 +103,13 @@ export default {
   name: "name_p",
   data() {
     return {
-      publicaciones_titulo: "",
-      publicaciones_descripcion: "",
-      publicaciones_autor: "",
-      publicaciones_fecha: "",
-      publicaciones_tipo: "",
-      publicaciones_documento: "",
-      publicaciones_imagen: null,
+      evento_titulo: "",
+      evento_descripcion: "",
+      evento_fecha: "",
+      evento_hora: "",
+      evento_tipo: "",
+      evento_lugar: "",
+      evento_imagen: null,
     };
   },
   computed: {
@@ -126,32 +117,32 @@ export default {
   },
   methods: {
     validar() {
-      if (this.publicaciones_titulo != "") {
-        if (this.publicaciones_descripcion != "") {
-          if (this.publicaciones_autor != "") {
-            if (this.publicaciones_fecha != "") {
-              if (this.publicaciones_tipo != "") {
-                if (this.publicaciones_documento != "") {
-                  if (this.publicaciones_imagen != null) {
-                    this.createPublicacion();
+      if (this.evento_titulo != "") {
+        if (this.evento_descripcion != "") {
+          if (this.evento_fecha != "") {
+            if (this.evento_hora != "") {
+              if (this.evento_tipo != "") {
+                if (this.evento_lugar != "") {
+                  if (this.evento_imagen != null) {
+                    this.createEvento();
                   } else {
                     this.alertDisplay(
-                      "Imagen publicacion vacio",
+                      "Imagen de evento vacio",
                       "warning",
                       1500
                     );
                   }
                 } else {
-                  this.alertDisplay("Documento vacio", "warning", 1500);
+                  this.alertDisplay("Lugar del evento vacio", "warning", 1500);
                 }
               } else {
                 this.alertDisplay("Tipo vacio", "warning", 1500);
               }
             } else {
-              this.alertDisplay("Fecha vacio", "warning", 1500);
+              this.alertDisplay("Hora del evento vacio", "warning", 1500);
             }
           } else {
-            this.alertDisplay("Autor vacio", "warning", 1500);
+            this.alertDisplay("Fecha del evento vacio", "warning", 1500);
           }
         } else {
           this.alertDisplay("Descripcion vacio", "warning", 1500);
@@ -162,26 +153,26 @@ export default {
     },
     clickInstitucion() {
       this.$store.state.getter = true;
-      this.$router.push("/publicaciones");
+      this.$router.push("/eventos");
     },
     onFileChange() {
-      let img = document.querySelector("#publicaciones_imagen");
-      this.publicaciones_imagen = img.files[0];
+      let img = document.querySelector("#evento_imagen");
+      this.evento_imagen = img.files[0];
     },
-    async createPublicacion() {
-      let postPublicacion = {
-        publicaciones_titulo: this.publicaciones_titulo,
-        publicaciones_descripcion: this.publicaciones_descripcion,
-        publicaciones_autor: this.publicaciones_autor,
-        publicaciones_fecha: this.publicaciones_fecha,
-        publicaciones_tipo: this.publicaciones_tipo,
-        publicaciones_documento: this.publicaciones_documento,
-        publicaciones_imagen: this.publicaciones_imagen,
+    async createEvento() {
+      let postEvento = {
+        evento_titulo: this.evento_titulo,
+        evento_descripcion: this.evento_descripcion,
+        evento_hora: this.evento_hora,
+        evento_fecha: this.evento_fecha,
+        evento_tipo: this.evento_tipo,
+        evento_lugar: this.evento_lugar,
+        evento_imagen: this.evento_imagen,
       };
       try {
         let res = await this.axios.post(
-          "/api/publicacionesAll/" + this.Institucion.institucion_id,
-          postPublicacion,
+          "/api/eventoAll/" + this.Institucion.institucion_id,
+          postEvento,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         this.$store.state.ev = 1;

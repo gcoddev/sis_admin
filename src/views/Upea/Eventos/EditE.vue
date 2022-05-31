@@ -4,48 +4,46 @@
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">{{ Pub.publicaciones_titulo }}</h2>
+          <h2 class="text-center">{{ Evento.evento_titulo }}</h2>
           <div class="row">
             <img
               :src="
-                'https://serviciopagina.upea.bo/Publicaciones/' +
-                Pub.publicaciones_imagen
+                'https://serviciopagina.upea.bo/Eventos/' +
+                Evento.evento_imagen
               "
               alt="Portada"
               class="col-12 col-md-5 h-100"
             />
             <div class="col-12 col-md-7">
               <div class="form-group mt-2">
-                <label for="publicaciones_titulo" class="form-label"
-                  >Titulo:</label
-                >
+                <label for="evento_titulo" class="form-label">Titulo:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="publicaciones_titulo"
+                  id="evento_titulo"
                   placeholder="Titulo de publicacion"
-                  v-model="publicaciones_titulo"
+                  v-model="evento_titulo"
                 />
               </div>
               <div class="form-group mt-2">
-                <label for="publicaciones_descripcion" class="form-label"
+                <label for="evento_descripcion" class="form-label"
                   >Descripcion:</label
                 >
                 <textarea
-                  id="publicaciones_descripcion"
+                  id="evento_descripcion"
                   class="form-control"
                   rows="10"
                   placeholder="Descripcion de la publicacion"
-                  v-model="publicaciones_descripcion"
+                  v-model="evento_descripcion"
                 ></textarea>
               </div>
               <div class="form-group mt-2">
-                <label for="publicaciones_imagen" class="form-label"
+                <label for="evento_imagen" class="form-label"
                   >Imagen portada:</label
                 >
                 <input
                   type="file"
-                  id="publicaciones_imagen"
+                  id="evento_imagen"
                   class="form-control"
                   @change="onFileChange()"
                 />
@@ -55,53 +53,49 @@
           <div class="row mt-3">
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label class="form-label" for="publicaciones_autor"
-                  >Autor:</label
-                >
+                <label class="form-label" for="con_fecha_inicio">Fecha:</label>
+                <input
+                  type="date"
+                  id="evento_fecha"
+                  class="form-control"
+                  v-model="evento_fecha"
+                  placeholder="Fecha del evento"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label class="form-label" for="evento_hora">Hora:</label>
+                <input
+                  type="time"
+                  id="evento_hora"
+                  class="form-control"
+                  v-model="evento_hora"
+                  placeholder="Hora del evento"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label class="form-label" for="evento_tipo">Tipo:</label>
                 <input
                   type="text"
-                  id="publicaciones_autor"
+                  id="evento_tipo"
                   class="form-control"
-                  v-model="publicaciones_autor"
+                  v-model="evento_tipo"
                   placeholder="Nombre del autor"
                 />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label class="form-label" for="con_fecha_inicio">Fecha:</label>
-                <input
-                  type="date"
-                  id="publicaciones_fecha"
-                  class="form-control"
-                  v-model="publicaciones_fecha"
-                  placeholder="Fecha de la publicacion"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="publicaciones_tipo">Tipo:</label>
+                <label class="form-label" for="evento_lugar">Lugar:</label>
                 <input
                   type="text"
-                  id="publicaciones_tipo"
+                  id="evento_lugar"
                   class="form-control"
-                  v-model="publicaciones_tipo"
-                  placeholder="Tipo de publicacion"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="form-label" for="publicaciones_documento"
-                  >Documento:</label
-                >
-                <input
-                  type="text"
-                  id="publicaciones_documento"
-                  class="form-control"
-                  v-model="publicaciones_documento"
-                  placeholder="Documento de publicacion"
+                  v-model="evento_lugar"
+                  placeholder="Nombre del lugar"
                 />
               </div>
             </div>
@@ -126,64 +120,63 @@ export default {
   name: "edit_p",
   data() {
     return {
-      Pub: {},
-      publicaciones_titulo: "",
-      publicaciones_descripcion: "",
-      publicaciones_autor: "",
-      publicaciones_fecha: "",
-      publicaciones_tipo: "",
-      publicaciones_documento: "",
-      publicaciones_imagen: null,
-      pub_img: false,
+      Evento: {},
+      evento_titulo: "",
+      evento_descripcion: "",
+      evento_fecha: "",
+      evento_hora: "",
+      evento_tipo: "",
+      evento_lugar: "",
+      evento_imagen: null,
+      ev_img: false,
     };
   },
   computed: {
     ...mapState(["idPGE"]),
   },
   methods: {
-    async getPublicacion() {
+    async getEventos() {
       try {
-        let res = await this.axios.get("/api/publicaciones/" + this.idPGE);
-        this.Pub = res.data.Descripcion;
-        // console.log(this.Pub);
-        this.publicaciones_titulo = this.Pub.publicaciones_titulo;
-        this.publicaciones_descripcion = this.Pub.publicaciones_descripcion;
-        this.publicaciones_autor = this.Pub.publicaciones_autor;
-        let fecha = this.Pub.publicaciones_fecha.substr(0, 10);
-        this.publicaciones_fecha = fecha;
-        this.publicaciones_tipo = this.Pub.publicaciones_tipo;
-        this.publicaciones_documento = this.Pub.publicaciones_documento;
+        let res = await this.axios.get("/api/evento/" + this.idPGE);
+        this.Evento = res.data.Descripcion;
+        this.evento_titulo = this.Evento.evento_titulo;
+        this.evento_descripcion = this.Evento.evento_descripcion;
+        let fecha = this.Evento.evento_fecha.substr(0, 10);
+        this.evento_fecha = fecha;
+        this.evento_hora = this.Evento.evento_hora;
+        this.evento_tipo = this.Evento.evento_tipo;
+        this.evento_lugar = this.Evento.evento_lugar;
       } catch (error) {
         console.log(error);
       }
     },
     onFileChange() {
-      let img = document.querySelector("#publicaciones_imagen");
-      this.publicaciones_imagen = img.files[0];
-      this.pub_img = true;
+      let img = document.querySelector("#evento_imagen");
+      this.evento_imagen = img.files[0];
+      this.ev_img = true;
     },
     validar() {
-      if (this.publicaciones_titulo != "") {
-        if (this.publicaciones_descripcion != "") {
-          if (this.publicaciones_autor != "") {
-            if (this.publicaciones_fecha != "") {
-              if (this.publicaciones_tipo != "") {
-                if (this.publicaciones_documento != "") {
-                  if (this.pub_img) {
-                    this.updateImagePublicacion();
+      if (this.evento_titulo != "") {
+        if (this.evento_descripcion != "") {
+          if (this.evento_fecha != "") {
+            if (this.evento_hora != "") {
+              if (this.evento_tipo != "") {
+                if (this.evento_lugar != "") {
+                  if (this.ev_img) {
+                    this.updateImageEvento();
                   }
-                  this.updatePublicacion();
+                  this.updateEvento();
                 } else {
-                  this.alertDisplay("Documento vacio", "warning", 1500);
+                  this.alertDisplay("Lugar vacio", "warning", 1500);
                 }
               } else {
                 this.alertDisplay("Tipo vacio", "warning", 1500);
               }
             } else {
-              this.alertDisplay("Fecha vacio", "warning", 1500);
+              this.alertDisplay("Hora vacio", "warning", 1500);
             }
           } else {
-            this.alertDisplay("Autor vacio", "warning", 1500);
+            this.alertDisplay("Fecha vacio", "warning", 1500);
           }
         } else {
           this.alertDisplay("Descripcion vacio", "warning", 1500);
@@ -194,48 +187,38 @@ export default {
     },
     clickInstitucion() {
       this.$store.state.getter = true;
-      this.$router.push("/publicaciones");
+      this.$router.push("/eventos");
     },
-    async updatePublicacion() {
-      console.log("updatePublicacion");
-      let putPublicacion = {
-        publicaciones_titulo: this.publicaciones_titulo,
-        publicaciones_descripcion: this.publicaciones_descripcion,
-        publicaciones_autor: this.publicaciones_autor,
-        publicaciones_fecha: this.publicaciones_fecha,
-        publicaciones_tipo: this.publicaciones_tipo,
-        publicaciones_documento: this.publicaciones_documento,
+    async updateEvento() {
+      let putEvento = {
+        evento_titulo: this.evento_titulo,
+        evento_descripcion: this.evento_descripcion,
+        evento_fecha: this.evento_fecha,
+        evento_hora: this.evento_hora,
+        evento_tipo: this.evento_tipo,
+        evento_lugar: this.evento_lugar,
       };
       try {
-        let res = await this.axios.put(
-          "/api/publicaciones/" + this.idPGE,
-          putPublicacion
-        );
+        let res = await this.axios.put("/api/evento/" + this.idPGE, putEvento);
         this.$store.state.ev = 1;
         this.$store.state.evTitle = "Actualizado";
         this.$store.state.evMsg = res.data.mensaje;
         this.clickInstitucion();
       } catch (error) {
-        console.log("error updatePublicacion");
         console.log(error);
       }
     },
-    async updateImagePublicacion() {
-      // console.log("updateImagePublicacion");
+    async updateImageEvento() {
       let putImage = {
-        publicaciones_imagen: this.publicaciones_imagen,
+        evento_imagen: this.evento_imagen,
       };
       try {
         let res = await this.axios.put(
-          "/api/publicaciones/" +
-            this.idPGE +
-            "/" +
-            this.Pub.publicaciones_imagen,
+          "/api/evento/" + this.idPGE + "/" + this.Evento.evento_imagen,
           putImage,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } catch (error) {
-        // console.log("error updateImagePublicacion");
         console.log(error);
       }
     },
@@ -249,7 +232,7 @@ export default {
     },
   },
   created() {
-    this.getPublicacion();
+    this.getEventos();
   },
 };
 </script>

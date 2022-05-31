@@ -8,13 +8,13 @@
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <h1>
-              PUBLICACIONES UPEA &nbsp;<span class="badge bg-info fs-4">{{
-                Publicaciones.length
+              EVENTOS UPEA &nbsp;<span class="badge bg-info fs-4">{{
+                Eventos.length
               }}</span>
             </h1>
           </div>
           <div>
-            <button class="btn btn-primary" @click="nuevaP()">
+            <button class="btn btn-primary" @click="nuevoE()">
               Crear nuevo
             </button>
           </div>
@@ -22,67 +22,63 @@
       </div>
       <div class="container-fluid">
         <div class="row">
-          <div v-if="Publicaciones.length == 0">
-            <h1 class="text-center">Sin publicaciones</h1>
+          <div v-if="Eventos.length == 0">
+            <h1 class="text-center">Sin eventos</h1>
           </div>
           <div
             v-else
-            v-for="(pub, id_pub) of Publicaciones"
-            :key="id_pub"
+            v-for="(ev, id_ev) of Eventos"
+            :key="id_ev"
             class="col-12 col-md-4 col-xl-3 col-xxl-2"
           >
             <a
-              class="card card-pub ribbon-box tipoC w-100"
+              class="card card-ev ribbon-box tipoC w-100"
               data-bs-toggle="modal"
-              :data-bs-target="'#modal_pub_' + id_pub"
+              :data-bs-target="'#modal_ev_' + id_ev"
             >
               <div class="card-body">
                 <div class="ribbon float-start ribbon-info">
-                  <i class="mdi mdi-access-point me-1"></i
-                  ><span>{{ pub.publicaciones_documento }}</span>
+                  <i class="mdi mdi-access-point me-1"></i><span>Evento</span>
                 </div>
-                <h5 class="text-dark float-end mt-0">
-                  {{ pub.publicaciones_tipo }}
-                </h5>
+                <h5 class="text-dark float-end mt-0">{{ ev.evento_tipo }}</h5>
                 <div class="ribbon-content">
                   <img
                     :src="
-                      'https://serviciopagina.upea.bo/Publicaciones/' +
-                      pub.publicaciones_imagen
+                      'https://serviciopagina.upea.bo/Eventos/' +
+                      ev.evento_imagen
                     "
                     alt="img"
                     class="card-img-top"
                   />
-                  <div class="card-title fw-bold mt-2">
-                    {{ pub.publicaciones_titulo }}
-                  </div>
+                  <div class="card-title fw-bold mt-2">titulo</div>
                   <pre
                     class="card-text contenedor"
                     style="max-height: 200px; overflow-y: scroll"
-                    v-html="pub.publicaciones_descripcion"
+                    v-html="ev.evento_descripcion"
                   ></pre>
                 </div>
               </div>
               <div class="card-footer pt-3">
-                <p><b>Autor:</b> {{ pub.publicaciones_autor }}</p>
-                <p><b>Fecha:</b> {{ dmy(pub.publicaciones_fecha) }}</p>
+                <p><b>Fecha:</b> {{ dmy(ev.evento_fecha) }}</p>
+                <p><b>Hora:</b> {{ ev.evento_hora }}</p>
+                <p><b>Lugar:</b> {{ ev.evento_lugar }}</p>
               </div>
             </a>
 
             <div
               class="modal fade"
-              :id="'modal_pub_' + id_pub"
+              :id="'modal_ev_' + id_ev"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
               tabindex="-1"
-              :aria-labelledby="'modal_pub_label_' + id_pub"
+              :aria-labelledby="'modal_ev_label_' + id_ev"
               aria-hidden="true"
             >
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_pub_label_' + id_pub">
-                      {{ pub.publicaciones_titulo }}
+                    <h5 class="modal-title" :id="'modal_ev_label_' + id_ev">
+                      titulo
                     </h5>
                     <button
                       type="button"
@@ -97,14 +93,14 @@
                       <div class="col-12 col-md-5">
                         <a
                           :href="
-                            'https://serviciopagina.upea.bo/Publicaciones/' +
-                            pub.publicaciones_imagen
+                            'https://serviciopagina.upea.bo/Eventos/' +
+                            ev.evento_imagen
                           "
                           target="_blank"
                           ><img
                             :src="
-                              'https://serviciopagina.upea.bo/Publicaciones/' +
-                              pub.publicaciones_imagen
+                              'https://serviciopagina.upea.bo/Eventos/' +
+                              ev.evento_imagen
                             "
                             alt="img"
                             class="card-img-top h-auto img-modal"
@@ -114,14 +110,15 @@
                         <pre
                           class="card-text contenedor p-2"
                           style="overflow-y: scroll"
-                          v-html="pub.publicaciones_descripcion"
+                          v-html="ev.evento_descripcion"
                         ></pre>
                       </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                       <div class="ms-3">
-                        <p><b>Autor:</b> {{ pub.publicaciones_autor }}</p>
-                        <p><b>Fecha:</b> {{ dmy(pub.publicaciones_fecha) }}</p>
+                        <p><b>Fecha:</b> {{ dmy(ev.evento_fecha) }}</p>
+                        <p><b>Hora:</b> {{ ev.evento_hora }}</p>
+                        <p><b>Lugar:</b> {{ ev.evento_lugar }}</p>
                       </div>
                       <div>
                         <button
@@ -137,9 +134,9 @@
                           data-bs-dismiss="modal"
                           @click="
                             deleteMsg(
-                              'la publicacion',
-                              pub.publicaciones_id,
-                              pub.publicaciones_imagen
+                              'el evento',
+                              ev.evento_id,
+                              ev.evento_imagen
                             )
                           "
                         >
@@ -149,7 +146,7 @@
                         <button
                           data-bs-dismiss="modal"
                           class="btn btn-warning ms-2"
-                          @click="editP(pub.publicaciones_id)"
+                          @click="editE(ev.evento_id)"
                         >
                           <i class="mdi mdi-clipboard-edit-outline"></i>&nbsp;
                           Editar
@@ -213,14 +210,14 @@ pre {
 .tipoC {
   float: left;
 }
-.card-pub {
+.card-ev {
   opacity: 0.7;
   transition: transform 0.5s;
   user-select: none;
   cursor: pointer;
   color: var(--ct-body-color);
 }
-.card-pub:hover {
+.card-ev:hover {
   transform: scale(107%);
   opacity: 1;
 }
@@ -235,26 +232,24 @@ pre {
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "publicaciones",
+  name: "eventos",
   data() {
     return {
-      Publicaciones: [],
+      Eventos: [],
     };
   },
   computed: {
     ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg"]),
   },
   methods: {
-    async getPublicaciones() {
+    async getEventos() {
       try {
         let res = await this.axios.get(
-          "/api/publicacionesAll/" + this.Institucion.institucion_id
+          "/api/eventoAll/" + this.Institucion.institucion_id
         );
-        this.Publicaciones = res.data;
-        // console.log(this.Publicaciones);
+        this.Eventos = res.data;
         this.cargando();
       } catch (error) {
-        console.log("error getPublicaciones");
         console.log(error);
       }
     },
@@ -278,19 +273,17 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
-    editP(idP) {
-      this.$store.state.idPGE = idP;
-      this.$router.push("/edit_p/" + idP);
+    editE(idE) {
+      this.$store.state.idPGE = idE;
+      this.$router.push("/edit_e/" + idE);
     },
-    async deleteP(id, img) {
+    async deleteE(id, img) {
       try {
-        let res = await this.axios.delete(
-          "/api/publicaciones/" + id + "/" + img
-        );
-        this.getPublicaciones();
+        let res = await this.axios.delete("/api/evento/" + id + "/" + img);
+        this.getEventos();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        // console.log("error deleteCCA: " + error);
+        console.log(error);
       }
     },
     deleteMsg(title, id, img) {
@@ -304,12 +297,9 @@ export default {
         confirmButtonText: "Si, eliminar",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.deleteP(id, img);
+          this.deleteE(id, img);
         }
       });
-    },
-    newP() {
-      this.$router.push("/new_p/" + this.idCarr);
     },
     alertDisplay(msg, icon, time) {
       this.$swal({
@@ -322,13 +312,13 @@ export default {
     cargando() {
       document.getElementById("loading_upea").style.display = "none";
     },
-    nuevaP() {
-      this.$router.push("/new_p/" + this.Institucion.institucion_id);
+    nuevoE() {
+      this.$router.push("/new_e/" + this.Institucion.institucion_id);
     },
   },
   created() {
     if (this.getter) {
-      this.getPublicaciones();
+      this.getEventos();
       this.$store.state.getter = false;
       if (this.ev == 1) {
         this.$swal(this.evTitle, this.evMsg, "success");
@@ -339,7 +329,7 @@ export default {
     }
   },
   updated() {
-    // this.getPublicaciones();
+    // this.getEventos();
   },
 };
 </script>

@@ -185,7 +185,7 @@ export default {
         if (error.response.status == 500) {
           location.reload();
         }
-        // console.log(error);
+        console.log(error);
       }
     },
     alertDisplay(msg, icon, time) {
