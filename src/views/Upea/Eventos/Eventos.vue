@@ -43,10 +43,7 @@
                 <h5 class="text-dark float-end mt-0">{{ ev.evento_tipo }}</h5>
                 <div class="ribbon-content">
                   <img
-                    :src="
-                      'https://serviciopagina.upea.bo/Eventos/' +
-                      ev.evento_imagen
-                    "
+                    :src="url_api + '/Eventos/' + ev.evento_imagen"
                     alt="img"
                     class="card-img-top"
                   />
@@ -92,16 +89,10 @@
                     <div class="row">
                       <div class="col-12 col-md-5">
                         <a
-                          :href="
-                            'https://serviciopagina.upea.bo/Eventos/' +
-                            ev.evento_imagen
-                          "
+                          :href="url_api + '/Eventos/' + ev.evento_imagen"
                           target="_blank"
                           ><img
-                            :src="
-                              'https://serviciopagina.upea.bo/Eventos/' +
-                              ev.evento_imagen
-                            "
+                            :src="url_api + '/Eventos/' + ev.evento_imagen"
                             alt="img"
                             class="card-img-top h-auto img-modal"
                         /></a>
@@ -239,7 +230,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg"]),
+    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg", "url_api"]),
   },
   methods: {
     async getEventos() {
@@ -283,7 +274,17 @@ export default {
         this.getEventos();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log(error);
+        console.log('error deleteE');
+        // console.log(error);
+        if (error.response.status == 500) {
+          this.getEventos();
+          this.cargando()
+          this.$swal({
+            title: error.response.data.message,
+            icon: 'error',
+            showConfirmButton: true
+          })
+        }
       }
     },
     deleteMsg(title, id, img) {

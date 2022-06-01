@@ -7,9 +7,7 @@
           <h2 class="text-center">{{ CS.tipo_conv_curso_nombre }}</h2>
           <div class="row">
             <img
-              :src="
-                'https://serviciopagina.upea.bo/Cursos/' + CS.det_img_portada
-              "
+              :src="url_api + '/Cursos/' + CS.det_img_portada"
               alt="Portada"
               class="col-12 col-md-5 h-100"
             />
@@ -281,7 +279,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCCACS", "nombreCarr", "idCarr"]),
+    ...mapState(["idCCACS", "nombreCarr", "idCarr", 'url_api']),
     mod() {
       if (this.det_modalidad == "PRESENCIAL") {
         return false;

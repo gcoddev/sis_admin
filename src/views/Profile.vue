@@ -6,10 +6,7 @@
           <div class="card-body col-12 col-md-4">
             <img
               class="card-img"
-              :src="
-                'https://serviciopagina.upea.bo/UsuarioAdmin/' +
-                userAdminData.imagen
-              "
+              :src="url_api + '/UsuarioAdmin/' + userAdminData.imagen"
               alt=""
             />
           </div>
@@ -125,7 +122,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["userAdminData"]),
+    ...mapState(["userAdminData", "url_api"]),
   },
 };
 </script>

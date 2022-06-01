@@ -7,10 +7,7 @@
           <h2 class="text-center">{{ Pub.publicaciones_titulo }}</h2>
           <div class="row">
             <img
-              :src="
-                'https://serviciopagina.upea.bo/Publicaciones/' +
-                Pub.publicaciones_imagen
-              "
+              :src="url_api + '/Publicaciones/' + Pub.publicaciones_imagen"
               alt="Portada"
               class="col-12 col-md-5 h-100"
             />
@@ -138,7 +135,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE"]),
+    ...mapState(["idPGE", "url_api"]),
   },
   methods: {
     async getPublicacion() {

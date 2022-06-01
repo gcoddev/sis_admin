@@ -113,10 +113,7 @@
         >
           <span class="account-user-avatar">
             <img
-              :src="
-                'https://serviciopagina.upea.bo/UsuarioAdmin/' +
-                userAdminData.imagen
-              "
+              :src="url_api + '/UsuarioAdmin/' + userAdminData.imagen"
               alt="user-image"
               class="rounded-circle"
               width="50px"
@@ -189,7 +186,6 @@
       </div>
     </div> -->
   </div>
-  <!-- end Topbar -->
 </template>
 
 <script>
@@ -243,7 +239,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["userAdminData"]),
+    ...mapState(["userAdminData", "url_api"]),
   },
 };
 </script>

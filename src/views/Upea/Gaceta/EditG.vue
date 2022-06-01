@@ -8,7 +8,9 @@
           <div class="row">
             <iframe
               :src="
-                'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                'http://docs.google.com/gview?url=' +
+                url_api +
+                '/Gaceta/' +
                 Gac.gaceta_documento +
                 '&embedded=true'
               "
@@ -68,7 +70,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE"]),
+    ...mapState(["idPGE", "url_api"]),
   },
   methods: {
     async getGaceta() {

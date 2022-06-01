@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {   
+    url_api: 'https://serviciopagina.upea.bo',
     // Datos generales de usuario
     userAdminData: {},
     Institucion: {},

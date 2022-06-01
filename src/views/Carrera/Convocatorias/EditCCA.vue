@@ -7,10 +7,7 @@
           <h2 class="text-center">{{ CCA.tipo_conv_comun_titulo }}</h2>
           <div class="row">
             <img
-              :src="
-                'https://serviciopagina.upea.bo/Convocatorias/' +
-                CCA.con_foto_portada
-              "
+              :src="url_api + '/Convocatorias/' + CCA.con_foto_portada"
               alt="Portada"
               class="col-12 col-md-5 h-100"
             />
@@ -126,7 +123,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCCACS", "nombreCarr", "idCarr"]),
+    ...mapState(["idCCACS", "nombreCarr", "idCarr", "url_api"]),
   },
   methods: {
     async getCCA() {

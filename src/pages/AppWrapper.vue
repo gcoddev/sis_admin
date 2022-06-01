@@ -110,7 +110,6 @@ export default {
       try {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
-        this.cargando();
       } catch (error) {
         console.log(error);
       }
@@ -120,16 +119,17 @@ export default {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.$store.state.CarreraU = res.data.Descripcion;
         this.$store.state.nombreCarr = res.data.Descripcion.carrera;
-        this.cargando();
       } catch (error) {
         console.log(error);
       }
     },
     cargando() {
       document.getElementById("loading_wrapper").style.visibility = "hidden";
+
+      console.log("swal");
       this.$swal({
         title: localStorage.msg,
-        timer: 2500,
+        timer: 2000,
         showConfirmButton: false,
       });
     },

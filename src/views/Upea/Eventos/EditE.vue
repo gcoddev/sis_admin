@@ -7,10 +7,7 @@
           <h2 class="text-center">{{ Evento.evento_titulo }}</h2>
           <div class="row">
             <img
-              :src="
-                'https://serviciopagina.upea.bo/Eventos/' +
-                Evento.evento_imagen
-              "
+              :src="url_api + '/Eventos/' + Evento.evento_imagen"
               alt="Portada"
               class="col-12 col-md-5 h-100"
             />
@@ -132,7 +129,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE"]),
+    ...mapState(["idPGE", "url_api"]),
   },
   methods: {
     async getEventos() {

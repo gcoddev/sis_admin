@@ -48,7 +48,9 @@
                   <div class="ratio ratio-1x1">
                     <iframe
                       :src="
-                        'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                        'http://docs.google.com/gview?url=' +
+                        url_api +
+                        '/Gaceta/' +
                         gac.gaceta_documento +
                         '&embedded=true'
                       "
@@ -93,7 +95,9 @@
                       <div class="col-12">
                         <iframe
                           :src="
-                            'http://docs.google.com/gview?url=https://serviciopagina.upea.bo/Gaceta/' +
+                            'http://docs.google.com/gview?url=' +
+                            url_api +
+                            '/Gaceta/' +
                             gac.gaceta_documento +
                             '&embedded=true'
                           "
@@ -225,7 +229,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg"]),
+    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg", "url_api"]),
   },
   methods: {
     async getGaceta() {
@@ -273,6 +277,15 @@ export default {
       } catch (error) {
         // console.log("error deleteG");
         console.log(error);
+        if (error.response.status == 500) {
+          this.getGaceta();
+          this.cargando()
+          this.$swal({
+            title: error.response.data.message,
+            icon: 'error',
+            showConfirmButton: true
+          })
+        }
       }
     },
     deleteMsg(title, id, img) {

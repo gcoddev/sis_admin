@@ -30,10 +30,7 @@
               >
                 <img
                   class="d-block img-fluid"
-                  :src="
-                    'https://serviciopagina.upea.bo/InstitucionUpea/Portada/' +
-                    por.portada_imagen
-                  "
+                  :src="url_api + '/InstitucionUpea/Portada/' + por.portada_imagen"
                   :alt="por.portada_imagen"
                   id="img_carrusel"
                 />
@@ -262,7 +259,8 @@
                   <div class="card-body">
                     <img
                       :src="
-                        'https://serviciopagina.upea.bo/InstitucionUpea/' +
+                        url_api +
+                        '/InstitucionUpea/' +
                         Institucion.institucion_organigrama
                       "
                       alt="Organigrama"
@@ -305,7 +303,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["Institucion"]),
+    ...mapState(["Institucion", "url_api"]),
   },
   methods: {
     cargando() {

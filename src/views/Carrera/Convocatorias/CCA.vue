@@ -146,10 +146,7 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
+                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
                           alt="img"
                           class="card-img-top"
                         />
@@ -201,13 +198,13 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
+                                  url_api + '/Convocatorias/' + con.con_foto_portada
                                 "
                                 target="_blank"
                                 ><img
                                   :src="
-                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    url_api +
+                                    '/Convocatorias/' +
                                     con.con_foto_portada
                                   "
                                   alt="img"
@@ -307,10 +304,7 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
+                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
                           alt="img"
                           class="card-img-top"
                         />
@@ -362,14 +356,14 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
+                                  url_api + '/Convocatorias/' + con.con_foto_portada
                                 "
                                 target="_blank"
                               >
                                 <img
                                   :src="
-                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    url_api +
+                                    '/Convocatorias/' +
                                     con.con_foto_portada
                                   "
                                   alt="img"
@@ -469,10 +463,7 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="
-                            'https://serviciopagina.upea.bo/Convocatorias/' +
-                            con.con_foto_portada
-                          "
+                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
                           alt="img"
                           class="card-img-top"
                         />
@@ -524,14 +515,14 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  'https://serviciopagina.upea.bo/Convocatorias/' +
-                                  con.con_foto_portada
+                                  url_api + '/Convocatorias/' + con.con_foto_portada
                                 "
                                 target="_blank"
                               >
                                 <img
                                   :src="
-                                    'https://serviciopagina.upea.bo/Convocatorias/' +
+                                    url_api +
+                                    '/Convocatorias/' +
                                     con.con_foto_portada
                                   "
                                   alt="img"
@@ -696,6 +687,7 @@ export default {
       "ev",
       "evMsg",
       "evTitle",
+      "url_api",
     ]),
   },
   methods: {
@@ -736,7 +728,7 @@ export default {
             }
           }
         });
-        this.cargando()
+        this.cargando();
       } catch (error) {
         // console.log("error getConvocatoriasAll: " + error);
       }
@@ -748,12 +740,22 @@ export default {
     async deleteCCA(id, img) {
       try {
         let res = await this.axios.delete(
-          "/api/convocatorias/" + id + "/" + img
+          "/api/Convocatorias/" + id + "/" + img
         );
         this.getConvocatoriasAll(this.idCarr);
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        // console.log("error deleteCCA: " + error);
+        console.log("error deleteCCA");
+        // console.log(error);
+        if (error.response.status == 500) {
+          this.getConvocatoriasAll();
+          this.cargando()
+          this.$swal({
+            title: error.response.data.message,
+            icon: 'error',
+            showConfirmButton: true
+          })
+        }
       }
     },
     deleteMsg(title, id, img) {
@@ -821,7 +823,7 @@ export default {
   },
   updated() {
     if (this.getter) {
-      document.getElementById('loading_carrera').style.display = 'block'
+      document.getElementById("loading_carrera").style.display = "block";
       this.getCarrera(this.idCarr);
       this.getConvocatoriasAll(this.idCarr);
       this.$store.state.getter = false;

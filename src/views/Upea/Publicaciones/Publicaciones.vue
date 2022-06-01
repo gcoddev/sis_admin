@@ -45,8 +45,7 @@
                 <div class="ribbon-content">
                   <img
                     :src="
-                      'https://serviciopagina.upea.bo/Publicaciones/' +
-                      pub.publicaciones_imagen
+                      url_api + '/Publicaciones/' + pub.publicaciones_imagen
                     "
                     alt="img"
                     class="card-img-top"
@@ -95,13 +94,15 @@
                       <div class="col-12 col-md-5">
                         <a
                           :href="
-                            'https://serviciopagina.upea.bo/Publicaciones/' +
+                            url_api +
+                            '/Publicaciones/' +
                             pub.publicaciones_imagen
                           "
                           target="_blank"
                           ><img
                             :src="
-                              'https://serviciopagina.upea.bo/Publicaciones/' +
+                              url_api +
+                              '/Publicaciones/' +
                               pub.publicaciones_imagen
                             "
                             alt="img"
@@ -240,7 +241,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg"]),
+    ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg", "url_api"]),
   },
   methods: {
     async getPublicaciones() {
@@ -288,7 +289,17 @@ export default {
         this.getPublicaciones();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        // console.log("error deleteCCA: " + error);
+        console.log("error deleteCCA");
+        // console.log(error);
+        if (error.response.status == 500) {
+          this.getPublicaciones();
+          this.cargando();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
       }
     },
     deleteMsg(title, id, img) {
