@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 
 export default createStore({
-  state: {   
+  state: {
     url_api: 'https://serviciopagina.upea.bo',
     // Datos generales de usuario
     userAdminData: {},
@@ -17,6 +17,7 @@ export default createStore({
 
     // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios
     idCCACS: '',
+    idF: '',
 
     // Mensajes
     ev: 0,

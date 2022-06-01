@@ -235,6 +235,7 @@
                                   class="
                                     d-flex
                                     justify-content-between
+                                    align-items-center
                                     flex-wrap
                                     mb-2
                                   "
@@ -242,19 +243,38 @@
                                   :key="id_faci"
                                 >
                                   <div>
-                                    &bull; &nbsp;
+                                    <img
+                                      :src="
+                                        url_api +
+                                        '/Cursos/' +
+                                        faci.foto_facilitador
+                                      "
+                                      style="
+                                        object-fit: cover;
+                                        object-position: left;
+                                        width: 25px;
+                                        height: 25px;
+                                      "
+                                      alt="Foto facilitador"
+                                    />&nbsp;
                                     {{ faci.nombre_facilitador }}
-                                    &nbsp;<span class="badge bg-info">{{
+                                    <span class="badge bg-info">{{
                                       faci.cargo_facilitador
                                     }}</span>
                                   </div>
-                                  <div class="text-muted">
+                                  <pre
+                                    class="text-muted"
+                                    style="max-width: 100px; font-size: 10px"
+                                  >
                                     {{ faci.descripcion_facilitador }}
-                                  </div>
+                                  </pre>
                                   <div>
                                     <a
                                       class="btn btn-sm btn-success"
-                                      :href="faci.celular_facilitador"
+                                      :href="
+                                        'https://api.whatsapp.com/send?phone=' +
+                                        faci.celular_facilitador
+                                      "
                                       target="_blank"
                                     >
                                       <i class="mdi mdi-whatsapp"></i>
@@ -267,9 +287,15 @@
                                     >
                                       <i class="mdi mdi-facebook"></i>
                                     </a>
-                                    <div class="btn btn-sm btn-warning ms-1">
+                                    <button
+                                      class="btn btn-sm btn-warning ms-1"
+                                      data-bs-dismiss="modal"
+                                      @click="
+                                        editFacilitador(faci.id_facilitador)
+                                      "
+                                    >
                                       <i class="mdi mdi-account-edit"></i>
-                                    </div>
+                                    </button>
                                     <button
                                       type="button"
                                       class="btn btn-sm btn-danger ms-1"
@@ -277,14 +303,13 @@
                                       @click="
                                         deleteMsgFacilitador(
                                           faci.id_facilitador,
-                                          foto_facilitador
+                                          faci.foto_facilitador
                                         )
                                       "
                                     >
                                       <i class="mdi mdi-delete"></i>
                                     </button>
                                   </div>
-                                  <hr />
                                 </li>
                               </ul>
                             </div>
@@ -555,9 +580,12 @@
                                       faci.cargo_facilitador
                                     }}</span>
                                   </div>
-                                  <div class="text-muted">
+                                  <pre
+                                    class="text-muted"
+                                    style="max-width: 100px; font-size: 10px"
+                                  >
                                     {{ faci.descripcion_facilitador }}
-                                  </div>
+                                  </pre>
                                   <div>
                                     <a
                                       class="btn btn-sm btn-success"
@@ -574,7 +602,13 @@
                                     >
                                       <i class="mdi mdi-facebook"></i>
                                     </a>
-                                    <div class="btn btn-sm btn-warning ms-1">
+                                    <div
+                                      class="btn btn-sm btn-warning ms-1"
+                                      data-bs-dismiss="modal"
+                                      @click="
+                                        editFacilitador(faci.id_facilitador)
+                                      "
+                                    >
                                       <i class="mdi mdi-account-edit"></i>
                                     </div>
                                     <button
@@ -584,7 +618,7 @@
                                       @click="
                                         deleteMsgFacilitador(
                                           faci.id_facilitador,
-                                          foto_facilitador
+                                          faci.foto_facilitador
                                         )
                                       "
                                     >
@@ -678,7 +712,7 @@
                                 @click="
                                   deleteMsg(
                                     'el seminario',
-                                    sem.iddetalle_semsos_academicos,
+                                    sem.iddetalle_cursos_academicos,
                                     sem.det_img_portada
                                   )
                                 "
@@ -689,7 +723,7 @@
                               <button
                                 data-bs-dismiss="modal"
                                 class="btn btn-warning ms-2"
-                                @click="editCS(sem.iddetalle_semsos_academicos)"
+                                @click="editCS(sem.iddetalle_cursos_academicos)"
                               >
                                 <i class="mdi mdi-clipboard-edit-outline"></i
                                 >&nbsp; Editar
@@ -705,7 +739,6 @@
             </div>
           </div>
         </div>
-        <!-- nav end -->
       </div>
     </div>
   </div>
@@ -852,10 +885,6 @@ export default {
       this.$store.state.idCCACS = idCS;
       this.$router.push("/edit_cs/" + idCS);
     },
-    newFacilitador(idCS) {
-      this.$store.state.idCCACS = idCS;
-      this.$router.push("/facilitador/" + idCS);
-    },
     async deleteCS(id, img) {
       try {
         let res = await this.axios.delete("/api/cursos/" + id + "/" + img);
@@ -864,25 +893,6 @@ export default {
       } catch (error) {
         console.log("error deleteCS");
         // console.log(error);
-        if (error.response.status == 500) {
-          this.getCursosAll();
-          this.cargando();
-          this.$swal({
-            title: error.response.data.message,
-            icon: "error",
-            showConfirmButton: true,
-          });
-        }
-      }
-    },
-    async deleteFacilitador(id, img) {
-      try {
-        let res = await this.axios.delete("/api/Facilitador/" + id + "/" + img);
-        this.getCursosAll();
-        this.$swal("Eliminado", res.data.message, "success");
-      } catch (error) {
-        console.log("error deleteFacilitador");
-        console.log(error);
         if (error.response.status == 500) {
           this.getCursosAll();
           this.cargando();
@@ -909,6 +919,29 @@ export default {
         }
       });
     },
+    newFacilitador(idCS) {
+      this.$store.state.idCCACS = idCS;
+      this.$router.push("/facilitador/" + idCS);
+    },
+    async deleteFacilitador(id, img) {
+      try {
+        let res = await this.axios.delete("/api/Facilitador/" + id + "/" + img);
+        this.getCursosAll();
+        this.$swal("Eliminado", res.data.message, "success");
+      } catch (error) {
+        console.log("error deleteFacilitador");
+        console.log(error);
+        if (error.response.status == 500) {
+          this.getCursosAll();
+          this.cargando();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
+    },
     deleteMsgFacilitador(id, img) {
       this.$swal({
         title: "Eliminar facilitador",
@@ -923,6 +956,10 @@ export default {
           this.deleteFacilitador(id, img);
         }
       });
+    },
+    editFacilitador(id) {
+      this.$store.state.idF = id;
+      this.$router.push("/edit_f/" + id);
     },
     newCS() {
       this.$router.push("/new_cs/" + this.idCarr);

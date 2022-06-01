@@ -5,7 +5,24 @@
       <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
+              <img
+                :src="url_api + '/Cursos/' + Facilitador.foto_facilitador"
+                alt="Foto facilitador"
+              />
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="form-group mt-2">
+                <label for="foto_facilitador" class="form-label">Foto:</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="foto_facilitador"
+                  @change="onFileChange()"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
               <div class="form-group mt-2">
                 <label for="nombre_facilitador" class="form-label"
                   >Nombre:</label
@@ -19,18 +36,7 @@
                 />
               </div>
             </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group mt-2">
-                <label for="foto_facilitador" class="form-label">Foto:</label>
-                <input
-                  type="file"
-                  class="form-control"
-                  id="foto_facilitador"
-                  @change="onFileChange()"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
               <div class="form-group mt-2">
                 <label for="cargo_facilitador" class="form-label">Cargo:</label>
                 <input
@@ -129,12 +135,12 @@
 
 <script>
 import { mapState } from "vuex";
-import Countries from "@/views/Carrera/Cursos/Countries.json";
+import Countries from "./Countries.json";
 export default {
-  name: "new_cca",
   data() {
     return {
       countries: Countries,
+      Facilitador: null,
 
       nombre_facilitador: "",
       cargo_facilitador: "",
@@ -146,71 +152,21 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idCCACS", "idCarr"]),
+    ...mapState(["idF", "url_api"]),
   },
   methods: {
-    clickCarrera() {
-      this.$store.state.getter = true;
-      this.$router.push("/cs/" + this.idCarr);
-    },
-    validar() {
-      if (this.nombre_facilitador != "") {
-        if (this.cargo_facilitador != "") {
-          if (this.descripcion_facilitador != "") {
-            if (this.pc != "") {
-              if (this.celular_facilitador != "") {
-                if (this.facebook_facilitador != "") {
-                  if (this.foto_facilitador != null) {
-                    console.log("vak");
-                    this.createF();
-                  } else {
-                    this.alertDisplay("Foto del facilitador vacio");
-                  }
-                } else {
-                  this.alertDisplay("Facebook del facilitador vacio");
-                }
-              } else {
-                this.alertDisplay("Numero de celular vacio");
-              }
-            } else {
-              this.alertDisplay("Codigo de pais vacio");
-            }
-          } else {
-            this.alertDisplay("Descripcion del facilitador vacio");
-          }
-        } else {
-          this.alertDisplay("Cargo del facilitador vacio");
-        }
-      } else {
-        this.alertDisplay("Nombre del facilitador");
-      }
-    },
-    onFileChange() {
-      let img = document.querySelector("#foto_facilitador");
-      this.foto_facilitador = img.files[0];
-    },
-    async createF() {
-      console.log("createF");
-      let postF = {
-        nombre_facilitador: this.nombre_facilitador,
-        cargo_facilitador: this.cargo_facilitador,
-        descripcion_facilitador: this.descripcion_facilitador,
-        celular_facilitador: this.pc + this.celular_facilitador,
-        facebook_facilitador: this.facebook_facilitador,
-        foto_facilitador: this.foto_facilitador,
-      };
+    async getFacilitador() {
       try {
-        let res = await this.axios.post(
-          "/api/Facilitadores/" + this.idCCACS,
-          postF,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-        this.$store.state.ev = 1;
-        this.$store.state.evTitle = "Creado";
-        this.$store.state.evMsg = res.data.mensaje;
-        this.clickCarrera();
+        let res = await this.axios.get("/api/Facilitador/" + this.idF);
+        this.Facilitador = res.data.Descripcion;
+        console.log(this.Facilitador);
+        this.nombre_facilitador = this.Facilitador.nombre_facilitador;
+        this.cargo_facilitador = this.Facilitador.cargo_facilitador;
+        this.descripcion_facilitador = this.Facilitador.descripcion_facilitador;
+        this.celular_facilitador = this.Facilitador.celular_facilitador;
+        this.facebook_facilitador = this.Facilitador.facebook_facilitador;
       } catch (error) {
-        console.log("error createF");
+        console.log("error getFacilitador");
         // console.log(error);
         if (error.response.status == 500) {
           this.$swal({
@@ -221,14 +177,9 @@ export default {
         }
       }
     },
-    alertDisplay(msg) {
-      this.$swal({
-        title: msg,
-        icon: "warning",
-        showConfirmButton: true,
-        timer: 1500,
-      });
-    },
+  },
+  created() {
+    this.getFacilitador();
   },
 };
 </script>

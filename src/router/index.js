@@ -114,7 +114,13 @@ const routes = [
         name: 'facilitador',
         props: true,
         component: () => import('@/views/Carrera/Cursos/Facilitador.vue')
-      }
+      },
+      {
+        path: '/edit_f/:idF',
+        name: 'edit_f',
+        props: true,
+        component: () => import('@/views/Carrera/Cursos/EditF.vue')
+      },
     ]
   },
   {
