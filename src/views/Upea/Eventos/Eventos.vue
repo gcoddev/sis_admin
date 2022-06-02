@@ -87,7 +87,7 @@
                   <!-- end modal header -->
                   <div class="modal-body">
                     <div class="row">
-                      <div class="col-12 col-md-5">
+                      <div class="col-12 col-md-4 p-3">
                         <a
                           :href="url_api + '/Eventos/' + ev.evento_imagen"
                           target="_blank"
@@ -97,7 +97,107 @@
                             class="card-img-top h-auto img-modal"
                         /></a>
                       </div>
-                      <div class="col-12 col-md-7">
+                      <div class="col-12 col-md-8">
+                        <div v-if="ev.evento_galeria.length == 0">
+                          <h1>Noy hay imagenes</h1>
+                        </div>
+                        <div
+                          v-else
+                          id="galeria-eventos"
+                          class="carousel slide w-100"
+                          data-bs-ride="carousel"
+                        >
+                          <div class="carousel-inner">
+                            <div
+                              class="carousel-item"
+                              data-bs-interval="2500"
+                              v-for="(evg, id_evg) of ev.evento_galeria"
+                              :key="id_evg"
+                              :class="[id_evg === 0 ? 'active' : '']"
+                            >
+                              <div
+                                class="
+                                  ev-img
+                                  position-relative
+                                  d-flex
+                                  justify-content-center
+                                  align-items-center
+                                "
+                              >
+                                <div class="img-actions position-absolute">
+                                  <label
+                                    class="btn btn-sm btn-warning me-1"
+                                    for="evento_imagen-edit"
+                                    data-bs-dismiss="modal"
+                                  >
+                                    <i class="mdi mdi-circle-edit-outline"></i>
+                                  </label>
+                                  <input
+                                    type="file"
+                                    id="evento_imagen-edit"
+                                    class="d-none"
+                                    @change="
+                                      onFileChangeEdit(
+                                        evg.galeria_id,
+                                        evg.galeria_imagen
+                                      )
+                                    "
+                                  />
+                                  <button
+                                    class="btn btn-sm btn-danger ms-1"
+                                    data-bs-dismiss="modal"
+                                    @click="
+                                      msgDeleteImg(
+                                        evg.galeria_id,
+                                        evg.galeria_imagen
+                                      )
+                                    "
+                                  >
+                                    <i class="mdi mdi-delete"></i>
+                                  </button>
+                                </div>
+
+                                <img
+                                  class="d-block w-100 img-fluid"
+                                  :src="
+                                    url_api +
+                                    '/Eventos/GaleriaEvento/' +
+                                    evg.galeria_imagen
+                                  "
+                                  :alt="id_evg"
+                                  style="
+                                    object-fit: cover;
+                                    object-position: top;
+                                  "
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <a
+                            class="carousel-control-prev"
+                            href="#galeria-eventos"
+                            role="button"
+                            data-bs-slide="prev"
+                          >
+                            <span
+                              class="carousel-control-prev-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Previous</span>
+                          </a>
+                          <a
+                            class="carousel-control-next"
+                            href="#galeria-eventos"
+                            role="button"
+                            data-bs-slide="next"
+                          >
+                            <span
+                              class="carousel-control-next-icon"
+                              aria-hidden="true"
+                            ></span>
+                            <span class="visually-hidden">Next</span>
+                          </a>
+                        </div>
                         <pre
                           class="card-text contenedor p-2"
                           style="overflow-y: scroll"
@@ -112,9 +212,21 @@
                         <p><b>Lugar:</b> {{ ev.evento_lugar }}</p>
                       </div>
                       <div>
+                        <label
+                          for="evento_imagen"
+                          class="btn btn-success"
+                          data-bs-dismiss="modal"
+                          >Agregar imagen a evento</label
+                        >
+                        <input
+                          type="file"
+                          id="evento_imagen"
+                          class="d-none"
+                          @change="onFileChangeImg(ev.evento_id)"
+                        />
                         <button
                           type="button"
-                          class="btn btn-secondary"
+                          class="btn btn-secondary ms-2"
                           data-bs-dismiss="modal"
                         >
                           Cerrar
@@ -183,7 +295,7 @@
 .contenedor::-webkit-scrollbar-button {
   display: none;
 }
-.contenedor::-webkit-scrollbar:horizontal {
+evento_imagen .contenedor::-webkit-scrollbar:horizontal {
   height: 10px;
 }
 .contenedor::-webkit-scrollbar-thumb {
@@ -218,6 +330,14 @@ pre {
 .img-modal:hover {
   transform: scale(95%);
 }
+.img-actions {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.ev-img:hover .img-actions {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
 </style>
 
 <script>
@@ -227,6 +347,7 @@ export default {
   data() {
     return {
       Eventos: [],
+      evento_imagen: null,
     };
   },
   computed: {
@@ -241,7 +362,17 @@ export default {
         this.Eventos = res.data;
         this.cargando();
       } catch (error) {
-        console.log(error);
+        console.log("getEventos");
+        // console.log(error);
+        if (error.response.status == 500) {
+          this.getEventos();
+          this.cargando();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
       }
     },
     dmy(fecha) {
@@ -271,19 +402,20 @@ export default {
     async deleteE(id, img) {
       try {
         let res = await this.axios.delete("/api/evento/" + id + "/" + img);
+        this.$store.state.getter = true;
         this.getEventos();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log('error deleteE');
+        console.log("error deleteE");
         // console.log(error);
         if (error.response.status == 500) {
           this.getEventos();
-          this.cargando()
+          this.cargando();
           this.$swal({
             title: error.response.data.message,
-            icon: 'error',
-            showConfirmButton: true
-          })
+            icon: "error",
+            showConfirmButton: true,
+          });
         }
       }
     },
@@ -311,10 +443,111 @@ export default {
       });
     },
     cargando() {
-      document.getElementById("loading_upea").style.display = "none";
+      document.getElementById("loading_upea").style.visibility = "hidden";
     },
     nuevoE() {
       this.$router.push("/new_e/" + this.Institucion.institucion_id);
+    },
+    onFileChangeEdit(id, img) {
+      let image = document.querySelector("#evento_imagen-edit");
+      this.evento_imagen = image.files[0];
+      this.editImg(id, img);
+    },
+    async editImg(id, img) {
+      let putImg = {
+        galeria_imagen: this.evento_imagen,
+      };
+      try {
+        let res = await this.axios.put(
+          "/api/GaleriaEvento/" + id + "/" + img,
+          putImg,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+        this.evento_imagen = null;
+        this.$store.state.getter = true;
+        this.getEventos();
+        this.$swal("Editado", res.data.message, "success");
+      } catch (error) {
+        console.log("error editImg");
+        console.log(error);
+        if (error.response.status == 500) {
+          this.getEventos();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
+    },
+    msgDeleteImg(id, img) {
+      this.$swal({
+        title: "Eliminar imagen",
+        text: "Esta seguro de eliminar la imagen del evento",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.getEventos();
+          this.deleteImg(id, img);
+        }
+      });
+    },
+    async deleteImg(id, img) {
+      try {
+        let res = await this.axios.delete(
+          "/api/GaleriaEvento/" + id + "/" + img
+        );
+        this.$store.state.getter = true;
+        this.getEventos();
+        this.$swal("Eliminado", res.data.message, "success");
+      } catch (error) {
+        console.log("deleteImg");
+        console.log(error);
+        if (error.response.status == 500) {
+          this.getEventos();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
+    },
+    onFileChangeImg(id) {
+      let img = document.querySelector("#evento_imagen");
+      this.evento_imagen = img.files[0];
+      this.createImg(id);
+    },
+    async createImg(id) {
+      let postImg = {
+        galeria_imagen: this.evento_imagen,
+      };
+      try {
+        let res = await this.axios.post("/api/GaleriaEvento/" + id, postImg, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        this.evento_imagen = null;
+        this.$store.state.getter = true;
+        this.getEventos();
+        this.$swal("Agregado", res.data.message, "success");
+      } catch (error) {
+        console.log("error postImg");
+        // console.log(error);
+        if (error.response.status == 500) {
+          this.getEventos();
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
     },
   },
   created() {
@@ -330,7 +563,11 @@ export default {
     }
   },
   updated() {
-    // this.getEventos();
+    console.log("updated");
+    if (this.getter) {
+      this.getEventos();
+      this.$store.state.getter = false;
+    }
   },
 };
 </script>

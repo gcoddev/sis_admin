@@ -326,7 +326,7 @@ export default {
       });
     },
     cargando() {
-      document.getElementById("loading_upea").style.display = "none";
+      document.getElementById("loading_upea").style.visibility = "hidden";
     },
     newP() {
       this.$router.push("/new_p/" + this.Institucion.institucion_id);

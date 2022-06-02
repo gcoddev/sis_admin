@@ -696,12 +696,12 @@ export default {
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.Carrera = res.data.Descripcion;
-        document.getElementById("cont_carr_error").style.display = "none";
-        document.getElementById("cont_carr").style.display = "block";
+        document.getElementById("cont_carr_error").style.visibility = "hidden";
+        document.getElementById("cont_carr").style.visibility = "visible";
       } catch (error) {
         if (error.response.status == 500) {
-          document.getElementById("cont_carr").style.display = "none";
-          document.getElementById("cont_carr_error").style.display = "block";
+          document.getElementById("cont_carr").style.visibility = "hidden";
+          document.getElementById("cont_carr_error").style.visibility = "visible";
           // console.log("Error al retornar datos de la carrera");
         }
       }
@@ -805,7 +805,7 @@ export default {
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
     cargando() {
-      document.getElementById("loading_carrera").style.display = "none";
+      document.getElementById("loading_carrera").style.visibility = "hidden";
       if (this.ev == 1) {
         this.$swal(this.evTitle, this.evMsg, "success");
         this.$store.state.ev = 0;
@@ -823,7 +823,7 @@ export default {
   },
   updated() {
     if (this.getter) {
-      document.getElementById("loading_carrera").style.display = "block";
+      document.getElementById("loading_carrera").style.visibility = "visible";
       this.getCarrera(this.idCarr);
       this.getConvocatoriasAll(this.idCarr);
       this.$store.state.getter = false;

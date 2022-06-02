@@ -312,7 +312,7 @@ export default {
       });
     },
     cargando() {
-      document.getElementById("loading_upea").style.display = "none";
+      document.getElementById("loading_upea").style.visibility = "hidden";
     },
     nuevaG() {
       this.$router.push("/new_g/" + this.Institucion.institucion_id);

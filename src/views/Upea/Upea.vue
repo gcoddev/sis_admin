@@ -307,12 +307,12 @@ export default {
   },
   methods: {
     cargando() {
-      document.getElementById("loading_upea").style.display = "none";
+      document.getElementById("loading_upea").style.visibility = "hidden";
     },
   },
   created() {
     setTimeout(() => {
-      document.getElementById("loading_upea").style.display = "none";
+      document.getElementById("loading_upea").style.visibility = "hidden";
     }, 2000);
   },
 };
