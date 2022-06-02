@@ -195,7 +195,7 @@ export default {
         nombre_facilitador: this.nombre_facilitador,
         cargo_facilitador: this.cargo_facilitador,
         descripcion_facilitador: this.descripcion_facilitador,
-        celular_facilitador: this.pc + this.celular_facilitador,
+        celular_facilitador: this.pc + ' ' + this.celular_facilitador,
         facebook_facilitador: this.facebook_facilitador,
         foto_facilitador: this.foto_facilitador,
       };

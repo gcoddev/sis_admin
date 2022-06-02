@@ -5,10 +5,12 @@
       <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 d-flex justify-content-center">
+              <!-- <img :src="url_api + '/Cursos/' + Facilitador.foto_facilitador" alt="foto facilitador" /> -->
               <img
                 :src="url_api + '/Cursos/' + Facilitador.foto_facilitador"
-                alt="Foto facilitador"
+                alt="foto"
+                class="w-100 h-100"
               />
             </div>
             <div class="col-12 col-md-8">
@@ -122,7 +124,7 @@
         </div>
         <div class="card-footer d-flex flex-row-reverse">
           <button type="button" class="btn btn-success ms-2" @click="validar()">
-            Crear nuevo
+            Actualizar
           </button>
           <button class="btn btn-secondary" @click="clickCarrera()">
             Volver
@@ -149,21 +151,24 @@ export default {
       celular_facilitador: "",
       facebook_facilitador: "",
       foto_facilitador: null,
+      ff: false,
     };
   },
   computed: {
-    ...mapState(["idF", "url_api"]),
+    ...mapState(["idF", "idCarr", "url_api"]),
   },
   methods: {
     async getFacilitador() {
       try {
         let res = await this.axios.get("/api/Facilitador/" + this.idF);
         this.Facilitador = res.data.Descripcion;
-        console.log(this.Facilitador);
+
         this.nombre_facilitador = this.Facilitador.nombre_facilitador;
         this.cargo_facilitador = this.Facilitador.cargo_facilitador;
         this.descripcion_facilitador = this.Facilitador.descripcion_facilitador;
-        this.celular_facilitador = this.Facilitador.celular_facilitador;
+        let cel = this.Facilitador.celular_facilitador.split(" ");
+        this.pc = cel[0];
+        this.celular_facilitador = cel[1];
         this.facebook_facilitador = this.Facilitador.facebook_facilitador;
       } catch (error) {
         console.log("error getFacilitador");
@@ -176,6 +181,105 @@ export default {
           });
         }
       }
+    },
+    onFileChange() {
+      let img = document.querySelector("#foto_facilitador");
+      this.foto_facilitador = img.files[0];
+      this.ff = true;
+    },
+    clickCarrera() {
+      this.$store.state.getter = true;
+      this.$router.push("/cs/" + this.idCarr);
+    },
+    validar() {
+      if (this.nombre_facilitador != "") {
+        if (this.cargo_facilitador != "") {
+          if (this.descripcion_facilitador != "") {
+            if (this.pc != "") {
+              if (this.celular_facilitador != "") {
+                if (this.facebook_facilitador != "") {
+                  if (this.ff) {
+                    this.updateImageFacilitador();
+                  }
+                  this.updateFacilitador();
+                } else {
+                  this.alertDisplay("Facebook del facilitador vacio");
+                }
+              } else {
+                this.alertDisplay("Numero de celular vacio");
+              }
+            } else {
+              this.alertDisplay("Codigo de pais vacio");
+            }
+          } else {
+            this.alertDisplay("Descripcion del facilitador vacio");
+          }
+        } else {
+          this.alertDisplay("Cargo del facilitador vacio");
+        }
+      } else {
+        this.alertDisplay("Nombre del facilitador");
+      }
+    },
+    async updateFacilitador() {
+      let putFacilitador = {
+        nombre_facilitador: this.nombre_facilitador,
+        cargo_facilitador: this.cargo_facilitador,
+        descripcion_facilitador: this.descripcion_facilitador,
+        celular_facilitador: this.pc + " " + this.celular_facilitador,
+        facebook_facilitador: this.facebook_facilitador,
+      };
+      try {
+        let res = await this.axios.put("/api/Facilitador/" + this.idF);
+
+        this.$store.state.ev = 1;
+        this.$store.state.evTitle = "Actualizado";
+        this.$store.state.evMsg = res.data.message;
+        this.clickCarrera();
+      } catch (error) {
+        console.log("updateFacilitador");
+        console.log(error);
+        if (error.response.status == 500) {
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
+    },
+    async updateImageFacilitador() {
+      let putImageFacilitador = {
+        foto_facilitador: this.foto_facilitador,
+      };
+      try {
+        let res = await this.axios.put(
+          "/api/Facilitador/" +
+            this.idF +
+            "/" +
+            this.Facilitador.foto_facilitador,
+          putImageFacilitador,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+      } catch (error) {
+        console.log("updateImageFacilitador");
+        console.log(error);
+        if (error.response.status == 500) {
+          this.$swal({
+            title: error.response.data.message,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      }
+    },
+    alertDisplay(msg, icon, time) {
+      this.$swal({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true,
+        timer: time,
+      });
     },
   },
   created() {

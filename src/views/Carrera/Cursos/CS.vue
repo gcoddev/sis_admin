@@ -798,7 +798,7 @@ pre {
   opacity: 0.7;
   transition: transform 0.5s;
   user-select: none;
-  semsor: pointer;
+  cursor: pointer;
   color: var(--ct-body-color);
 }
 .card-cs:hover {
@@ -826,7 +826,6 @@ export default {
       Carrera: {},
       filterCur: [],
       filterSem: [],
-      Facilitador: null,
     };
   },
   computed: {
