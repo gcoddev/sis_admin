@@ -273,7 +273,10 @@
                                       class="btn btn-sm btn-success"
                                       :href="
                                         'https://api.whatsapp.com/send?phone=' +
-                                        faci.celular_facilitador
+                                        faci.celular_facilitador.replace(
+                                          / /g,
+                                          ''
+                                        )
                                       "
                                       target="_blank"
                                     >
@@ -574,9 +577,22 @@
                                   :key="id_faci"
                                 >
                                   <div>
-                                    &bull; &nbsp;
+                                    <img
+                                      :src="
+                                        url_api +
+                                        '/Cursos/' +
+                                        faci.foto_facilitador
+                                      "
+                                      style="
+                                        object-fit: cover;
+                                        object-position: left;
+                                        width: 25px;
+                                        height: 25px;
+                                      "
+                                      alt="Foto facilitador"
+                                    />&nbsp;
                                     {{ faci.nombre_facilitador }}
-                                    &nbsp;<span class="badge bg-info">{{
+                                    <span class="badge bg-info">{{
                                       faci.cargo_facilitador
                                     }}</span>
                                   </div>
@@ -589,7 +605,13 @@
                                   <div>
                                     <a
                                       class="btn btn-sm btn-success"
-                                      :href="faci.celular_facilitador"
+                                      :href="
+                                        'https://api.whatsapp.com/send?phone=' +
+                                        faci.celular_facilitador.replace(
+                                          / /g,
+                                          ''
+                                        )
+                                      "
                                       target="_blank"
                                     >
                                       <i class="mdi mdi-whatsapp"></i>

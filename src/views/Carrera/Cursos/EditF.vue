@@ -6,7 +6,6 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-md-4 d-flex justify-content-center">
-              <!-- <img :src="url_api + '/Cursos/' + Facilitador.foto_facilitador" alt="foto facilitador" /> -->
               <img
                 :src="url_api + '/Cursos/' + Facilitador.foto_facilitador"
                 alt="foto"

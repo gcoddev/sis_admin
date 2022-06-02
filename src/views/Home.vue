@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="card mt-3 text-center">
       <div class="card-body">
-        <img src="@/assets/images/Fondo2.jpg" alt="" class="card-img-top" />
+        <!-- <img src="@/assets/images/Fondo2.jpg" alt="" class="card-img-top" /> -->
         <div class="card-title fs-1 fw-bold mt-2">
           SISTEMA DE ADMINISTRACION DE PUBLICACIONES
         </div>
