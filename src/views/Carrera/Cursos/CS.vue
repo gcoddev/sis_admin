@@ -868,13 +868,13 @@ export default {
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + this.idCarr);
         this.Carrera = res.data.Descripcion;
-        document.getElementById("cont_carr_error").style.visibility = "hidden";
-        document.getElementById("cont_carr").style.visibility = "visible";
+        document.getElementById("cont_carr_error").style.display = "none";
+        document.getElementById("cont_carr").style.display = "block";
       } catch (error) {
         console.log("error getCarrera");
         if (error.response.status == 500) {
-          document.getElementById("cont_carr").style.visibility = "hidden";
-          document.getElementById("cont_carr_error").style.visibility = "visible";
+          document.getElementById("cont_carr").style.display = "none";
+          document.getElementById("cont_carr_error").style.display = "block";
           // console.log("Error al retornar datos de la carrera");
         }
         // console.log(error);

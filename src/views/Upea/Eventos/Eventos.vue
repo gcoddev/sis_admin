@@ -493,7 +493,6 @@ export default {
         confirmButtonText: "Si, eliminar",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.getEventos();
           this.deleteImg(id, img);
         }
       });
@@ -563,7 +562,6 @@ export default {
     }
   },
   updated() {
-    console.log("updated");
     if (this.getter) {
       this.getEventos();
       this.$store.state.getter = false;

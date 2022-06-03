@@ -126,7 +126,6 @@ export default {
     cargando() {
       document.getElementById("loading_wrapper").style.visibility = "hidden";
 
-      console.log("swal");
       this.$swal({
         title: localStorage.msg,
         timer: 2000,
