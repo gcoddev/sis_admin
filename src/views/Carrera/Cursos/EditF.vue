@@ -82,7 +82,7 @@
                         :key="id_ct"
                         :value="ct.phone_code"
                       >
-                        {{ ct.iso3 }} &nbsp; {{ ct.phone_code }}
+                        {{ ct.iso3 }} &nbsp; +{{ ct.phone_code }}
                       </option>
                     </select>
                   </span>

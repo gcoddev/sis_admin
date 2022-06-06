@@ -146,7 +146,7 @@
 
           <!-- item-->
           <a
-            href="https://sie.upea.bo/"
+            href="https://sie.upea.bo/soporte/"
             target="_blank"
             class="dropdown-item notify-item"
           >

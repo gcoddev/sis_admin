@@ -146,7 +146,9 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
+                          :src="
+                            url_api + '/Convocatorias/' + con.con_foto_portada
+                          "
                           alt="img"
                           class="card-img-top"
                         />
@@ -198,7 +200,9 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  url_api + '/Convocatorias/' + con.con_foto_portada
+                                  url_api +
+                                  '/Convocatorias/' +
+                                  con.con_foto_portada
                                 "
                                 target="_blank"
                                 ><img
@@ -304,7 +308,9 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
+                          :src="
+                            url_api + '/Convocatorias/' + con.con_foto_portada
+                          "
                           alt="img"
                           class="card-img-top"
                         />
@@ -356,7 +362,9 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  url_api + '/Convocatorias/' + con.con_foto_portada
+                                  url_api +
+                                  '/Convocatorias/' +
+                                  con.con_foto_portada
                                 "
                                 target="_blank"
                               >
@@ -463,7 +471,9 @@
                       </h5>
                       <div class="ribbon-content">
                         <img
-                          :src="url_api + '/Convocatorias/' + con.con_foto_portada"
+                          :src="
+                            url_api + '/Convocatorias/' + con.con_foto_portada
+                          "
                           alt="img"
                           class="card-img-top"
                         />
@@ -515,7 +525,9 @@
                             <div class="col-12 col-md-5">
                               <a
                                 :href="
-                                  url_api + '/Convocatorias/' + con.con_foto_portada
+                                  url_api +
+                                  '/Convocatorias/' +
+                                  con.con_foto_portada
                                 "
                                 target="_blank"
                               >
@@ -688,7 +700,6 @@ export default {
   },
   methods: {
     async getCarrera(id) {
-      console.log("getCarrera");
       try {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.Carrera = res.data.Descripcion;
@@ -703,7 +714,6 @@ export default {
       }
     },
     async getConvocatoriasAll(id) {
-      console.log("getConvocatoriasAll");
       try {
         let res = await this.axios.get("/api/convocatoriasAll/" + id);
         this.filterConv = [];
@@ -726,7 +736,8 @@ export default {
         });
         this.cargando();
       } catch (error) {
-        // console.log("error getConvocatoriasAll: " + error);
+        console.log("error getConvocatoriasAll");
+        // console.log(error);
       }
     },
     editCCA(idCCA) {
@@ -745,12 +756,12 @@ export default {
         // console.log(error);
         if (error.response.status == 500) {
           this.getConvocatoriasAll();
-          this.cargando()
+          this.cargando();
           this.$swal({
             title: error.response.data.message,
-            icon: 'error',
-            showConfirmButton: true
-          })
+            icon: "error",
+            showConfirmButton: true,
+          });
         }
       }
     },
