@@ -135,7 +135,22 @@ const routes = [
         path: '/edit_ofer/:id_ofer',
         name: 'edit_ofer',
         component: () => import('@/views/Carrera/Ofertas/EditOfertas.vue')
-      }
+      },
+      {
+        path: '/serv/:id_car',
+        name: 'serv',
+        component: () => import('@/views/Carrera/Servicios/Servicios.vue')
+      },
+      {
+        path: '/edit_serv/:id_serv',
+        name: 'edit_serv',
+        component: () => import('@/views/Carrera/Servicios/EditServicios.vue')
+      },
+      {
+        path: '/new_serv/:id_car',
+        name: 'new_serv',
+        component: () => import('@/views/Carrera/Servicios/NewServicios.vue')
+      },
     ]
   },
   {

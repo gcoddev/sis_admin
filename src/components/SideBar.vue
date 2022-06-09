@@ -135,12 +135,12 @@
                       </li>
                       <li class="side-nav-item">
                         <router-link
-                          :to="'/cca/' + carrera.car_id"
+                          :to="'/serv/' + carrera.car_id"
                           @click="
                             clickCarreras(carrera.car_id, carrera.carrera)
                           "
                         >
-                          <span> CONVOCATORIAS </span>
+                          <span> SERVICIOS </span>
                         </router-link>
                       </li>
                       <li class="side-nav-item">
