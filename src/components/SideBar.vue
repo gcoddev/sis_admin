@@ -47,7 +47,7 @@
             <div class="collapse show" id="upea">
               <ul class="side-nav-second-level">
                 <li class="side-nav-item">
-                  <router-link to="upea"
+                  <router-link to="/upea"
                     ><i class="mdi mdi-home-outline"></i>&nbsp; INICIO
                   </router-link>
                 </li>
@@ -133,6 +133,26 @@
                           <span> CURSOS </span>
                         </router-link>
                       </li>
+                      <li class="side-nav-item">
+                        <router-link
+                          :to="'/cca/' + carrera.car_id"
+                          @click="
+                            clickCarreras(carrera.car_id, carrera.carrera)
+                          "
+                        >
+                          <span> CONVOCATORIAS </span>
+                        </router-link>
+                      </li>
+                      <li class="side-nav-item">
+                        <router-link
+                          :to="'/ofer/' + carrera.car_id"
+                          @click="
+                            clickCarreras(carrera.car_id, carrera.carrera)
+                          "
+                        >
+                          <span> OFERTAS ACADEMICAS </span>
+                        </router-link>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -157,14 +177,32 @@
             </a>
             <div class="collapse show" id="sub_carrera">
               <ul class="side-nav-second-level">
-                <li class="side-nav-item" v-if="showDir">
-                  <router-link
-                    :to="'/cca/' + CarreraU.carrera_id"
-                    @click="clickCarrera()"
-                  >
-                    <span> CONVOCATORIAS </span>
-                  </router-link>
-                </li>
+                <div v-if="showDir">
+                  <li class="side-nav-item">
+                    <router-link
+                      :to="'/cca/' + CarreraU.carrera_id"
+                      @click="clickCarrera()"
+                    >
+                      <span> CONVOCATORIAS </span>
+                    </router-link>
+                  </li>
+                  <li class="side-nav-item">
+                    <router-link
+                      :to="'/cca/' + CarreraU.carrera_id"
+                      @click="clickCarrera()"
+                    >
+                      <span> CONVOCATORIAS </span>
+                    </router-link>
+                  </li>
+                  <li class="side-nav-item">
+                    <router-link
+                      :to="'/ofer/' + CarreraU.carrera_id"
+                      @click="clickCarrera()"
+                    >
+                      <span> OFERTAS ACADEMICAS </span>
+                    </router-link>
+                  </li>
+                </div>
                 <li class="side-nav-item">
                   <router-link
                     :to="'/cs/' + CarreraU.carrera_id"

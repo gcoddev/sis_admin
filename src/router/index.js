@@ -121,6 +121,21 @@ const routes = [
         props: true,
         component: () => import('@/views/Carrera/Cursos/EditF.vue')
       },
+      {
+        path: '/ofer/:id_car',
+        name: 'ofer',
+        component: () => import('@/views/Carrera/Ofertas/Ofertas.vue')
+      },
+      {
+        path: '/new_ofer/:id_car',
+        name: 'new_ofer',
+        component: () => import('@/views/Carrera/Ofertas/NewOfertas.vue')
+      },
+      {
+        path: '/edit_ofer/:id_ofer',
+        name: 'edit_ofer',
+        component: () => import('@/views/Carrera/Ofertas/EditOfertas.vue')
+      }
     ]
   },
   {

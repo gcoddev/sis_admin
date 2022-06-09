@@ -15,8 +15,9 @@ export default createStore({
     // getter Carrera / Institucion
     getter: false,
 
-    // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios
+    // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios/Ofertas
     idCCACS: '',
+    idSO: '',
     idF: '',
 
     // Mensajes

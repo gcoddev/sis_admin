@@ -709,7 +709,6 @@ export default {
         if (error.response.status == 500) {
           document.getElementById("cont_carr").style.display = "none";
           document.getElementById("cont_carr_error").style.display = "block";
-          // console.log("Error al retornar datos de la carrera");
         }
       }
     },

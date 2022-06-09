@@ -1,4 +1,4 @@
-# sis_admin2
+# sis_admin
 
 ## SISTEMA DE ADMINISTRACION DE PUBLICACIONES - UPEA
 

@@ -141,7 +141,7 @@ export default {
   data() {
     return {
       countries: Countries,
-      Facilitador: null,
+      Facilitador: {},
 
       nombre_facilitador: "",
       cargo_facilitador: "",
