@@ -228,7 +228,7 @@ export default {
         ofertas_imagen: this.ofertas_imagen,
       };
       try {
-        let res = await this.axios.post(
+        let res = await this.axios.put(
           "/api/OfertasAcademicas/" +
             this.idSO +
             "/" +

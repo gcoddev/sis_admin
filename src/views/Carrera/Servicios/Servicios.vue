@@ -35,11 +35,23 @@
               class="col-12 col-md-4 col-xl-3 col-xxl-2"
             >
               <a
-                class="card card-cca tipoC w-100"
+                class="card card-serv ribbon-box tipoServ w-100"
                 data-bs-toggle="modal"
                 :data-bs-target="'#modal_serv_' + id_serv"
               >
                 <div class="card-body">
+                  <div
+                        class="ribbon float-start"
+                        :class="[
+                          serv.serv_active == '1'
+                            ? 'ribbon-success'
+                            : 'ribbon-danger',
+                        ]"
+                      >
+                        <i class="mdi mdi-access-point me-1"></i
+                        ><span v-if="serv.serv_active == '1'"> Activo</span
+                        ><span v-if="serv.serv_active != '1'"> Inactivo</span>
+                      </div>
                   <h5 class="text-dark float-end mt-0">Servicio de carrera</h5>
                   <div class="ribbon-content">
                     <img
@@ -116,7 +128,7 @@
                         </div>
                         <div class="col-12 col-md-7">
                           <div v-if="serv.imagen.length == 0">
-                            <h1>Noy hay imagenes</h1>
+                            <h1>No hay imagenes</h1>
                           </div>
                           <div
                             v-else
@@ -335,17 +347,17 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.tipoC {
+.tipoServ {
   float: left;
 }
-.card-cca {
+.card-serv {
   opacity: 0.7;
   transition: transform 0.5s;
   user-select: none;
   cursor: pointer;
   color: var(--ct-body-color);
 }
-.card-cca:hover {
+.card-serv:hover {
   transform: scale(107%);
   opacity: 1;
 }
@@ -493,7 +505,8 @@ export default {
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
     cargando() {
-      document.getElementById("loading_carrera").style.visibility = "hidden";
+      document.querySelector("#loading_carrera").style.visibility = "hidden";
+
       if (this.ev == 1) {
         this.$swal(this.evTitle, this.evMsg, "success");
         this.$store.state.ev = 0;
@@ -614,7 +627,6 @@ export default {
   },
   updated() {
     if (this.getter) {
-      document.getElementById("loading_carrera").style.visibility = "visible";
       this.getCarrera();
       this.$store.state.getter = false;
     }
