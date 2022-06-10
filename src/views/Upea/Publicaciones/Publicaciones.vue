@@ -3,18 +3,24 @@
     <div id="loading_upea">
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
-    <div class="container-fluid">
-      <div class="mt-2">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h1>
-              PUBLICACIONES UPEA &nbsp;<span class="badge bg-info fs-4">{{
-                Publicaciones.length
-              }}</span>
-            </h1>
-          </div>
-          <div>
-            <button class="btn btn-primary" @click="newP()">Crear nuevo</button>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-12">
+          <div class="card border-info border ribbon-box">
+            <div class="card-body">
+              <div class="ribbon ribbon-info float-start">
+                &nbsp; UNIVERSIDAD PUBLICA DE EL ALTO
+                <i class="mdi mdi-access-point me-1"></i>
+              </div>
+              <button class="btn btn-info float-end mt-0 mb-3" @click="newP()">
+                Crear nuevo
+              </button>
+              <ul class="fs-4">
+                <div class="ribbon-content text-info">
+                  Total publicaciones: <b>{{ Publicaciones.length }}</b>
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

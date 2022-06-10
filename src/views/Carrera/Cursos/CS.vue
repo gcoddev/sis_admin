@@ -52,7 +52,7 @@
             </li>
           </ul>
           <div class="col-12 col-md-2">
-            <button class="btn btn-primary float-end" @click="newCS()">
+            <button class="btn btn-info float-end" @click="newCS()">
               Crear nuevo
             </button>
           </div>
@@ -61,29 +61,27 @@
           <div class="tab-pane show active" id="inicio">
             <div class="container-fluid">
               <div class="row">
-                <div
-                  class="col-12 col-md-6"
-                  v-for="(frase, id_frase) of Carrera.frases"
-                  :key="id_frase"
-                >
-                  <div class="card ribbon-box">
+                <div class="col-12 col-md-6">
+                  <div class="card border border-info ribbon-box">
                     <div class="card-body">
-                      <div class="ribbon ribbon-primary float-start">
+                      <div class="ribbon ribbon-info float-start">
                         <i class="mdi mdi-access-point me-1"></i
                         >{{ Carrera.carrera }}
                       </div>
-                      <h5 class="text-primary float-end mt-0">
-                        Frase {{ id_frase }}
-                      </h5>
-                      <div class="ribbon-content">{{ frase.frase }}</div>
+                      <h5 class="text-info float-end mt-0">Frases</h5>
+                      <ul class="fs-5">
+                        <li
+                          v-for="(frase, id_frase) of Carrera.frases"
+                          :key="id_frase"
+                          class="ribbon-content"
+                        >
+                          {{ frase.frase }}
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6">
                   <h2>Links</h2>
-                  <div class="list-group">
+                  <div class="list-group border border-info">
                     <a
                       :href="link.url_links"
                       target="_blank"
@@ -92,6 +90,31 @@
                       :key="id_link"
                       >{{ link.nombre_links }}</a
                     >
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="card border-success border ribbon-box">
+                    <div class="card-body">
+                      <div class="ribbon ribbon-success float-start">
+                        <i class="mdi mdi-access-point me-1"></i
+                        >{{ Carrera.carrera }}
+                      </div>
+                      <h5 class="text-success float-end mt-0 mb-3">
+                        Cursos
+                      </h5>
+                      <ul class="fs-4">
+                        <div class="ribbon-content">
+                          Cursos: <b>{{ filterCur.length }}</b>
+                        </div>
+                        <div class="ribbon-content">
+                          Seminarios: <b>{{ filterSem.length }}</b>
+                        </div>
+                        <hr />
+                        <div class="ribbon-content text-success">
+                          Total: <b>{{ CS.length }}</b>
+                        </div>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -846,6 +869,7 @@ export default {
   data() {
     return {
       Carrera: {},
+      CS: [],
       filterCur: [],
       filterSem: [],
     };
@@ -883,6 +907,7 @@ export default {
     async getCursosAll() {
       try {
         let res = await this.axios.get("/api/cursosAll/" + this.idCarr);
+        this.CS = res.data;
         this.filterCur = [];
         this.filterSem = [];
         res.data.forEach((curs) => {

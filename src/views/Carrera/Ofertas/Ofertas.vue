@@ -10,19 +10,28 @@
       <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
-          <h2 class="col-12 col-md-10">
-            Ofertas academicas &nbsp;
-            <h4 class="d-inline">
-              <span class="badge bg-info">{{ Ofertas.length }}</span>
-            </h4>
-          </h2>
-          <div class="col-12 col-md-2">
-            <button class="btn btn-primary float-end" @click="newOfer()">
-              Crear nuevo
-            </button>
+          <div class="col-12">
+            <div class="card border-info border ribbon-box">
+              <div class="card-body">
+                <div class="ribbon ribbon-info float-start">
+                  &nbsp; {{ Carrera.carrera }}
+                  <i class="mdi mdi-access-point me-1"></i>
+                </div>
+                <button
+                  class="btn btn-info float-end mt-0 mb-3"
+                  @click="newOfer()"
+                >
+                  Crear nuevo
+                </button>
+                <ul class="fs-4">
+                  <div class="ribbon-content text-info">
+                    Total ofertas academicas: <b>{{ Ofertas.length }}</b>
+                  </div>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-
         <div class="container-fluid">
           <div class="row">
             <div v-if="Ofertas.length == 0">

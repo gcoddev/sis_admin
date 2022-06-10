@@ -3,20 +3,27 @@
     <div id="loading_upea">
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
-    <div class="container-fluid">
-      <div class="mt-2">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h1>
-              GACETA UPEA &nbsp;<span class="badge bg-info fs-4">{{
-                Gaceta.length
-              }}</span>
-            </h1>
-          </div>
-          <div>
-            <button class="btn btn-primary" @click="nuevaG()">
-              Crear nuevo
-            </button>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-12">
+          <div class="card border-info border ribbon-box">
+            <div class="card-body">
+              <div class="ribbon ribbon-info float-start">
+                &nbsp; UNIVERSIDAD PUBLICA DE EL ALTO
+                <i class="mdi mdi-access-point me-1"></i>
+              </div>
+              <button
+                class="btn btn-info float-end mt-0 mb-3"
+                @click="nuevaG()"
+              >
+                Crear nuevo
+              </button>
+              <ul class="fs-4">
+                <div class="ribbon-content text-info">
+                  Total documentos gaceta: <b>{{ Gaceta.length }}</b>
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -57,6 +64,7 @@
                       frameborder="0"
                       :disabled="true"
                     ></iframe>
+                    <!-- <embed :src=" url_api +  '/Gaceta/' + gac.gaceta_documento + '#scrollbar=0'" class="m-0" type="application/pdf" width="100%" height="412px"> -->
                   </div>
                   <div class="card-title fw-bold mt-2">
                     {{ gac.gaceta_titulo }}
@@ -279,12 +287,12 @@ export default {
         console.log(error);
         if (error.response.status == 500) {
           this.getGaceta();
-          this.cargando()
+          this.cargando();
           this.$swal({
             title: error.response.data.message,
-            icon: 'error',
-            showConfirmButton: true
-          })
+            icon: "error",
+            showConfirmButton: true,
+          });
         }
       }
     },
