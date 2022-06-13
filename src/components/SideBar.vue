@@ -222,26 +222,6 @@
           </li>
         </div>
       </ul>
-
-      <div class="help-box text-white text-center">
-        <a href="javascript: void(0);" class="float-end close-btn text-white">
-          <i class="mdi mdi-close"></i>
-        </a>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-          height="70"
-          alt="Helper Icon Image"
-        />
-        <h5 class="mt-3">GitHub</h5>
-        <p class="mb-3">UAccede a mi cuenta de GitHub</p>
-        <a
-          href="https://github.com/gcoddev/"
-          target="_blank"
-          class="btn btn-secondary btn-sm"
-          >Ver</a
-        >
-      </div>
-
       <div class="clearfix"></div>
     </div>
   </div>

@@ -74,7 +74,7 @@
                   <pre
                     class="card-text contenedor"
                     v-html="vid.video_breve_descripcion"
-                    style="max-height: 200px; overflow-y: scroll"
+                    style="max-height: 100px; overflow-y: scroll"
                   ></pre>
                 </div>
               </div>
