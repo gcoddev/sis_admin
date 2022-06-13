@@ -14,13 +14,13 @@
               </div>
               <button
                 class="btn btn-info float-end mt-0 mb-3"
-                @click="nuevaG()"
+                @click="nuevoV()"
               >
                 Crear nuevo
               </button>
               <ul class="fs-4">
                 <div class="ribbon-content text-info">
-                  Total documentos gaceta: <b>{{ Gaceta.length }}</b>
+                  Total videos: <b>{{ Videos.length }}</b>
                 </div>
               </ul>
             </div>
@@ -29,66 +29,71 @@
       </div>
       <div class="container-fluid">
         <div class="row">
-          <div v-if="Gaceta.length == 0">
-            <h1 class="text-center">Sin gacetas</h1>
+          <div v-if="Videos.length == 0">
+            <h1 class="text-center">Sin videos</h1>
           </div>
           <div
             v-else
-            v-for="(gac, id_gac) of Gaceta"
-            :key="id_gac"
+            v-for="(vid, id_vid) of Videos"
+            :key="id_vid"
             class="col-12 col-md-6 col-xxl-4"
           >
             <a
               class="card card-gac ribbon-box tipoC w-100"
               data-bs-toggle="modal"
-              :data-bs-target="'#modal_gac_' + id_gac"
+              :data-bs-target="'#modal_vid_' + id_vid"
             >
               <div class="card-body">
-                <div class="ribbon float-start ribbon-info">
+                <div
+                  class="ribbon float-start"
+                  :class="[
+                    vid.video_estado == '1'
+                      ? 'ribbon-success'
+                      : 'ribbon-danger',
+                  ]"
+                >
                   <i class="mdi mdi-access-point me-1"></i
                   ><span
-                    v-html="[gac.gaceta_estado == '1' ? 'Activo' : 'Inactivo']"
+                    v-html="[vid.video_estado == '1' ? 'Activo' : 'Inactivo']"
                   ></span>
                 </div>
-                <h5 class="text-dark float-end mt-0">Gaceta</h5>
+                <h5 class="text-dark float-end mt-0">Videos</h5>
                 <div class="ribbon-content">
-                  <div class="ratio ratio-1x1">
-                    <iframe
-                      :src="
-                        'http://docs.google.com/gview?url=' +
-                        url_api +
-                        '/Gaceta/' +
-                        gac.gaceta_documento +
-                        '&embedded=true'
-                      "
-                      frameborder="0"
-                      :disabled="true"
-                    ></iframe>
+                  <div style="position: relative">
+                    <div class="ratio ratio-16x9" style="position: absolute">
+                      <iframe :src="vid.video_enlace" controls="false"></iframe>
+                    </div>
+                    <div
+                      class="ratio ratio-16x9"
+                      style="background-color: transparent"
+                    ></div>
                   </div>
                   <div class="card-title fw-bold mt-2">
-                    {{ gac.gaceta_titulo }}
+                    {{ vid.video_titulo }}
                   </div>
+                  <pre
+                    class="card-text contenedor"
+                    v-html="vid.video_breve_descripcion"
+                    style="max-height: 200px; overflow-y: scroll"
+                  ></pre>
                 </div>
-              </div>
-              <div class="card-footer pt-3">
-                <p><b>Fecha:</b> {{ dmy(gac.gaceta_fecha) }}</p>
               </div>
             </a>
 
             <div
               class="modal fade"
-              :id="'modal_gac_' + id_gac"
+              :id="'modal_vid_' + id_vid"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
               tabindex="-1"
-              :aria-labelledby="'modal_gac_label_' + id_gac"
+              :aria-labelledby="'modal_vid_label_' + id_vid"
               aria-hidden="true"
             >
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_gac_label_' + id_gac">
-                      {{ gac.publicaciones_titulo }}
+                    <h5 class="modal-title" :id="'modal_vid_label_' + id_vid">
+                      {{ vid.video_titulo }}
                     </h5>
                     <button
                       type="button"
@@ -100,23 +105,22 @@
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-12">
-                        <iframe
-                          :src="
-                            'http://docs.google.com/gview?url=' +
-                            url_api +
-                            '/Gaceta/' +
-                            gac.gaceta_documento +
-                            '&embedded=true'
-                          "
-                          class="card-img-top"
-                          height="500px"
-                        ></iframe>
+                        <div class="ratio ratio-16x9">
+                          <iframe
+                            :src="vid.video_enlace"
+                            class="card-img-top"
+                            :id="'vid_' + id_vid"
+                            allowfullscreen
+                          />
+                        </div>
+                        <pre
+                          class="card-text contenedor p-2"
+                          v-html="vid.video_breve_descripcion"
+                          style="overflow-y: scroll"
+                        ></pre>
                       </div>
                     </div>
-                    <div class="modal-footer d-flex justify-content-between">
-                      <div class="ms-3">
-                        <p><b>Fecha:</b> {{ dmy(gac.gaceta_fecha) }}</p>
-                      </div>
+                    <div class="modal-footer d-flex justify-content-end">
                       <div>
                         <button
                           type="button"
@@ -129,13 +133,7 @@
                           type="button"
                           class="btn btn-danger ms-2"
                           data-bs-dismiss="modal"
-                          @click="
-                            deleteMsg(
-                              'la gaceta',
-                              gac.gaceta_id,
-                              gac.gaceta_documento
-                            )
-                          "
+                          @click="deleteMsg('el video', vid.video_id)"
                         >
                           <i class="mdi mdi-delete-sweep-outline"></i>&nbsp;
                           Eliminar
@@ -143,7 +141,7 @@
                         <button
                           data-bs-dismiss="modal"
                           class="btn btn-warning ms-2"
-                          @click="editG(gac.gaceta_id)"
+                          @click="editV(vid.video_id)"
                         >
                           <i class="mdi mdi-clipboard-edit-outline"></i>&nbsp;
                           Editar
@@ -229,26 +227,26 @@ pre {
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "publicaciones",
+  name: "videos",
   data() {
     return {
-      Gaceta: [],
+      Videos: [],
     };
   },
   computed: {
     ...mapState(["Institucion", "getter", "ev", "evTitle", "evMsg", "url_api"]),
   },
   methods: {
-    async getGaceta() {
+    async getVideos() {
       try {
         let res = await this.axios.get(
-          "/api/gacetaunivAll/" + this.Institucion.institucion_id
+          "/api/VideosAll/" + this.Institucion.institucion_id
         );
-        this.Gaceta = res.data;
+        this.Videos = res.data;
         // console.log(this.Publicaciones);
         this.cargando();
       } catch (error) {
-        console.log("error getPublicaciones");
+        console.log("error getVideos");
         console.log(error);
       }
     },
@@ -272,20 +270,20 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
-    editG(idG) {
-      this.$store.state.idPGEVM = idG;
-      this.$router.push("/edit_g/" + idG);
+    editG(idV) {
+      this.$store.state.idPGEVM = idV;
+      this.$router.push("/edit_v/" + idV);
     },
-    async deleteG(id, doc) {
+    async deleteV(id) {
       try {
-        let res = await this.axios.delete("/api/gacetauniv/" + id + "/" + doc);
-        this.getGaceta();
+        let res = await this.axios.delete("/api/Videos/" + id);
+        this.getVideos();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        // console.log("error deleteG");
+        // console.log("error deleteV");
         console.log(error);
         if (error.response.status == 500) {
-          this.getGaceta();
+          this.getVideos();
           this.cargando();
           this.$swal({
             title: error.response.data.message,
@@ -295,7 +293,7 @@ export default {
         }
       }
     },
-    deleteMsg(title, id, img) {
+    deleteMsg(title, id) {
       this.$swal({
         title: "Eliminar " + title,
         text: "Esta seguro de eliminar " + title,
@@ -306,7 +304,7 @@ export default {
         confirmButtonText: "Si, eliminar",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.deleteG(id, img);
+          this.deleteV(id);
         }
       });
     },
@@ -321,13 +319,13 @@ export default {
     cargando() {
       document.getElementById("loading_upea").style.visibility = "hidden";
     },
-    nuevaG() {
-      this.$router.push("/new_g/" + this.Institucion.institucion_id);
+    nuevoV() {
+      this.$router.push("/new_v/" + this.Institucion.institucion_id);
     },
   },
   created() {
     if (this.getter) {
-      this.getGaceta();
+      this.getVideos();
       this.$store.state.getter = false;
       if (this.ev == 1) {
         this.$swal(this.evTitle, this.evMsg, "success");

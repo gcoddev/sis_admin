@@ -27,7 +27,7 @@ const routes = [
             component: () => import('@/views/Upea/Publicaciones/Publicaciones.vue')
           },
           {
-            path: '/edit_p/:idPGE',
+            path: '/edit_p/:idPGEVM',
             name: 'edit_p',
             component: () => import('@/views/Upea/Publicaciones/EditP.vue')
           },
@@ -42,7 +42,7 @@ const routes = [
             component: () => import('@/views/Upea/Gaceta/Gaceta.vue')
           },
           {
-            path: '/edit_g/:idPGE',
+            path: '/edit_g/:idPGEVM',
             name: 'edit_g',
             component: () => import('@/views/Upea/Gaceta/EditG.vue')
           },
@@ -57,7 +57,7 @@ const routes = [
             component: () => import('@/views/Upea/Eventos/Eventos.vue')
           },
           {
-            path: '/edit_e/:idPGE',
+            path: '/edit_e/:idPGEVM',
             name: 'edit_e',
             component: () => import('@/views/Upea/Eventos/EditE.vue')
           },
@@ -65,6 +65,21 @@ const routes = [
             path: '/new_e/:idINS',
             name: 'new_e',
             component: () => import('@/views/Upea/Eventos/NewE.vue')
+          },
+          {
+            path: '/videos',
+            name: 'videos',
+            component: () => import('@/views/Upea/Videos/Videos.vue')
+          },
+          {
+            path: '/edit_v/:idPGEVM',
+            name: 'edit_v',
+            component: () => import('@/views/Upea/Videos/EditV.vue')
+          },
+          {
+            path: '/new_v/:idINS',
+            name: 'new_v',
+            component: () => import('@/views/Upea/Videos/NewV.vue')
           },
         ]
       },

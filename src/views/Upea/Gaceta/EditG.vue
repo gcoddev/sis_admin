@@ -70,12 +70,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE", "url_api"]),
+    ...mapState(["idPGEVM", "url_api"]),
   },
   methods: {
     async getGaceta() {
       try {
-        let res = await this.axios.get("/api/gacetauniv/" + this.idPGE);
+        let res = await this.axios.get("/api/gacetauniv/" + this.idPGEVM);
         this.Gac = res.data.Descripcion;
         // console.log(this.Pub);
         this.gaceta_titulo = this.Gac.gaceta_titulo;
@@ -116,7 +116,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/gacetauniv/" + this.idPGE,
+          "/api/gacetauniv/" + this.idPGEVM,
           putGaceta
         );
         this.$store.state.ev = 1;
@@ -135,7 +135,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/publicaciones/" + this.idPGE + "/" + this.Gac.gaceta_documento,
+          "/api/publicaciones/" + this.idPGEVM + "/" + this.Gac.gaceta_documento,
           putPdf,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

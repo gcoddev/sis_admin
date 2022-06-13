@@ -400,7 +400,7 @@ export default {
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
     editE(idE) {
-      this.$store.state.idPGE = idE;
+      this.$store.state.idPGEVM = idE;
       this.$router.push("/edit_e/" + idE);
     },
     async deleteE(id, img) {

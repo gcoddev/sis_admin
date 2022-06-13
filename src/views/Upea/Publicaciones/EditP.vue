@@ -135,12 +135,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE", "url_api"]),
+    ...mapState(["idPGEVM", "url_api"]),
   },
   methods: {
     async getPublicacion() {
       try {
-        let res = await this.axios.get("/api/publicaciones/" + this.idPGE);
+        let res = await this.axios.get("/api/publicaciones/" + this.idPGEVM);
         this.Pub = res.data.Descripcion;
         // console.log(this.Pub);
         this.publicaciones_titulo = this.Pub.publicaciones_titulo;
@@ -205,7 +205,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/publicaciones/" + this.idPGE,
+          "/api/publicaciones/" + this.idPGEVM,
           putPublicacion
         );
         this.$store.state.ev = 1;
@@ -225,7 +225,7 @@ export default {
       try {
         let res = await this.axios.put(
           "/api/publicaciones/" +
-            this.idPGE +
+            this.idPGEVM +
             "/" +
             this.Pub.publicaciones_imagen,
           putImage,

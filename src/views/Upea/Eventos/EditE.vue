@@ -129,12 +129,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["idPGE", "url_api"]),
+    ...mapState(["idPGEVM", "url_api"]),
   },
   methods: {
     async getEventos() {
       try {
-        let res = await this.axios.get("/api/evento/" + this.idPGE);
+        let res = await this.axios.get("/api/evento/" + this.idPGEVM);
         this.Evento = res.data.Descripcion;
         this.evento_titulo = this.Evento.evento_titulo;
         this.evento_descripcion = this.Evento.evento_descripcion;
@@ -196,7 +196,7 @@ export default {
         evento_lugar: this.evento_lugar,
       };
       try {
-        let res = await this.axios.put("/api/evento/" + this.idPGE, putEvento);
+        let res = await this.axios.put("/api/evento/" + this.idPGEVM, putEvento);
         this.$store.state.ev = 1;
         this.$store.state.evTitle = "Actualizado";
         this.$store.state.evMsg = res.data.mensaje;
@@ -211,7 +211,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/evento/" + this.idPGE + "/" + this.Evento.evento_imagen,
+          "/api/evento/" + this.idPGEVM + "/" + this.Evento.evento_imagen,
           putImage,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

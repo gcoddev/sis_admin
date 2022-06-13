@@ -29,7 +29,7 @@ export default createStore({
     CarreraU: {},
 
     // id de Publicaciones/Gaceta/Eventos
-    idPGE: '',
+    idPGEVM: '',
     idINS: ''
   },
   getters: {
