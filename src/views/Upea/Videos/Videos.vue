@@ -243,7 +243,6 @@ export default {
           "/api/VideosAll/" + this.Institucion.institucion_id
         );
         this.Videos = res.data;
-        // console.log(this.Publicaciones);
         this.cargando();
       } catch (error) {
         console.log("error getVideos");
@@ -270,7 +269,7 @@ export default {
       let anio = fecha.substr(0, 4);
       return dia + " de " + meses[mes - 1] + " de " + anio;
     },
-    editG(idV) {
+    editV(idV) {
       this.$store.state.idPGEVM = idV;
       this.$router.push("/edit_v/" + idV);
     },

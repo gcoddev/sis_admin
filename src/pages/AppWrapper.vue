@@ -54,7 +54,7 @@ export default {
     NavBar,
   },
   computed: {
-    ...mapState(["userAdminData", "Institucion"]),
+    ...mapState(["userAdminData"]),
   },
   methods: {
     async getAdminData() {
@@ -64,18 +64,23 @@ export default {
             "/api/DatosUsuarioAdmin/" + localStorage.credentialP
           );
           this.$store.state.userAdminData = res.data;
-          if (
-            res.data.roles == "DIRECTOR" ||
-            res.data.roles == "CENTRO_ESTUDIANTES"
-          ) {
-            this.$store.state.idCarr = res.data.insttitucion_id;
-            this.getCarreraU(res.data.insttitucion_id);
+
+          if (res.data.roles == "ADMINISTRADOR") {
+            this.getInstitucion();
+            this.getArea();
           } else {
-            if (res.data.roles == "SECRETARIA") {
-              this.getInstitucion();
+            if (
+              res.data.roles == "DIRECTOR" ||
+              res.data.roles == "CENTRO_ESTUDIANTES"
+            ) {
+              this.$store.state.idCarr = res.data.insttitucion_id;
+              this.getCarreraU(res.data.insttitucion_id);
             } else {
-              this.getInstitucion();
-              this.getArea();
+              if (res.data.roles == "SECRETARIA") {
+                this.getInstitucion();
+              } else {
+                this.cerrarSesion();
+              }
             }
           }
         } catch (error) {
@@ -96,6 +101,15 @@ export default {
       } else {
         //
       }
+    },
+    cerrarSesion() {
+      let theme = localStorage.theme;
+      let un = localStorage.username;
+      localStorage.clear();
+      localStorage.theme = theme;
+      localStorage.username = un;
+      localStorage.auth = "4";
+      location.reload();
     },
     async getInstitucion() {
       try {
@@ -119,14 +133,15 @@ export default {
         let res = await this.axios.get("/api/UpeaCarrera/" + id);
         this.$store.state.CarreraU = res.data.Descripcion;
         this.$store.state.nombreCarr = res.data.Descripcion.carrera;
+        this.cargando();
       } catch (error) {
         console.log(error);
       }
     },
     cargando() {
       document.getElementById("loading_wrapper").style.visibility = "hidden";
-
       this.$swal({
+        icon: "success",
         title: localStorage.msg,
         timer: 2000,
         showConfirmButton: false,

@@ -17,7 +17,7 @@ export default createStore({
 
     // id de Convocatorias/Comunicados/Avisos/Cursos/Seminarios/Ofertas
     idCCACS: '',
-    idSO: '',
+    idSOV: '',
     idF: '',
 
     // Mensajes

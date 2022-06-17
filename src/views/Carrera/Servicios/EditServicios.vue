@@ -77,12 +77,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url_api", "idCarr", "nombreCarr", "idSO"]),
+    ...mapState(["url_api", "idCarr", "nombreCarr", "idSOV"]),
   },
   methods: {
     async getServicio() {
       try {
-        let res = await this.axios.get("/api/Servicio/" + this.idSO);
+        let res = await this.axios.get("/api/Servicio/" + this.idSOV);
         this.Servicio = res.data.Descripcion;
         this.serv_nombre = this.Servicio.serv_nombre;
         this.serv_descripcion = this.Servicio.serv_descripcion;
@@ -125,7 +125,7 @@ export default {
         serv_nro_celular: this.serv_nro_celular,
       };
       try {
-        let res = await this.axios.put("/api/Servicio/" + this.idSO, putServ);
+        let res = await this.axios.put("/api/Servicio/" + this.idSOV, putServ);
         // console.log(res);
         this.$store.state.ev = 1;
         this.$store.state.evTitle = "Editado";
@@ -145,7 +145,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/Servicio/" + this.idSO + "/" + this.Servicio.serv_imagen,
+          "/api/Servicio/" + this.idSOV + "/" + this.Servicio.serv_imagen,
           putImgServ,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

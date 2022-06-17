@@ -154,9 +154,18 @@ export default {
           this.alertDisplay("Error de inicio de sesion", "warning", 1500);
         }
       } catch (error) {
+        console.log(error);
         if (error.response.status == 400 || error.response.status == 401) {
           this.alertDisplay(error.response.data.message, "error", 1500);
           this.password = "";
+        } else {
+          if (error.code == "ERR_NETWORK") {
+            this.$swal({
+              title: 'Estamos teniendo problemas con el servidor, porfavor vuelva mas tarde.',
+              icon: 'error',
+              showConfirmButton: true
+            });
+          }
         }
       }
     },

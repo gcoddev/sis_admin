@@ -332,7 +332,7 @@ export default {
       }
     },
     editOfer(idO) {
-      this.$store.state.idSO = idO;
+      this.$store.state.idSOV = idO;
       this.$router.push("/edit_ofer/" + idO);
     },
     async deleteOfer(id, img) {

@@ -126,6 +126,7 @@
                             clickCarreras(carrera.car_id, carrera.carrera)
                           "
                         >
+                          <i class="mdi mdi-notebook"></i>
                           <span> CONVOCATORIAS </span>
                         </router-link>
                       </li>
@@ -136,6 +137,7 @@
                             clickCarreras(carrera.car_id, carrera.carrera)
                           "
                         >
+                          <i class="mdi mdi-bookmark-box-multiple"></i>
                           <span> CURSOS </span>
                         </router-link>
                       </li>
@@ -146,6 +148,7 @@
                             clickCarreras(carrera.car_id, carrera.carrera)
                           "
                         >
+                          <i class="mdi mdi-bus-school"></i>
                           <span> SERVICIOS </span>
                         </router-link>
                       </li>
@@ -156,6 +159,7 @@
                             clickCarreras(carrera.car_id, carrera.carrera)
                           "
                         >
+                          <i class="mdi mdi-calendar"></i>
                           <span> OFERTAS ACADEMICAS </span>
                         </router-link>
                       </li>
@@ -189,15 +193,26 @@
                       :to="'/cca/' + CarreraU.carrera_id"
                       @click="clickCarrera()"
                     >
+                      <i class="mdi mdi-notebook"></i>
                       <span> CONVOCATORIAS </span>
                     </router-link>
                   </li>
                   <li class="side-nav-item">
                     <router-link
-                      :to="'/cca/' + CarreraU.carrera_id"
+                      :to="'/cs/' + CarreraU.carrera_id"
                       @click="clickCarrera()"
                     >
-                      <span> CONVOCATORIAS </span>
+                      <i class="mdi mdi-bookmark-box-multiple"></i>
+                      <span> CURSOS </span>
+                    </router-link>
+                  </li>
+                  <li class="side-nav-item">
+                    <router-link
+                      :to="'/serv/' + CarreraU.carrera_id"
+                      @click="clickCarrera()"
+                    >
+                      <i class="mdi mdi-bus-school"></i>
+                      <span> SERVICIOS </span>
                     </router-link>
                   </li>
                   <li class="side-nav-item">
@@ -205,18 +220,22 @@
                       :to="'/ofer/' + CarreraU.carrera_id"
                       @click="clickCarrera()"
                     >
+                      <i class="mdi mdi-calendar"></i>
                       <span> OFERTAS ACADEMICAS </span>
                     </router-link>
                   </li>
                 </div>
-                <li class="side-nav-item">
-                  <router-link
-                    :to="'/cs/' + CarreraU.carrera_id"
-                    @click="clickCarrera()"
-                  >
-                    <span> CURSOS </span>
-                  </router-link>
-                </li>
+                <div v-if="showCen">
+                  <li class="side-nav-item">
+                    <router-link
+                      :to="'/cs/' + CarreraU.carrera_id"
+                      @click="clickCarrera()"
+                    >
+                      <i class="mdi mdi-bookmark-box-multiple"></i>
+                      <span> CURSOS </span>
+                    </router-link>
+                  </li>
+                </div>
               </ul>
             </div>
           </li>
@@ -282,6 +301,13 @@ export default {
     },
     showDir() {
       if (this.rol == "DIRECTOR") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    showCen() {
+      if (this.rol == "CENTRO_ESTUDIANTES") {
         return true;
       } else {
         return false;

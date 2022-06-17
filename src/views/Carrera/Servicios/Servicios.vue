@@ -447,7 +447,7 @@ export default {
       }
     },
     editServ(idS) {
-      this.$store.state.idSO = idS;
+      this.$store.state.idSOV = idS;
       this.$router.push("/edit_serv/" + idS);
     },
     async deleteServ(id, img) {

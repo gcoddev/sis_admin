@@ -136,12 +136,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url_api", "idCarr", "nombreCarr", "idSO"]),
+    ...mapState(["url_api", "idCarr", "nombreCarr", "idSOV"]),
   },
   methods: {
     async getOferta() {
       try {
-        let res = await this.axios.get("/api/OfertasAcademicas/" + this.idSO);
+        let res = await this.axios.get("/api/OfertasAcademicas/" + this.idSOV);
         this.Oferta = res.data.Descripcion;
         let fecha;
         this.ofertas_titulo = this.Oferta.ofertas_titulo;
@@ -207,7 +207,7 @@ export default {
       };
       try {
         let res = await this.axios.put(
-          "/api/OfertasAcademicas/" + this.idSO,
+          "/api/OfertasAcademicas/" + this.idSOV,
           putOfer
         );
         // console.log(res);
@@ -230,7 +230,7 @@ export default {
       try {
         let res = await this.axios.put(
           "/api/OfertasAcademicas/" +
-            this.idSO +
+            this.idSOV +
             "/" +
             this.Oferta.ofertas_imagen,
           putImgOfer,
