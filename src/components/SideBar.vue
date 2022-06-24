@@ -9,7 +9,7 @@
             alt="Logo upea"
             height="50"
           />
-          <h1 style="user-select: none">UPEA</h1>
+          <h1 style="user-select: none" class="text-dark">UPEA</h1>
         </div>
       </span>
       <span class="logo-sm">

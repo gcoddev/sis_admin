@@ -801,7 +801,11 @@ a {
     width: 250px;
     margin: auto;
     display: block;
-    animation: imagen 4s infinite ease-in-out;
+    animation: imagen 3s infinite ease-in-out;
+}
+
+.img-text {
+    animation: imagen 3s infinite ease-in-out;
 }
 
 @keyframes imagen {

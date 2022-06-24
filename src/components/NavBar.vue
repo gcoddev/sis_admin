@@ -123,7 +123,7 @@
             <span class="account-user-name"
               >{{ userAdminData.nombre }} {{ userAdminData.apellido }}</span
             >
-            <span class="account-position">{{ userAdminData.roles }}</span>
+            <span class="account-position"><b>ROL: </b>{{ userAdminData.roles }}</span>
           </span>
         </a>
         <div

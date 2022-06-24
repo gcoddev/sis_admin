@@ -149,6 +149,7 @@ export default {
           username: this.username,
           password: this.password,
         });
+        console.log(res);
         if (res.status == 200) {
           localStorage.token = res.data.token;
           localStorage.credentialP = res.data.credentialP;
@@ -160,7 +161,7 @@ export default {
           this.alertDisplay("Error de inicio de sesion", "warning", 1500);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         if (error.response.status == 400 || error.response.status == 401) {
           this.alertDisplay(error.response.data.message, "error", 1500);
           this.password = "";
@@ -189,6 +190,7 @@ export default {
   created() {
     if (localStorage.auth) {
       if (localStorage.auth == "0") {
+        //
       } else {
         if (localStorage.auth == "1") {
           this.$router.push("/");

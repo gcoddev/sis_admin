@@ -12431,7 +12431,7 @@ Sticky Menu
 /*----------------------------------------------------*/
 
 .str-about-section {
-    background-color: #fff;
+    /* background-color: #fff; */
     /* background-color: #edf2f9; */
     /* background-color: #040d21; */
     padding: 115px 0px 110px;
@@ -12675,7 +12675,7 @@ Sticky Menu
 
 .panel-ins {
     /* opacity: 0.6; */
-    background: #fdfdfd;
+    /* background: #fdfdfd; */
 }
 
 
