@@ -100,6 +100,12 @@
   </div>
 </template>
 
+<style scoped>
+#eye {
+  cursor: pointer;
+}
+</style>
+
 <script>
 // import { mapState } from "vuex";
 export default {
@@ -161,9 +167,10 @@ export default {
         } else {
           if (error.code == "ERR_NETWORK") {
             this.$swal({
-              title: 'Estamos teniendo problemas con el servidor, porfavor vuelva mas tarde.',
-              icon: 'error',
-              showConfirmButton: true
+              title:
+                "Estamos teniendo problemas con el servidor, porfavor vuelva mas tarde.",
+              icon: "error",
+              showConfirmButton: true,
             });
           }
         }

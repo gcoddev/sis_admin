@@ -164,7 +164,7 @@
                           {{ cur.det_titulo }}
                         </div>
                         <pre
-                          class="card-text contenedor"
+                          class="card-text contenedor_card"
                           v-html="cur.det_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
                         ></pre>
@@ -248,7 +248,7 @@
                             </div>
                             <div class="col-12 col-md-7">
                               <pre
-                                class="card-text contenedor p-2"
+                                class="card-text contenedor_card p-2"
                                 v-html="cur.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
@@ -499,7 +499,7 @@
                           {{ sem.det_titulo }}
                         </div>
                         <pre
-                          class="card-text contenedor"
+                          class="card-text contenedor_card"
                           v-html="sem.det_descripcion"
                           style="max-height: 200px; overflow-y: scroll"
                         ></pre>
@@ -583,7 +583,7 @@
                             </div>
                             <div class="col-12 col-md-7">
                               <pre
-                                class="card-text contenedor p-2"
+                                class="card-text contenedor_card p-2"
                                 v-html="sem.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
@@ -806,30 +806,30 @@
   word-wrap: break-word;
   word-break: break-all;
 }
-.contenedor {
+.contenedor_card {
   overflow: auto;
   box-sizing: border-box;
   padding: 5px;
 }
-.contenedor::-webkit-scrollbar {
+.contenedor_card::-webkit-scrollbar {
   -webkit-appearance: none;
 }
-.contenedor::-webkit-scrollbar:vertical {
+.contenedor_card::-webkit-scrollbar:vertical {
   width: 10px;
 }
-.contenedor::-webkit-scrollbar-button:increment,
-.contenedor::-webkit-scrollbar-button {
+.contenedor_card::-webkit-scrollbar-button:increment,
+.contenedor_card::-webkit-scrollbar-button {
   display: none;
 }
-.contenedor::-webkit-scrollbar:horizontal {
+.contenedor_card::-webkit-scrollbar:horizontal {
   height: 10px;
 }
-.contenedor::-webkit-scrollbar-thumb {
+.contenedor_card::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
   border: 2px solid var(--ct-card-bg);
 }
-.contenedor::-webkit-scrollbar-track {
+.contenedor_card::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 pre {

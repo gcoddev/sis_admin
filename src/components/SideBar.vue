@@ -25,10 +25,10 @@
         </li>
 
         <li class="side-nav-item">
-          <router-link to="/" class="side-nav-link">
+          <a @click="loc_rel()" class="side-nav-link" style="cursor:pointer">
             <i class="mdi mdi-home"></i>
             <span> INICIO </span>
-          </router-link>
+          </a>
         </li>
 
         <div v-if="showUpea">
@@ -272,6 +272,9 @@ export default {
     clickCarrera() {
       this.$store.state.getter = true;
     },
+    loc_rel() {
+      location.reload()
+    }
   },
   computed: {
     ...mapState(["Area", "userAdminData", "CarreraU"]),

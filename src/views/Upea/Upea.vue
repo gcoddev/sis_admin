@@ -81,7 +81,7 @@
                   <ul class="fs-4 mt-0">
                     <div class="ribbon-content">
                       <pre
-                        class="card-text contenedor"
+                        class="card-text contenedor_card"
                         v-html="Institucion.institucion_mision"
                         style="max-height: 250px"
                       ></pre>
@@ -100,7 +100,7 @@
                   <ul class="fs-4 mt-0">
                     <div class="ribbon-content">
                       <pre
-                        class="card-text contenedor"
+                        class="card-text contenedor_card"
                         v-html="Institucion.institucion_vision"
                         style="max-height: 250px"
                       ></pre>
@@ -320,30 +320,30 @@
 #img_carrusel {
   object-fit: cover;
 }
-.contenedor {
+.contenedor_card {
   overflow: auto;
   box-sizing: border-box;
   padding: 5px;
 }
-.contenedor::-webkit-scrollbar {
+.contenedor_card::-webkit-scrollbar {
   -webkit-appearance: none;
 }
-.contenedor::-webkit-scrollbar:vertical {
+.contenedor_card::-webkit-scrollbar:vertical {
   width: 10px;
 }
-.contenedor::-webkit-scrollbar-button:increment,
-.contenedor::-webkit-scrollbar-button {
+.contenedor_card::-webkit-scrollbar-button:increment,
+.contenedor_card::-webkit-scrollbar-button {
   display: none;
 }
-.contenedor::-webkit-scrollbar:horizontal {
+.contenedor_card::-webkit-scrollbar:horizontal {
   height: 10px;
 }
-.contenedor::-webkit-scrollbar-thumb {
+.contenedor_card::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
   border: 2px solid var(--ct-card-bg);
 }
-.contenedor::-webkit-scrollbar-track {
+.contenedor_card::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 pre {
