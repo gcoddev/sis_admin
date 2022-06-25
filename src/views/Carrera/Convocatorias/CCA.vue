@@ -7,7 +7,7 @@
       <h1>Error al retornar datos de la carrera</h1>
     </div>
     <div class="container-fluid pt-2" id="cont_carr">
-      <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
+      <h1 class="text-uppercase text-dark">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
           <!-- nav -->
@@ -94,7 +94,7 @@
                       </ul>
                     </div>
                   </div>
-                  <h2>Links</h2>
+                  <h2 class="text-dark">Links</h2>
                   <div class="list-group border border-info">
                     <a
                       :href="link.url_links"
@@ -139,7 +139,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div v-if="filterConv.length == 0">
-                  <h1 class="text-center">Sin convocatorias</h1>
+                  <h1 class="text-center text-dark">Sin convocatorias</h1>
                 </div>
                 <div
                   v-else
@@ -301,7 +301,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div v-if="filterCom.length == 0">
-                  <h1 class="text-center">Sin comunicados</h1>
+                  <h1 class="text-center text-dark">Sin comunicados</h1>
                 </div>
                 <div
                   v-else
@@ -464,7 +464,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div v-if="filterAv.length == 0">
-                  <h1 class="text-center">Sin avisos</h1>
+                  <h1 class="text-center text-dark">Sin avisos</h1>
                 </div>
                 <div
                   v-else
@@ -831,6 +831,7 @@ export default {
         "noviembre",
         "diciembre",
       ];
+
       let dia = fecha.substr(8, 2);
       let mes = parseInt(fecha.substr(5, 2));
       let anio = fecha.substr(0, 4);

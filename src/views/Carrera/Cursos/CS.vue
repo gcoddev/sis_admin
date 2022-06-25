@@ -7,7 +7,7 @@
       <h1>Error al retornar datos de la carrera</h1>
     </div>
     <div class="container-fluid pt-2" id="cont_carr">
-      <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
+      <h1 class="text-uppercase text-dark">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
           <!-- nav -->
@@ -80,7 +80,7 @@
                       </ul>
                     </div>
                   </div>
-                  <h2>Links</h2>
+                  <h2 class="text-dark">Links</h2>
                   <div class="list-group border border-info">
                     <a
                       :href="link.url_links"
@@ -124,7 +124,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div v-if="filterCur.length == 0">
-                  <h1 class="text-center">Sin cursos</h1>
+                  <h1 class="text-center text-dark">Sin cursos</h1>
                 </div>
                 <div
                   v-else
@@ -459,7 +459,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div v-if="filterSem.length == 0">
-                  <h1 class="text-center">Sin seminarios</h1>
+                  <h1 class="text-center text-dark">Sin seminarios</h1>
                 </div>
                 <div
                   v-else

@@ -72,16 +72,6 @@
                 </button>
               </div>
             </div>
-
-            <!-- Footer-->
-            <!-- <footer class="footer footer-alt">
-              <p class="text-muted">
-                Don't have an account?
-                <a href="pages-register-2.html" class="text-muted ms-1"
-                  ><b>Sign Up</b></a
-                >
-              </p>
-            </footer> -->
           </div>
         </div>
       </div>
@@ -93,7 +83,7 @@
             <i class="mdi mdi-format-quote-open"></i> Sistema de Administracion
             de Publicaciones <i class="mdi mdi-format-quote-close"></i>
           </p>
-          <p>- Development by Gary - SIE 2022</p>
+          <p>- Development by Gary & Milton - SIE 2022</p>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
               src="@/assets/images/sie_logo.png"
               alt="Sie logo"
               width="100" /></a
-          >&nbsp; by Gary © {{ getYear }}
+          >&nbsp; by Gary & Milton © {{ getYear }}
         </div>
         <div class="col-md-6">
           <div class="text-md-end footer-links d-none d-md-block">

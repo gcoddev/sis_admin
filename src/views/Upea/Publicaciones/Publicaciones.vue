@@ -84,9 +84,9 @@
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_pub_label_' + id_pub">
+                    <h3 class="modal-title text-dark" :id="'modal_pub_label_' + id_pub">
                       {{ pub.publicaciones_titulo }}
-                    </h5>
+                    </h3>
                     <button
                       type="button"
                       class="btn-close"

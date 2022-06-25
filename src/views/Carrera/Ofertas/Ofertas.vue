@@ -7,7 +7,7 @@
       <h1>Error al retornar datos de la carrera</h1>
     </div>
     <div class="container-fluid pt-2" id="cont_carr">
-      <h1 class="text-uppercase">Carrera {{ nombreCarr }}</h1>
+      <h1 class="text-uppercase text-dark">Carrera {{ nombreCarr }}</h1>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
@@ -35,7 +35,7 @@
         <div class="container-fluid">
           <div class="row">
             <div v-if="Ofertas.length == 0">
-              <h1 class="text-center">Sin ofertas academicas</h1>
+              <h1 class="text-center text-dark">Sin ofertas academicas</h1>
             </div>
             <div
               v-else
