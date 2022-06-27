@@ -32,7 +32,7 @@
             <div class="col-12">
               <div class="form-group mt-2">
                 <label for="gaceta_documento" class="form-label"
-                  >Imagen portada:</label
+                  >Documento Gaceta:</label
                 >
                 <input
                   type="file"

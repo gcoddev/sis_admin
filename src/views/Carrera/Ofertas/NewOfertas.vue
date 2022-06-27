@@ -129,7 +129,7 @@ export default {
         let res = await this.axios.get("/api/Tipoconvocatorias/");
         this.tipoC = res.data;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     clickCarrera() {
@@ -194,7 +194,7 @@ export default {
         this.$store.state.evMsg = res.data.mensaje;
         this.clickCarrera();
       } catch (error) {
-        console.log("error createOfer");
+        // console.log("error createOfer");
         console.error(error);
         if (error.response.status == 500) {
           location.reload();

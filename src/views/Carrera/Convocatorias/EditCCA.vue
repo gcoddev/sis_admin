@@ -204,7 +204,7 @@ export default {
         this.clickCarrera();
       } catch (error) {
         // console.log("error putCCA");
-        console.log(error);
+        // console.log(error);
         if (error.response.status == 500) {
           location.reload();
         }
@@ -225,7 +225,7 @@ export default {
         );
       } catch (error) {
         // console.log("errror updateImageCCA");
-        console.log(error);
+        // console.log(error);
         if (error.response.status == 500) {
           location.reload();
         }

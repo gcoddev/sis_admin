@@ -161,7 +161,6 @@ export default {
               if (this.celular_facilitador != "") {
                 if (this.facebook_facilitador != "") {
                   if (this.foto_facilitador != null) {
-                    console.log("vak");
                     this.createF();
                   } else {
                     this.alertDisplay("Foto del facilitador vacio");
@@ -190,12 +189,12 @@ export default {
       this.foto_facilitador = img.files[0];
     },
     async createF() {
-      console.log("createF");
+      // console.log("createF");
       let postF = {
         nombre_facilitador: this.nombre_facilitador,
         cargo_facilitador: this.cargo_facilitador,
         descripcion_facilitador: this.descripcion_facilitador,
-        celular_facilitador: this.pc + ' ' + this.celular_facilitador,
+        celular_facilitador: this.pc + " " + this.celular_facilitador,
         facebook_facilitador: this.facebook_facilitador,
         foto_facilitador: this.foto_facilitador,
       };
@@ -210,7 +209,7 @@ export default {
         this.$store.state.evMsg = res.data.mensaje;
         this.clickCarrera();
       } catch (error) {
-        console.log("error createF");
+        // console.log("error createF");
         // console.log(error);
         if (error.response.status == 500) {
           this.$swal({

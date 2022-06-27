@@ -118,7 +118,7 @@ export default {
         this.$store.state.Institucion = res.data[0];
         this.cargando();
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     async getArea() {
@@ -126,7 +126,7 @@ export default {
         let res = await this.axios.get("/api/area/");
         this.$store.state.Area = res.data;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     async getCarreraU(id) {
@@ -136,7 +136,7 @@ export default {
         this.$store.state.nombreCarr = res.data.Descripcion.carrera;
         this.cargando();
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     cargando() {

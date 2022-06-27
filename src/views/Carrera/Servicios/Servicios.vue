@@ -434,7 +434,7 @@ export default {
         this.Servicios = res.data;
         this.cargando();
       } catch (error) {
-        console.log("error getServicios");
+        // console.log("error getServicios");
         // console.error(error);
         if (error.response.status == 500) {
           this.getServicios();
@@ -456,7 +456,7 @@ export default {
         this.getServicios(this.idCarr);
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("error deleteOfer");
+        // console.log("error deleteOfer");
         // console.log(error);
         if (error.response.status == 500) {
           this.getServicios();
@@ -546,8 +546,8 @@ export default {
         this.getServicios();
         this.$swal("Editado", res.data.message, "success");
       } catch (error) {
-        console.log("error editImg");
-        console.log(error);
+        // console.log("error editImg");
+        // console.log(error);
         if (error.response.status == 500) {
           this.getServicios();
           this.$swal({
@@ -582,8 +582,8 @@ export default {
         this.getServicios();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("deleteImg");
-        console.log(error);
+        // // console.log("deleteImg");
+        // console.log(error);
         if (error.response.status == 500) {
           this.getServicios();
           this.$swal({
@@ -616,7 +616,7 @@ export default {
         this.getServicios();
         this.$swal("Agregado", res.data.message, "success");
       } catch (error) {
-        console.log("error postImg");
+        // console.log("error postImg");
         // console.log(error);
         if (error.response.status == 500) {
           this.getServicios();

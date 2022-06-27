@@ -304,7 +304,7 @@ export default {
           this.tipoC = res.data;
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     clickCarrera() {
@@ -437,7 +437,7 @@ export default {
         idtipo_curso_otros: this.idtipo_curso_otros,
         det_img_portada: this.det_img_portada,
       };
-      console.log(postCS);
+      // console.log(postCS);
       try {
         let res = await this.axios.post(
           "/api/cursosAll/" + this.idCarr,
@@ -451,7 +451,7 @@ export default {
         this.clickCarrera();
       } catch (error) {
         // console.log("error createCCA");
-        console.log(error);
+        // console.log(error);
         if (error.response.status == 500) {
           location.reload();
         }

@@ -88,7 +88,7 @@ export default {
         this.serv_descripcion = this.Servicio.serv_descripcion;
         this.serv_nro_celular = this.Servicio.serv_nro_celular;
       } catch (error) {
-        console.log("error getServicio");
+        // console.log("error getServicio");
         console.error(error);
       }
     },
@@ -132,7 +132,7 @@ export default {
         this.$store.state.evMsg = res.data.message;
         this.clickCarrera();
       } catch (error) {
-        console.log("error editServ");
+        // console.log("error editServ");
         console.error(error);
         if (error.response.status == 500) {
           location.reload();
@@ -150,7 +150,7 @@ export default {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } catch (error) {
-        console.log("error editImgServ");
+        // console.log("error editImgServ");
         console.error(error);
         if (error.response.status == 500) {
           location.reload();

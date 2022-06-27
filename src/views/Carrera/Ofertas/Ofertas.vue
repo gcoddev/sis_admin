@@ -327,7 +327,7 @@ export default {
         this.Ofertas = res.data;
         this.cargando();
       } catch (error) {
-        console.log("error getOfertas");
+        // console.log("error getOfertas");
         // console.error(error);
       }
     },
@@ -343,7 +343,7 @@ export default {
         this.getOfertas(this.idCarr);
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("error deleteOfer");
+        // console.log("error deleteOfer");
         // console.log(error);
         if (error.response.status == 500) {
           this.getOfertas();

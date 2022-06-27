@@ -153,7 +153,7 @@ export default {
         fecha = this.Oferta.ofertas_fecha_examen.substr(0, 10);
         this.ofertas_fecha_examen = fecha;
       } catch (error) {
-        console.log("error getOferta");
+        // console.log("error getOferta");
         console.error(error);
       }
     },
@@ -216,7 +216,7 @@ export default {
         this.$store.state.evMsg = res.data.message;
         this.clickCarrera();
       } catch (error) {
-        console.log("error editOfer");
+        // console.log("error editOfer");
         console.error(error);
         if (error.response.status == 500) {
           location.reload();
@@ -237,7 +237,7 @@ export default {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } catch (error) {
-        console.log("error editImgOfer");
+        // console.log("error editImgOfer");
         console.error(error);
         if (error.response.status == 500) {
           location.reload();

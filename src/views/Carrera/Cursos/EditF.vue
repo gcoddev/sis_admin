@@ -170,7 +170,7 @@ export default {
         this.celular_facilitador = cel[1];
         this.facebook_facilitador = this.Facilitador.facebook_facilitador;
       } catch (error) {
-        console.log("error getFacilitador");
+        // console.log("error getFacilitador");
         // console.log(error);
         if (error.response.status == 500) {
           this.$swal({
@@ -236,8 +236,8 @@ export default {
         this.$store.state.evMsg = res.data.message;
         this.clickCarrera();
       } catch (error) {
-        console.log("updateFacilitador");
-        console.log(error);
+        // console.log("updateFacilitador");
+        // console.log(error);
         if (error.response.status == 500) {
           this.$swal({
             title: error.response.data.message,
@@ -261,8 +261,8 @@ export default {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
       } catch (error) {
-        console.log("updateImageFacilitador");
-        console.log(error);
+        // // console.log("updateImageFacilitador");
+        // console.log(error);
         if (error.response.status == 500) {
           this.$swal({
             title: error.response.data.message,

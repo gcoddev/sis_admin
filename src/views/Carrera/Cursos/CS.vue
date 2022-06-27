@@ -895,7 +895,7 @@ export default {
         document.getElementById("cont_carr_error").style.display = "none";
         document.getElementById("cont_carr").style.display = "block";
       } catch (error) {
-        console.log("error getCarrera");
+        // console.log("error getCarrera");
         if (error.response.status == 500) {
           document.getElementById("cont_carr").style.display = "none";
           document.getElementById("cont_carr_error").style.display = "block";
@@ -923,7 +923,7 @@ export default {
         });
         this.cargando();
       } catch (error) {
-        console.log("error getCursosAll");
+        // console.log("error getCursosAll");
         // console.log(error);
       }
     },
@@ -937,7 +937,7 @@ export default {
         this.getCursosAll();
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("error deleteCS");
+        // console.log("error deleteCS");
         // console.log(error);
         if (error.response.status == 500) {
           this.getCursosAll();

@@ -761,7 +761,7 @@ export default {
         });
         this.cargando();
       } catch (error) {
-        console.log("error getConvocatoriasAll");
+        // console.log("error getConvocatoriasAll");
         // console.log(error);
       }
     },
@@ -777,7 +777,7 @@ export default {
         this.getConvocatoriasAll(this.idCarr);
         this.$swal("Eliminado", res.data.message, "success");
       } catch (error) {
-        console.log("error deleteCCA");
+        // console.log("error deleteCCA");
         // console.log(error);
         if (error.response.status == 500) {
           this.getConvocatoriasAll();

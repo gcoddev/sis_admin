@@ -43,10 +43,6 @@
                 />
               </div>
               <div class="mb-3">
-                <a href="pages-recoverpw-2.html" class="text-muted float-end"
-                  ><small>Forgot your password?</small></a
-                >
-
                 <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group input-group-merge">
                   <input
@@ -139,7 +135,7 @@ export default {
           username: this.username,
           password: this.password,
         });
-        console.log(res);
+        // console.log(res);
         if (res.status == 200) {
           localStorage.token = res.data.token;
           localStorage.credentialP = res.data.credentialP;
