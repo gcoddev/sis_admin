@@ -30,7 +30,7 @@
       <div class="container-fluid">
         <div class="row">
           <div v-if="Gaceta.length == 0">
-            <h1 class="text-center">Sin gacetas</h1>
+            <h1 class="text-center text-dark">Sin gacetas</h1>
           </div>
           <div
             v-else
@@ -65,7 +65,7 @@
                       :disabled="true"
                     ></iframe>
                   </div>
-                  <div class="card-title fw-bold mt-2">
+                  <div class="card-title fw-bold mt-2 text-dark">
                     {{ gac.gaceta_titulo }}
                   </div>
                 </div>
@@ -87,8 +87,8 @@
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_gac_label_' + id_gac">
-                      {{ gac.publicaciones_titulo }}
+                    <h5 class="modal-title text-dark" :id="'modal_gac_label_' + id_gac">
+                      {{ gac.gaceta_titulo }}
                     </h5>
                     <button
                       type="button"

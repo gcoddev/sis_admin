@@ -206,7 +206,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5
-                            class="modal-title"
+                            class="modal-title text-dark"
                             :id="'modal_conv_label_' + id_conv"
                           >
                             {{ con.con_titulo }}
@@ -368,7 +368,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5
-                            class="modal-title"
+                            class="modal-title text-dark"
                             :id="'modal_com_label_' + id_com"
                           >
                             {{ con.con_titulo }}
@@ -531,7 +531,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5
-                            class="modal-title"
+                            class="modal-title text-dark"
                             :id="'modal_av_label_' + id_av"
                           >
                             {{ con.con_titulo }}

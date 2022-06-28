@@ -1,10 +1,9 @@
 <template>
   <div class="container-fluid">
-    <h1>Editar Video</h1>
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">Editar video</h2>
+          <h2 class="text-center text-dark">Editar video</h2>
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group mt-2">

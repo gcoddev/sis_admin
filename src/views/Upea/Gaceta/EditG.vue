@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-    <h1>Editar publicacion</h1>
+    <h1 class="text-dark">Editar publicacion</h1>
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">Editar gaceta</h2>
+          <h2 class="text-center text-dark">Editar gaceta</h2>
           <div class="row">
             <iframe
               :src="

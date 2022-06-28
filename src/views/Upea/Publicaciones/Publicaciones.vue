@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row">
           <div v-if="Publicaciones.length == 0">
-            <h1 class="text-center">Sin publicaciones</h1>
+            <h1 class="text-center text-dark">Sin publicaciones</h1>
           </div>
           <div
             v-else

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">Evento</h2>
+      <h2 class="text-center text-dark">Evento</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">

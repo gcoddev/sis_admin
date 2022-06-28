@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h2 class="text-center">Nuevo video</h2>
+      <h2 class="text-center text-dark">Nuevo video</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">

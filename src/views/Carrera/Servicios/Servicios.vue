@@ -4,7 +4,7 @@
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
     <div class="container-fluid pt-2" id="cont_carr_error">
-      <h1>Error al retornar datos de la carrera</h1>
+      <h1 class="text-dark">Error al retornar datos de la carrera</h1>
     </div>
     <div class="container-fluid pt-2" id="cont_carr">
       <h1 class="text-uppercase text-dark">Carrera {{ nombreCarr }}</h1>
@@ -19,7 +19,7 @@
                 </div>
                 <button
                   class="btn btn-info float-end mt-0 mb-3"
-                  @click="newOfer()"
+                  @click="newServ()"
                 >
                   Crear nuevo
                 </button>

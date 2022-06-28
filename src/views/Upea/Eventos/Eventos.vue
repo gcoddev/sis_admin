@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row">
           <div v-if="Eventos.length == 0">
-            <h1 class="text-center">Sin eventos</h1>
+            <h1 class="text-center text-dark">Sin eventos</h1>
           </div>
           <div
             v-else
@@ -51,7 +51,7 @@
                     alt="img"
                     class="card-img-top"
                   />
-                  <div class="card-title fw-bold mt-2">titulo</div>
+                  <div class="card-title fw-bold mt-2">{{ ev.evento_titulo }}</div>
                   <pre
                     class="card-text contenedor_card"
                     style="max-height: 200px; overflow-y: scroll"
@@ -78,8 +78,8 @@
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_ev_label_' + id_ev">
-                      titulo
+                    <h5 class="modal-title text-dark" :id="'modal_ev_label_' + id_ev">
+                      {{ ev.evento_titulo }}
                     </h5>
                     <button
                       type="button"

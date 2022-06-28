@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-    <h1>{{ nombreCarr }}</h1>
+    <h1 class="text-dark">{{ nombreCarr }}</h1>
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">{{ CCA.tipo_conv_comun_titulo }}</h2>
+          <h2 class="text-center text-dark">{{ CCA.tipo_conv_comun_titulo }}</h2>
           <div class="row">
             <img
               :src="url_api + '/Convocatorias/' + CCA.con_foto_portada"

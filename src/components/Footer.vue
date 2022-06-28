@@ -12,9 +12,8 @@
         </div>
         <div class="col-md-6">
           <div class="text-md-end footer-links d-none d-md-block">
-            <a href="javascript: void(0);">Acerca de</a>
-            <a href="javascript: void(0);">Soporte</a>
-            <a href="https://github.com/gcoddev/" target="_blank">Contacto</a>
+            <a href="https://sie.upea.bo/" target="_blank">Contacto</a>
+            <a href="https://sie.upea.bo/soporte/" target="_blank">Soporte</a>
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@
       <div class="container-fluid">
         <div class="row">
           <div v-if="Videos.length == 0">
-            <h1 class="text-center">Sin videos</h1>
+            <h1 class="text-center text-dark">Sin videos</h1>
           </div>
           <div
             v-else
@@ -57,7 +57,7 @@
                     v-html="[vid.video_estado == '1' ? 'Activo' : 'Inactivo']"
                   ></span>
                 </div>
-                <h5 class="text-dark float-end mt-0">Videos</h5>
+                <h5 class="text-dark float-end mt-0 text-dark">Videos</h5>
                 <div class="ribbon-content">
                   <div style="position: relative">
                     <div class="ratio ratio-16x9" style="position: absolute">
@@ -92,7 +92,7 @@
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" :id="'modal_vid_label_' + id_vid">
+                    <h5 class="modal-title text-dark" :id="'modal_vid_label_' + id_vid">
                       {{ vid.video_titulo }}
                     </h5>
                     <button

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid" @keyup.enter="validar()">
     <div class="container">
-      <h2 class="text-center">{{ nombreCarr }}</h2>
+      <h2 class="text-center text-dark">{{ nombreCarr }}</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">

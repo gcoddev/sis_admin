@@ -216,7 +216,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5
-                            class="modal-title"
+                            class="modal-title text-dark"
                             :id="'modal_cur_label_' + id_cur"
                           >
                             {{ cur.det_titulo }}
@@ -252,7 +252,7 @@
                                 v-html="cur.det_descripcion"
                                 style="overflow-y: scroll"
                               ></pre>
-                              <h5>Facilitadores</h5>
+                              <h5 class="text-dark">Facilitadores</h5>
                               <ul>
                                 <li
                                   class="
@@ -551,7 +551,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5
-                            class="modal-title"
+                            class="modal-title text-dark"
                             :id="'modal_sem_label_' + id_sem"
                           >
                             {{ sem.det_titulo }}

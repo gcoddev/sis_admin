@@ -11,7 +11,9 @@
             />
           </div>
           <div class="card-body col-12 col-md-8">
-            <div class="card-title"><h2>Datos personales</h2></div>
+            <div class="card-title">
+              <h2 class="text-dark">Datos personales</h2>
+            </div>
             <div class="card-text">
               <div class="row">
                 <div class="col-4 col-md-2 fw-bold">Nombres:</div>
@@ -65,7 +67,9 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Editar usuario</h5>
+            <h5 class="modal-title text-dark" id="staticBackdropLabel">
+              Editar usuario
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -86,7 +90,7 @@
             <div
               v-if="resShow"
               class="alert"
-              :class="[ciSearch.length >= 7 ? 'alert-danger' : 'alert-success']"
+              :class="[ciSearch.length >= 7 ? 'alert-danger' : 'alert-warning']"
             >
               {{ res }}
             </div>
@@ -102,7 +106,7 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">Datos de usuario</h5>
+                      <h5 class="card-title text-dark">Datos de usuario</h5>
                       <div class="card-">
                         <b>NOMBRES: </b>{{ resData.nombre }}
                         {{ resData.apellido }}<br />
@@ -140,13 +144,15 @@
                 />
               </div>
               <div class="mb-2">
-                <label for="password" class="form-label">Contraseña</label>
+                <label for="password" class="form-label"
+                  >Nueva contraseña</label
+                >
                 <div class="input-group input-group-merge">
                   <input
                     type="password"
                     id="password_e"
                     class="form-control"
-                    placeholder="Ingrese su contraseña"
+                    placeholder="Ingrese su nueva contraseña"
                     v-model="password"
                   />
                   <div
@@ -162,14 +168,14 @@
               </div>
               <div class="mb-2">
                 <label for="password_confirm" class="form-label"
-                  >Confirmar password</label
+                  >Confirmar nueva contraseña</label
                 >
                 <div class="input-group input-group-merge">
                   <input
                     type="password"
                     class="form-control"
                     id="password_confirm_e"
-                    placeholder="Confirmar contraseña"
+                    placeholder="Confirmar su nueva contraseña"
                     v-model="password_confirm"
                     :class="[
                       password_confirm != ''
@@ -233,6 +239,7 @@
               class="btn btn-secondary"
               data-bs-dismiss="modal"
               id="cerrar_e"
+              @click="resetI()"
             >
               Cancelar
             </button>
@@ -264,7 +271,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
+            <h5 class="modal-title text-dark" id="staticBackdropLabel">
               Registrar nuevo usuario
             </h5>
             <button
@@ -340,7 +347,7 @@
               </div>
               <div class="mb-2">
                 <label for="password_confirm" class="form-label"
-                  >Confirmar password</label
+                  >Confirmar contraseña</label
                 >
                 <div class="input-group input-group-merge">
                   <input
@@ -412,6 +419,7 @@
               class="btn btn-secondary"
               data-bs-dismiss="modal"
               id="cerrar_n"
+              @click="resetI()"
             >
               Cancelar
             </button>
@@ -604,7 +612,7 @@ export default {
         this.group_id = "";
         this.nombre = "";
         this.imagen = null;
-        document.querySelector('#user_avatar').val = null
+        document.querySelector("#user_avatar").val = null;
         document.querySelector("#cerrar_n").click();
       } catch (error) {
         // console.log("error createUser");
@@ -753,6 +761,25 @@ export default {
         eye.classList.remove("show-password");
         inputPassword.setAttribute("type", "password");
       }
+    },
+    resetI() {
+      this.ciSearch = "";
+      this.resShow = false;
+      this.res = "";
+      this.resDataShow = false;
+      this.resData = {};
+      this.ci = "";
+      this.carrera_id = "";
+      this.ip_address = "";
+      this.username = "";
+      this.password = "";
+      this.password_confirm = "";
+      this.group_id = "";
+      this.nombre = "";
+      this.imagen = null;
+      this.val = false;
+      this.celular = "";
+      this.email = "";
     },
   },
   created() {

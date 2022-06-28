@@ -68,7 +68,7 @@
             </a>
           </div>
           <div class="card-title mt-5">
-            <h2>{{ Institucion.institucion_nombre }}</h2>
+            <h2 class="text-dark">{{ Institucion.institucion_nombre }}</h2>
           </div>
           <div class="row m-3">
             <div class="col-12 col-md-6">
@@ -113,105 +113,13 @@
           <div class="card-text m-5">
             <div class="accordion custom-accordion" id="custom-accordion-one">
               <div class="card mb-0">
-                <div class="card-header" id="headingOne">
-                  <h5 class="m-0">
-                    <a
-                      class="custom-accordion-title d-block py-1"
-                      data-bs-toggle="collapse"
-                      href="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      Autoridades
-                      <i class="mdi mdi-chevron-down accordion-arrow"></i>
-                    </a>
-                  </h5>
-                </div>
-                <div
-                  id="collapseOne"
-                  class="collapse show"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#custom-accordion-one"
-                >
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 col-md-9"></div>
-                      <button class="col-12 col-md-3 mb-3 btn btn-primary">
-                        Añadir autoridad
-                      </button>
-                    </div>
-                    <div class="row">
-                      <div
-                        v-for="(
-                          autoridad, id_autoridad
-                        ) of Institucion.autoridad"
-                        :key="id_autoridad"
-                        class="
-                          col-12 col-md-4 col-xl-3
-                          card card-upea
-                          border border-success
-                          d-block
-                        "
-                      >
-                        <div class="card-body">
-                          <h5 class="card-title">
-                            {{ autoridad.nombre_autoridad }}
-                          </h5>
-                          <h6 class="card-subtitle text-muted">
-                            <span class="fw-bold text-uppercase">{{
-                              autoridad.cargo_autoridad
-                            }}</span>
-                          </h6>
-                        </div>
-                        <img
-                          class="img-fluid"
-                          :src="
-                            url_api +
-                            '/InstitucionUpea/Autoridad/' +
-                            autoridad.foto_autoridad
-                          "
-                          alt="Card image cap"
-                        />
-                        <div class="card-body">
-                          <a
-                            :href="autoridad.facebook_autoridad"
-                            target="_blank"
-                            class="btn text-white"
-                            style="background-color: var(--ct-blue)"
-                          >
-                            <i class="mdi mdi-facebook"></i>
-                          </a>
-                          <a
-                            :href="
-                              'https://api.whatsapp.com/send?phone=+591' +
-                              autoridad.celular_autoridad
-                            "
-                            target="_blank"
-                            class="btn btn-success m-2"
-                          >
-                            <i class="mdi mdi-whatsapp"></i>
-                          </a>
-                          <a
-                            :href="autoridad.twitter_autoridad"
-                            target="_blank"
-                            class="btn btn-info"
-                          >
-                            <i class="mdi mdi-twitter"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-0">
                 <div class="card-header" id="headingTwo">
                   <h5 class="m-0">
                     <a
                       class="custom-accordion-title collapsed d-block py-1"
                       data-bs-toggle="collapse"
                       href="#collapseTwo"
-                      aria-expanded="false"
+                      aria-expanded="true"
                       aria-controls="collapseTwo"
                     >
                       Sobre la institucion
@@ -294,7 +202,7 @@
               </div>
             </div>
           </div>
-          <h3>UBICACION {{ Institucion.institucion_direccion }}</h3>
+          <h3 class="text-dark">UBICACION {{ Institucion.institucion_direccion }}</h3>
           <div class="w-75 m-auto ratio ratio-16x9 border border-warning">
             <iframe :src="Institucion.institucion_api_google_map"></iframe>
           </div>

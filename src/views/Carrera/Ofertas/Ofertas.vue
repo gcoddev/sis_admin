@@ -4,7 +4,7 @@
       <div class="spinner-border avatar-lg text-primary" role="status"></div>
     </div>
     <div class="container-fluid pt-2" id="cont_carr_error">
-      <h1>Error al retornar datos de la carrera</h1>
+      <h1 class="text-dark">Error al retornar datos de la carrera</h1>
     </div>
     <div class="container-fluid pt-2" id="cont_carr">
       <h1 class="text-uppercase text-dark">Carrera {{ nombreCarr }}</h1>
@@ -107,7 +107,7 @@
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" :id="'modal_of_label_' + id_of">
+                      <h5 class="modal-title text-dark" :id="'modal_of_label_' + id_of">
                         {{ ofer.ofertas_titulo }}
                       </h5>
                       <button
