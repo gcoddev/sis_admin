@@ -41,8 +41,27 @@ export default {
           localStorage.username = un;
           localStorage.auth = 2;
           this.$router.push("/login");
+        } else {
+          if (error.code == "ERR_NETWORK") {
+            this.cerrarSesion()
+            this.$swal({
+              title:
+                "Estamos teniendo problemas con el servidor, porfavor vuelva mas tarde.",
+              icon: "error",
+              showConfirmButton: true,
+            });
+          }
         }
       }
+    },
+    cerrarSesion() {
+      let theme = localStorage.theme;
+      let un = localStorage.username;
+      localStorage.clear();
+      localStorage.theme = theme;
+      localStorage.username = un;
+      localStorage.auth = "4";
+      location.reload();
     },
   },
   created() {

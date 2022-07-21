@@ -16,12 +16,12 @@
                   alt="Logo upea"
                   height="50"
                 />
-                <h1 style="user-select: none">UPEA</h1>
+                <h1 style="user-select: none" class="text-dark">UPEA</h1>
               </div>
             </div>
 
             <!-- title-->
-            <h4 class="mt-5">Iniciar sesion</h4>
+            <h4 class="mt-5 text-dark">Iniciar sesion</h4>
             <p class="text-muted mb-4">
               Ingrese su nombre de usuario y su contraseña para acceder a su
               cuenta.
@@ -74,7 +74,7 @@
 
       <div class="auth-fluid-right text-center">
         <div class="auth-user-testimonial">
-          <h2 class="mb-3">UNIVERSIDAD PUBLICA DE EL ALTO</h2>
+          <h2 class="mb-3 text-white">UNIVERSIDAD PUBLICA DE EL ALTO</h2>
           <p class="lead">
             <i class="mdi mdi-format-quote-open"></i> Sistema de Administracion
             de Publicaciones <i class="mdi mdi-format-quote-close"></i>

@@ -163,6 +163,17 @@
                           <span> OFERTAS ACADEMICAS </span>
                         </router-link>
                       </li>
+                      <li class="side-nav-item">
+                        <router-link
+                          :to="'/institucion/' + carrera.car_id"
+                          @click="
+                            clickCarreras(carrera.car_id, carrera.carrera)
+                          "
+                        >
+                          <i class="mdi mdi-school"></i>
+                          <span> INSTITUCION </span>
+                        </router-link>
+                      </li>
                     </ul>
                   </div>
                 </li>
